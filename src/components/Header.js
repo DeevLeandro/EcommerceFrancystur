@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Adicione esta importação
 import Slider from "react-slick";
 import { faChevronRight, faChevronLeft, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +13,8 @@ const Slidedata = [
     titulo: "Viva Gramado Como Nunca",
     subtitulo: "Passeios Exclusivos",
     descricao: "Experiências únicas que ficarão para sempre na memória.",
-    destaque: "MAIS VENDIDO"
+    destaque: "MAIS VENDIDO",
+    link: "/ingressos" // Adicione um link para cada slide
   },
   {
     id: 2,
@@ -20,15 +22,17 @@ const Slidedata = [
     titulo: "Roteiro de Vinícolas Premium",
     subtitulo: "Degustações Exclusivas",
     descricao: "Descubra os melhores vinhos da Serra Gaúcha.",
-    destaque: "OFERTA ESPECIAL"
+    destaque: "OFERTA ESPECIAL",
+    link: "/viniculas" // Pode personalizar por slide
   },
-    {
+  {
     id: 3,
     img: "/images/mariafumaca-banner.jpg",
     titulo: "Trem Maria Fumaça",
     subtitulo: "Embarque na Magia",
     descricao: "Viva um passeio inesquecível.",
-    destaque: "Veja os Pacotes"
+    destaque: "Veja os Pacotes",
+    link: "/ingressos" // Mesma página de ingressos
   },
   {
     id: 4,
@@ -36,12 +40,14 @@ const Slidedata = [
     titulo: "Natal Luz",
     subtitulo: "Magia Inesquecível",
     descricao: "O maior evento natalino do mundo te espera.",
-    destaque: "EDIÇÃO LIMITADA"
+    destaque: "EDIÇÃO LIMITADA",
+    link: "/natal-luz" // Página específica do Natal Luz
   }
 ];
 
 export default function Header() {
   const sliderRef = useRef(null);
+  const navigate = useNavigate(); // Hook para navegação
 
   const nextSlide = () => {
     sliderRef.current.slickNext();
@@ -49,6 +55,11 @@ export default function Header() {
 
   const prevSlide = () => {
     sliderRef.current.slickPrev();
+  };
+
+  // Função para navegar para a página correta
+  const handleExploreClick = (link) => {
+    navigate(link);
   };
 
   const configuracaoSlide = {
@@ -104,7 +115,10 @@ export default function Header() {
                     </div>
                   </div>
                   
-                  <button className="cta-button">
+                  <button 
+                    className="cta-button"
+                    onClick={() => handleExploreClick(slide.link)} // Adicione o clique aqui
+                  >
                     Explorar Agora
                     <FontAwesomeIcon icon={faChevronRight} />
                   </button>
