@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { PesquisaProvider } from "./components/PesquisaContext";
 import { CartProvider } from "./components/CartContext";
@@ -18,30 +17,41 @@ import ProdutoDetalhePage from "./components/pages/ProdutoDetalhePage";
 import CheckoutPage from "./components/pages/CheckoutPage";
 import BuscaPage from "./components/pages/BuscaPage";
 
+// Componente para controlar exibição do Header
+function Layout() {
+  const location = useLocation();
+  
+  // Verifica se é a página inicial
+  const isHomePage = location.pathname === '/';
+  
+  return (
+    <div className="app-container">
+      <Navbar/>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/passeios" element={<PasseiosPage />} />
+          <Route path="/viniculas" element={<VinicolasPage />} />
+          <Route path="/transfers" element={<TransfersPage />} />
+          <Route path="/jantares" element={<JantaresPage />} />
+          <Route path="/ingressos" element={<IngressosPage />} />
+          <Route path="/natal-luz" element={<NatalLuzPage />} />
+          <Route path="/produto/:id" element={<ProdutoDetalhePage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/busca" element={<BuscaPage />} />
+        </Routes>
+      </main>
+      <Footer/>
+    </div>
+  );
+}
+
 const App = () => {
   return (
     <Router>
       <PesquisaProvider>
         <CartProvider>
-          <div className="app-container">
-            <Navbar/>
-            <Header/>
-            <main className="main-content">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/passeios" element={<PasseiosPage />} />
-                <Route path="/viniculas" element={<VinicolasPage />} />
-                <Route path="/transfers" element={<TransfersPage />} />
-                <Route path="/jantares" element={<JantaresPage />} />
-                <Route path="/ingressos" element={<IngressosPage />} />
-                <Route path="/natal-luz" element={<NatalLuzPage />} />
-                <Route path="/produto/:id" element={<ProdutoDetalhePage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/busca" element={<BuscaPage />} />
-              </Routes>
-            </main>
-             <Footer/>
-          </div>
+          <Layout/>
         </CartProvider>
       </PesquisaProvider>
     </Router>
