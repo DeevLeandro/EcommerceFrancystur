@@ -1,5 +1,5 @@
 // components/CartContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
@@ -14,25 +14,56 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [produtos, setProdutos] = useState([]);
 
+  // Carregar carrinho do localStorage ao iniciar
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      try {
+        setProdutos(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Erro ao carregar carrinho:', error);
+        localStorage.removeItem('cart');
+      }
+    }
+  }, []);
+
+  // Salvar carrinho no localStorage sempre que mudar
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(produtos));
+  }, [produtos]);
+
   const adicionarAoCarrinho = (produto) => {
     setProdutos(prev => {
-      const produtoExistente = prev.find(p => p.id === produto.id);
+      // Verificar se já existe um produto com o mesmo ID E mesmo tipoPreco
+      const produtoExistenteIndex = prev.findIndex(p => 
+        p.id === produto.id && 
+        p.tipoPreco === produto.tipoPreco
+      );
       
-      if (produtoExistente) {
-        return prev.map(p =>
-          p.id === produto.id 
-            ? { ...p, quantidade: p.quantidade + 1 }
-            : p
-        );
+      if (produtoExistenteIndex !== -1) {
+        // Se já existe, incrementar quantidade considerando a quantidade do novo produto
+        const novosProdutos = [...prev];
+        const novaQuantidade = prev[produtoExistenteIndex].quantidade + (produto.quantidade || 1);
+        
+        novosProdutos[produtoExistenteIndex] = {
+          ...prev[produtoExistenteIndex],
+          quantidade: novaQuantidade
+        };
+        return novosProdutos;
       } else {
-        // Estrutura padrão para todos os produtos
+        // Se não existe, adicionar novo item
         return [...prev, { 
           id: produto.id,
           nome: produto.nome || produto.titulo || 'Produto',
           preco: produto.preco || produto.valor || 0,
-          quantidade: 1,
+          quantidade: produto.quantidade || 1,
           imagem: produto.imagem || produto.image || produto.img || '/images/placeholder.jpg',
-          estoque: produto.estoque || 99
+          tipoPreco: produto.tipoPreco || produto.duracaoSelecionada || 'default',
+          dataSelecionada: produto.dataSelecionada || 'A combinar',
+          estoque: produto.estoque || 99,
+          produtoIdOriginal: produto.produtoIdOriginal || produto.id,
+          duracao: produto.duracao,
+          categoria: produto.categoria
         }];
       }
     });
@@ -43,6 +74,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const atualizarQuantidade = (id, quantidade) => {
+    if (quantidade < 1) {
+      removerDoCarrinho(id);
+      return;
+    }
+
     setProdutos(prev => 
       prev.map(p => 
         p.id === id ? { ...p, quantidade: Math.max(1, quantidade) } : p
@@ -52,6 +88,7 @@ export const CartProvider = ({ children }) => {
 
   const limparCarrinho = () => {
     setProdutos([]);
+    localStorage.removeItem('cart');
   };
 
   return (
