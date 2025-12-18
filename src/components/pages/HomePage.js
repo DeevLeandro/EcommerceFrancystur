@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Header from "../Header"; // Importe o Header aqui
 import { todosProdutos } from "../data/products";
 import ProdutoCard from "../pages/ProductCard";
-import PromoBanner from '../PromoBanner';
 
 const HomePage = () => {
   const produtosDestaque = todosProdutos.slice(0, 6);
@@ -16,7 +15,6 @@ const HomePage = () => {
           <h1>Bem-vindo à FrancysTur!</h1>
           <p>Sua melhor experiência em Gramado e região</p>
         </div>
-        <PromoBanner/>
         <section className="destaque-section">
           <h2>Produtos em Destaque</h2>
           <div className="produtos-grid">

@@ -139,7 +139,7 @@ const ProdutoDetalhePage = () => {
     
     mensagem += `Poderia me fornecer mais detalhes?`;
     
-    const numeroWhatsApp = "5551999999999";
+    const numeroWhatsApp = "5553991224480";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
   };
@@ -158,7 +158,6 @@ const ProdutoDetalhePage = () => {
           </div>
           
           <h1>{produto.nome}</h1>
-          <p className="product-description">{produto.descricao}</p>
           
           {/* Informações específicas se existirem */}
           {produto.faixaEtaria && (
