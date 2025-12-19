@@ -158,6 +158,11 @@ const ProdutoDetalhePage = () => {
           </div>
           
           <h1>{produto.nome}</h1>
+          {produto.descricao && (
+            <div className="product-description-section">
+              <p className="product-description-text">{produto.descricao}</p>
+            </div>
+          )}
           
           {/* Informações específicas se existirem */}
           {produto.faixaEtaria && (

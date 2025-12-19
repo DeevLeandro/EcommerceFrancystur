@@ -112,7 +112,6 @@ const ProductCard = ({ produto }) => {
           </div>
           
           <h3 className="product-title">{produto.nome}</h3>
-          <p className="product-description">{produto.descricao}</p>
           
           <div className="product-details">
             <div className="product-duration">
