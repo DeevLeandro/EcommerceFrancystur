@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -13,7 +13,20 @@ import {
   faChild,
   faUser,
   faUserTie,
-  faCar
+  faCar,
+  faChevronDown,
+  faChevronUp,
+  faImages,
+  faUtensils,
+  faWineBottle,
+  faMountain,
+  faTheaterMasks,
+  faTree,
+  faBus,
+  faInfoCircle,
+  faFileContract,
+  faChevronLeft,
+  faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import { todosProdutos } from "../data/products";
 import { useCart } from "../CartContext";
@@ -26,27 +39,51 @@ const ProdutoDetalhePage = () => {
   const [dataSelecionada, setDataSelecionada] = useState('');
   const [tipoPrecoSelecionado, setTipoPrecoSelecionado] = useState('');
   const [duracaoSelecionada, setDuracaoSelecionada] = useState('');
+  const [activeSection, setActiveSection] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const intervalRef = useRef(null);
   
   const produto = todosProdutos.find(p => p.id === parseInt(id));
   
+  // Array de imagens para o produto
+  const produtoImages = produto?.imagens || [
+    produto?.imagem,
+    "/images/gramado-tour-2.jpg",
+    "/images/gramado-tour-3.jpg",
+    "/images/gramado-tour-4.jpg"
+  ].filter(Boolean);
+
   // Definir data atual como padrão quando o componente carrega
   useEffect(() => {
     const hoje = new Date().toISOString().split('T')[0];
     setDataSelecionada(hoje);
     
-    // Definir valores padrão baseados no tipo de produto
     if (produto) {
       if (typeof produto.preco === 'object') {
-        // Se é um objeto com faixas etárias
         const primeiroTipo = Object.keys(produto.preco)[0];
         setTipoPrecoSelecionado(primeiroTipo);
       } else if (produto.categoria === 'transporte-passeios' && produto.preco && typeof produto.preco === 'object') {
-        // Se é transporte por horas
         const primeiraDuracao = Object.keys(produto.preco)[0];
         setDuracaoSelecionada(primeiraDuracao);
       }
     }
   }, [produto]);
+  
+  // Auto-play do carrossel
+  useEffect(() => {
+    if (produtoImages.length > 1) {
+      intervalRef.current = setInterval(() => {
+        nextImage();
+      }, 4000);
+    }
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [produtoImages.length, currentImageIndex]);
   
   if (!produto) {
     return (
@@ -57,21 +94,17 @@ const ProdutoDetalhePage = () => {
     );
   }
   
-  // Função para obter o preço atual baseado nas seleções
   const getPrecoAtual = () => {
     if (typeof produto.preco === 'object') {
       if (produto.categoria === 'transporte-passeios') {
-        // Para transporte por horas
         return duracaoSelecionada ? produto.preco[duracaoSelecionada] : Object.values(produto.preco)[0];
       } else {
-        // Para preços por faixa etária
         return tipoPrecoSelecionado ? produto.preco[tipoPrecoSelecionado] : Object.values(produto.preco)[0];
       }
     }
     return produto.preco;
   };
   
-  // Função para obter o nome do tipo de preço
   const getNomeTipoPreco = (tipo) => {
     const nomes = {
       'adulto': 'Adulto',
@@ -85,7 +118,6 @@ const ProdutoDetalhePage = () => {
     return nomes[tipo] || tipo;
   };
   
-  // Função para obter o ícone do tipo de preço
   const getIconeTipoPreco = (tipo) => {
     const icones = {
       'adulto': faUser,
@@ -97,6 +129,19 @@ const ProdutoDetalhePage = () => {
       '12 horas': faClock
     };
     return icones[tipo] || faUser;
+  };
+
+  const getIconeCategoria = () => {
+    switch(produto.categoria) {
+      case 'passeios': return faMountain;
+      case 'vinicolas': return faWineBottle;
+      case 'jantares': return faUtensils;
+      case 'ingressos': return faTicketAlt;
+      case 'natal-luz': return faTree;
+      case 'transfers': return faBus;
+      case 'transporte-passeios': return faCar;
+      default: return faMapMarkerAlt;
+    }
   };
   
   const handleAddToCart = () => {
@@ -144,17 +189,221 @@ const ProdutoDetalhePage = () => {
     window.open(url, '_blank');
   };
   
+  const toggleSection = (section) => {
+    setActiveSection(activeSection === section ? null : section);
+  };
+  
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === produtoImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+  
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? produtoImages.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
+  };
+
+  const renderSectionContent = (section) => {
+    switch(section) {
+      case 'roteiro':
+        return produto.roteiro ? (
+          <div className="section-content" dangerouslySetInnerHTML={{ __html: produto.roteiro }} />
+        ) : (
+          <div className="section-content">
+            <h4>Roteiro Detalhado</h4>
+            <p>Informações de roteiro específicas para este produto serão fornecidas na confirmação da reserva.</p>
+            <p>Para mais detalhes sobre o roteiro, entre em contato conosco.</p>
+          </div>
+        );
+      
+      case 'pontos':
+        return produto.pontosVisita ? (
+          <div className="section-content">
+            <h4>Pontos de Visitação Incluídos:</h4>
+            <div className="points-grid">
+              {produto.pontosVisita.map((ponto, index) => (
+                <div key={index} className="point-item">
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  <span>{ponto}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="section-content">
+            <h4>Pontos de Visitação</h4>
+            <p>Os pontos de visitação serão definidos conforme o roteiro escolhido e podem ser personalizados.</p>
+          </div>
+        );
+      
+      case 'horarios':
+        return produto.horarios ? (
+          <div className="section-content">
+            <h4>Horários Disponíveis:</h4>
+            <div className="schedule-grid">
+              {produto.horarios.map((horario, index) => (
+                <div key={index} className="schedule-item">
+                  <FontAwesomeIcon icon={faClock} />
+                  <span>{horario}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="section-content">
+            <h4>Horários</h4>
+            <p>Horários flexíveis conforme disponibilidade. Entre em contato para agendar o melhor horário para você.</p>
+          </div>
+        );
+      
+      case 'saidas':
+        return produto.saidas ? (
+          <div className="section-content">
+            <h4>Pontos de Saída:</h4>
+            <div className="departure-list">
+              {produto.saidas.map((saida, index) => (
+                <div key={index} className="departure-item">
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  <span>{saida}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="section-content">
+            <h4>Pontos de Saída</h4>
+            <p>Ponto de saída será combinado conforme localização do cliente e tipo de serviço contratado.</p>
+          </div>
+        );
+      
+      case 'importante':
+        return produto.informacoesImportantes ? (
+          <div className="section-content">
+            <h4>Informações Importantes:</h4>
+            <ul className="important-list">
+              {produto.informacoesImportantes.map((info, index) => (
+                <li key={index}>
+                  <FontAwesomeIcon icon={faCheck} className="check-icon" />
+                  {info}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="section-content">
+            <h4>Informações Importantes</h4>
+            <p>Informações específicas serão fornecidas na confirmação da reserva.</p>
+          </div>
+        );
+      
+      case 'politicas':
+        return produto.politicasCancelamento ? (
+          <div className="section-content" dangerouslySetInnerHTML={{ __html: produto.politicasCancelamento }} />
+        ) : (
+          <div className="section-content">
+            <h4>Políticas de Cancelamento</h4>
+            <div className="cancellation-policy">
+              <div className="policy-item">
+                <strong>Cancelamento padrão:</strong>
+                <span>Consulte as políticas específicas para este produto</span>
+              </div>
+              <div className="policy-item">
+                <strong>Contato para cancelamentos:</strong>
+                <span>WhatsApp: (53) 99122-4480</span>
+              </div>
+            </div>
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="product-detail-page">
       <div className="product-detail-container">
+        {/* SEÇÃO DE IMAGENS SIMPLES */}
         <div className="product-image-section">
-          <img src={produto.imagem} alt={produto.nome} />
+          <div className="main-image-container">
+            <img 
+              src={produtoImages[currentImageIndex]} 
+              alt={`${produto.nome} - Foto ${currentImageIndex + 1}`}
+              className="main-product-image"
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/images/default-product.jpg";
+              }}
+            />
+            
+            {produtoImages.length > 1 && (
+              <>
+                <button 
+                  className="nav-button prev" 
+                  onClick={prevImage}
+                  aria-label="Imagem anterior"
+                >
+                  <FontAwesomeIcon icon={faChevronLeft} />
+                </button>
+                <button 
+                  className="nav-button next" 
+                  onClick={nextImage}
+                  aria-label="Próxima imagem"
+                >
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+                
+                <div className="image-counter">
+                  <span>{currentImageIndex + 1}</span> / <span>{produtoImages.length}</span>
+                </div>
+              </>
+            )}
+          </div>
+          
+          {/* MINIATURAS SIMPLES */}
+          {produtoImages.length > 1 && (
+            <div className="image-thumbnails">
+              {produtoImages.map((img, index) => (
+                <div 
+                  key={index}
+                  className={`thumbnail ${currentImageIndex === index ? 'active' : ''}`}
+                  onClick={() => goToImage(index)}
+                >
+                  <img 
+                    src={img} 
+                    alt={`${produto.nome} thumbnail ${index + 1}`}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <div className="image-badge">
+            <FontAwesomeIcon icon={faImages} />
+            <span>{produtoImages.length} {produtoImages.length === 1 ? 'foto' : 'fotos'}</span>
+          </div>
         </div>
         
         <div className="product-info-section">
           <div className="location-badge">
-            <FontAwesomeIcon icon={faMapMarkerAlt} />
-            <span>{produto.categoria === 'transporte-passeios' ? 'Gramado & Região' : 'Gramado - RS'}</span>
+            <FontAwesomeIcon icon={getIconeCategoria()} />
+            <span>
+              {produto.categoria === 'passeios' ? 'Passeio Turístico' :
+               produto.categoria === 'vinicolas' ? 'Rota das Vinícolas' :
+               produto.categoria === 'jantares' ? 'Jantar Temático' :
+               produto.categoria === 'ingressos' ? 'Ingresso para Atração' :
+               produto.categoria === 'natal-luz' ? 'Natal Luz' :
+               produto.categoria === 'transfers' ? 'Transfer' :
+               produto.categoria === 'transporte-passeios' ? 'Transporte Personalizado' : produto.categoria}
+            </span>
           </div>
           
           <h1>{produto.nome}</h1>
@@ -243,7 +492,7 @@ const ProdutoDetalhePage = () => {
             </div>
             
             <div className="detail-item">
-              <FontAwesomeIcon icon={faUsers} />
+              <FontAwesomeIcon icon={getIconeCategoria()} />
               <div>
                 <span className="detail-label">Categoria</span>
                 <span className="detail-value">
@@ -321,6 +570,72 @@ const ProdutoDetalhePage = () => {
             </>
           )}
           
+          {/* BOTÕES EXPANSÍVEIS */}
+          <div className="expandable-sections">
+            <div className="section-buttons-grid">
+              <button 
+                className={`section-btn ${activeSection === 'roteiro' ? 'active' : ''}`}
+                onClick={() => toggleSection('roteiro')}
+              >
+                <FontAwesomeIcon icon={faTheaterMasks} />
+                <span>Roteiro</span>
+                <FontAwesomeIcon icon={activeSection === 'roteiro' ? faChevronUp : faChevronDown} />
+              </button>
+              
+              <button 
+                className={`section-btn ${activeSection === 'pontos' ? 'active' : ''}`}
+                onClick={() => toggleSection('pontos')}
+              >
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                <span>Pontos de Visitação</span>
+                <FontAwesomeIcon icon={activeSection === 'pontos' ? faChevronUp : faChevronDown} />
+              </button>
+              
+              <button 
+                className={`section-btn ${activeSection === 'horarios' ? 'active' : ''}`}
+                onClick={() => toggleSection('horarios')}
+              >
+                <FontAwesomeIcon icon={faClock} />
+                <span>Horários</span>
+                <FontAwesomeIcon icon={activeSection === 'horarios' ? faChevronUp : faChevronDown} />
+              </button>
+              
+              <button 
+                className={`section-btn ${activeSection === 'saidas' ? 'active' : ''}`}
+                onClick={() => toggleSection('saidas')}
+              >
+                <FontAwesomeIcon icon={faBus} />
+                <span>Saídas</span>
+                <FontAwesomeIcon icon={activeSection === 'saidas' ? faChevronUp : faChevronDown} />
+              </button>
+              
+              <button 
+                className={`section-btn ${activeSection === 'importante' ? 'active' : ''}`}
+                onClick={() => toggleSection('importante')}
+              >
+                <FontAwesomeIcon icon={faInfoCircle} />
+                <span>Importante Saber</span>
+                <FontAwesomeIcon icon={activeSection === 'importante' ? faChevronUp : faChevronDown} />
+              </button>
+              
+              <button 
+                className={`section-btn ${activeSection === 'politicas' ? 'active' : ''}`}
+                onClick={() => toggleSection('politicas')}
+              >
+                <FontAwesomeIcon icon={faFileContract} />
+                <span>Políticas de Cancelamento</span>
+                <FontAwesomeIcon icon={activeSection === 'politicas' ? faChevronUp : faChevronDown} />
+              </button>
+            </div>
+            
+            {/* CONTEÚDO DAS SEÇÕES EXPANSÍVEIS */}
+            {activeSection && (
+              <div className="section-content-container">
+                {renderSectionContent(activeSection)}
+              </div>
+            )}
+          </div>
+          
           <div className="product-features">
             <div className="feature">
               <FontAwesomeIcon icon={faCheck} className="feature-icon" />
@@ -329,7 +644,7 @@ const ProdutoDetalhePage = () => {
             <div className="feature">
               <FontAwesomeIcon icon={faClock} className="feature-icon" />
               <span className="feature-text">
-                {produto.categoria === 'transporte-passeios' ? 'Horário flexível' : 'Cancelamento grátis'}
+                {produto.categoria === 'transporte-passeios' ? 'Horário flexível' : 'Cancelamento grátis*'}
               </span>
             </div>
             {produto.inclui && (
