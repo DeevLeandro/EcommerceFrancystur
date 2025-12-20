@@ -1,32 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faStar, 
   faCheck, 
-  faUsers,
-  faCalendarAlt,
   faShoppingCart,
   faMapMarkerAlt,
-  faTicketAlt,
   faClock,
   faChild,
-  faUser,
-  faUserTie,
   faCar,
   faChevronDown,
   faChevronUp,
   faImages,
-  faUtensils,
-  faWineBottle,
-  faMountain,
-  faTheaterMasks,
-  faTree,
-  faBus,
+  faChevronLeft,
+  faChevronRight,
+  faCalendarAlt,
+  faTicketAlt,
+  faUser,
   faInfoCircle,
   faFileContract,
-  faChevronLeft,
-  faChevronRight
+  faRoute
 } from "@fortawesome/free-solid-svg-icons";
 import { todosProdutos } from "../data/products";
 import { useCart } from "../CartContext";
@@ -42,16 +35,14 @@ const ProdutoDetalhePage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const intervalRef = useRef(null);
-  
   const produto = todosProdutos.find(p => p.id === parseInt(id));
   
   // Array de imagens para o produto
   const produtoImages = produto?.imagens || [
     produto?.imagem,
-    "/images/gramado-tour-2.jpg",
-    "/images/gramado-tour-3.jpg",
-    "/images/gramado-tour-4.jpg"
+    "/images/logo.jpg",
+    "/images/logo.jpg",
+    "/images/logo.jpg"
   ].filter(Boolean);
 
   // Definir data atual como padrão quando o componente carrega
@@ -62,34 +53,33 @@ const ProdutoDetalhePage = () => {
     if (produto) {
       if (typeof produto.preco === 'object') {
         const primeiroTipo = Object.keys(produto.preco)[0];
-        setTipoPrecoSelecionado(primeiroTipo);
-      } else if (produto.categoria === 'transporte-passeios' && produto.preco && typeof produto.preco === 'object') {
-        const primeiraDuracao = Object.keys(produto.preco)[0];
-        setDuracaoSelecionada(primeiraDuracao);
+        if (produto.categoria === 'transporte-passeios') {
+          setDuracaoSelecionada(primeiroTipo);
+        } else {
+          setTipoPrecoSelecionado(primeiroTipo);
+        }
       }
     }
   }, [produto]);
   
-  // Auto-play do carrossel
-  useEffect(() => {
-    if (produtoImages.length > 1) {
-      intervalRef.current = setInterval(() => {
-        nextImage();
-      }, 4000);
-    }
-    
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [produtoImages.length, currentImageIndex]);
-  
   if (!produto) {
     return (
-      <div className="product-not-found">
-        <h1>Produto não encontrado</h1>
-        <button onClick={() => navigate('/')}>Voltar para a página inicial</button>
+      <div style={{textAlign: 'center', padding: '50px 20px'}}>
+        <h1 style={{color: '#666', marginBottom: '20px'}}>Produto não encontrado</h1>
+        <button 
+          onClick={() => navigate('/')}
+          style={{
+            padding: '10px 20px',
+            background: '#2a9d8f',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '1rem'
+          }}
+        >
+          Voltar para a página inicial
+        </button>
       </div>
     );
   }
@@ -108,9 +98,9 @@ const ProdutoDetalhePage = () => {
   const getNomeTipoPreco = (tipo) => {
     const nomes = {
       'adulto': 'Adulto',
-      'crianca': 'Criança',
-      'jovem': 'Jovem',
-      'senior': 'Idoso',
+      'crianca': 'Criança (5-11 anos)',
+      'jovem': 'Jovem (12-17 anos)',
+      'senior': 'Idoso (60+ anos)',
       '4 horas': '4 horas',
       '8 horas': '8 horas',
       '12 horas': '12 horas'
@@ -118,30 +108,17 @@ const ProdutoDetalhePage = () => {
     return nomes[tipo] || tipo;
   };
   
-  const getIconeTipoPreco = (tipo) => {
-    const icones = {
-      'adulto': faUser,
-      'crianca': faChild,
-      'jovem': faUser,
-      'senior': faUserTie,
-      '4 horas': faClock,
-      '8 horas': faClock,
-      '12 horas': faClock
+  const getNomeCategoria = (categoria) => {
+    const nomes = {
+      'passeios': 'Passeio Turístico',
+      'vinicolas': 'Rota das Vinícolas',
+      'jantares': 'Jantar Temático',
+      'ingressos': 'Ingresso',
+      'natal-luz': 'Natal Luz Gramado',
+      'transfers': 'Transfer',
+      'transporte-passeios': 'Transporte Personalizado'
     };
-    return icones[tipo] || faUser;
-  };
-
-  const getIconeCategoria = () => {
-    switch(produto.categoria) {
-      case 'passeios': return faMountain;
-      case 'vinicolas': return faWineBottle;
-      case 'jantares': return faUtensils;
-      case 'ingressos': return faTicketAlt;
-      case 'natal-luz': return faTree;
-      case 'transfers': return faBus;
-      case 'transporte-passeios': return faCar;
-      default: return faMapMarkerAlt;
-    }
+    return nomes[categoria] || categoria;
   };
   
   const handleAddToCart = () => {
@@ -151,7 +128,7 @@ const ProdutoDetalhePage = () => {
       preco: preco,
       quantidade,
       dataSelecionada: dataSelecionada || 'A combinar',
-      tipoPreco: tipoPrecoSelecionado || duracaoSelecionada
+      tipoPreco: tipoPrecoSelecionado || duracaoSelecionada || 'padrão'
     };
     
     adicionarAoCarrinho(itemCarrinho);
@@ -162,27 +139,31 @@ const ProdutoDetalhePage = () => {
     const preco = getPrecoAtual();
     const tipo = tipoPrecoSelecionado || duracaoSelecionada || 'adulto';
     const nomeTipo = getNomeTipoPreco(tipo);
+    const total = preco * (produto.categoria === 'transporte-passeios' ? 1 : quantidade);
     
-    let mensagem = `Olá! Gostaria de informações sobre: *${produto.nome}*\n\n`;
+    let mensagem = `Olá! Tenho interesse no produto:\n*${produto.nome}*\n\n`;
     
     if (tipoPrecoSelecionado || duracaoSelecionada) {
-      mensagem += `• Tipo: ${nomeTipo}\n`;
+      mensagem += `• Tipo/Tarifa: ${nomeTipo}\n`;
     }
     
-    mensagem += `• Quantidade: ${quantidade}\n` +
-                `• Data selecionada: ${dataSelecionada}\n` +
+    if (produto.categoria !== 'transporte-passeios') {
+      mensagem += `• Quantidade: ${quantidade} pessoa(s)\n`;
+    }
+    
+    mensagem += `• Data: ${dataSelecionada || 'A combinar'}\n` +
                 `• Valor unitário: R$ ${preco.toFixed(2)}\n` +
-                `• Valor total: R$ ${(preco * quantidade).toFixed(2)}\n\n`;
+                `• Valor total: R$ ${total.toFixed(2)}\n\n`;
     
     if (produto.faixaEtaria) {
-      mensagem += `*Faixa etária:*\n${produto.faixaEtaria}\n\n`;
+      mensagem += `*Faixa etária:* ${produto.faixaEtaria}\n\n`;
     }
     
     if (produto.notas) {
-      mensagem += `*Observações:*\n${produto.notas}\n\n`;
+      mensagem += `*Observações:* ${produto.notas}\n\n`;
     }
     
-    mensagem += `Poderia me fornecer mais detalhes?`;
+    mensagem += `Poderia me fornecer mais informações?`;
     
     const numeroWhatsApp = "5553991224480";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
@@ -212,114 +193,82 @@ const ProdutoDetalhePage = () => {
   const renderSectionContent = (section) => {
     switch(section) {
       case 'roteiro':
-        return produto.roteiro ? (
-          <div className="section-content" dangerouslySetInnerHTML={{ __html: produto.roteiro }} />
-        ) : (
-          <div className="section-content">
-            <h4>Roteiro Detalhado</h4>
-            <p>Informações de roteiro específicas para este produto serão fornecidas na confirmação da reserva.</p>
-            <p>Para mais detalhes sobre o roteiro, entre em contato conosco.</p>
-          </div>
-        );
-      
-      case 'pontos':
-        return produto.pontosVisita ? (
-          <div className="section-content">
-            <h4>Pontos de Visitação Incluídos:</h4>
-            <div className="points-grid">
-              {produto.pontosVisita.map((ponto, index) => (
-                <div key={index} className="point-item">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
-                  <span>{ponto}</span>
-                </div>
-              ))}
+        if (produto.roteiro) {
+          return (
+            <div className="section-content" 
+              dangerouslySetInnerHTML={{ __html: produto.roteiro }} 
+            />
+          );
+        } else {
+          return (
+            <div className="section-content">
+              <h4>Roteiro Detalhado</h4>
+              <p>Informações de roteiro específicas para este produto serão fornecidas na confirmação da reserva.</p>
+              <p>Para mais detalhes sobre o roteiro, entre em contato conosco.</p>
             </div>
-          </div>
-        ) : (
-          <div className="section-content">
-            <h4>Pontos de Visitação</h4>
-            <p>Os pontos de visitação serão definidos conforme o roteiro escolhido e podem ser personalizados.</p>
-          </div>
-        );
+          );
+        }
       
       case 'horarios':
-        return produto.horarios ? (
-          <div className="section-content">
-            <h4>Horários Disponíveis:</h4>
-            <div className="schedule-grid">
-              {produto.horarios.map((horario, index) => (
-                <div key={index} className="schedule-item">
-                  <FontAwesomeIcon icon={faClock} />
-                  <span>{horario}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="section-content">
-            <h4>Horários</h4>
-            <p>Horários flexíveis conforme disponibilidade. Entre em contato para agendar o melhor horário para você.</p>
-          </div>
-        );
-      
-      case 'saidas':
-        return produto.saidas ? (
-          <div className="section-content">
-            <h4>Pontos de Saída:</h4>
-            <div className="departure-list">
-              {produto.saidas.map((saida, index) => (
-                <div key={index} className="departure-item">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
-                  <span>{saida}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="section-content">
-            <h4>Pontos de Saída</h4>
-            <p>Ponto de saída será combinado conforme localização do cliente e tipo de serviço contratado.</p>
-          </div>
-        );
-      
-      case 'importante':
-        return produto.informacoesImportantes ? (
-          <div className="section-content">
-            <h4>Informações Importantes:</h4>
-            <ul className="important-list">
-              {produto.informacoesImportantes.map((info, index) => (
-                <li key={index}>
-                  <FontAwesomeIcon icon={faCheck} className="check-icon" />
-                  {info}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <div className="section-content">
-            <h4>Informações Importantes</h4>
-            <p>Informações específicas serão fornecidas na confirmação da reserva.</p>
-          </div>
-        );
-      
-      case 'politicas':
-        return produto.politicasCancelamento ? (
-          <div className="section-content" dangerouslySetInnerHTML={{ __html: produto.politicasCancelamento }} />
-        ) : (
-          <div className="section-content">
-            <h4>Políticas de Cancelamento</h4>
-            <div className="cancellation-policy">
-              <div className="policy-item">
-                <strong>Cancelamento padrão:</strong>
-                <span>Consulte as políticas específicas para este produto</span>
-              </div>
-              <div className="policy-item">
-                <strong>Contato para cancelamentos:</strong>
-                <span>WhatsApp: (53) 99122-4480</span>
+        if (produto.horarios) {
+          return (
+            <div className="section-content">
+              <h4>Horários Disponíveis:</h4>
+              <div style={{ display: 'grid', gap: '10px', marginTop: '15px' }}>
+                {produto.horarios.map((horario, index) => (
+                  <div key={index} style={{
+                    padding: '10px',
+                    background: '#f8f9fa',
+                    borderRadius: '6px',
+                    border: '1px solid #ddd'
+                  }}>
+                    <FontAwesomeIcon icon={faClock} style={{ marginRight: '8px', color: '#2a9d8f' }} />
+                    <span>{horario}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        );
+          );
+        } else {
+          return (
+            <div className="section-content">
+              <h4>Horários</h4>
+              <p>Horários flexíveis conforme disponibilidade. Entre em contato para agendar o melhor horário para você.</p>
+            </div>
+          );
+        }
+      
+      case 'cancelamento':
+        if (produto.politicasCancelamento) {
+          return (
+            <div className="section-content" 
+              dangerouslySetInnerHTML={{ __html: produto.politicasCancelamento }} 
+            />
+          );
+        } else {
+          return (
+            <div className="section-content">
+              <h4>Políticas de Cancelamento</h4>
+              <div style={{ 
+                display: 'grid', 
+                gap: '10px', 
+                marginTop: '15px',
+                padding: '15px',
+                background: '#f8f9fa',
+                borderRadius: '6px'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
+                  <strong>Cancelamento padrão:</strong>
+                  <span>Consulte as políticas específicas para este produto</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
+                  <strong>Contato para cancelamentos:</strong>
+                  <span>WhatsApp: (53) 99122-4480</span>
+                </div>
+              </div>
+            </div>
+          );
+        }
       
       default:
         return null;
@@ -329,7 +278,8 @@ const ProdutoDetalhePage = () => {
   return (
     <div className="product-detail-page">
       <div className="product-detail-container">
-        {/* SEÇÃO DE IMAGENS SIMPLES */}
+        
+        {/* SEÇÃO DE IMAGENS - Carrossel que o cliente gostou */}
         <div className="product-image-section">
           <div className="main-image-container">
             <img 
@@ -367,7 +317,7 @@ const ProdutoDetalhePage = () => {
             )}
           </div>
           
-          {/* MINIATURAS SIMPLES */}
+          {/* MINIATURAS */}
           {produtoImages.length > 1 && (
             <div className="image-thumbnails">
               {produtoImages.map((img, index) => (
@@ -378,7 +328,7 @@ const ProdutoDetalhePage = () => {
                 >
                   <img 
                     src={img} 
-                    alt={`${produto.nome} thumbnail ${index + 1}`}
+                    alt={`${produto.nome} miniatura ${index + 1}`}
                     loading="lazy"
                   />
                 </div>
@@ -393,27 +343,25 @@ const ProdutoDetalhePage = () => {
         </div>
         
         <div className="product-info-section">
-          <div className="location-badge">
-            <FontAwesomeIcon icon={getIconeCategoria()} />
-            <span>
-              {produto.categoria === 'passeios' ? 'Passeio Turístico' :
-               produto.categoria === 'vinicolas' ? 'Rota das Vinícolas' :
-               produto.categoria === 'jantares' ? 'Jantar Temático' :
-               produto.categoria === 'ingressos' ? 'Ingresso para Atração' :
-               produto.categoria === 'natal-luz' ? 'Natal Luz' :
-               produto.categoria === 'transfers' ? 'Transfer' :
-               produto.categoria === 'transporte-passeios' ? 'Transporte Personalizado' : produto.categoria}
-            </span>
+          
+          {/* CABEÇALHO E INFORMAÇÕES BÁSICAS */}
+          <div className="product-header">
+            <div className="location-badge">
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <span>{getNomeCategoria(produto.categoria)}</span>
+            </div>
+            
+            <h1>{produto.nome}</h1>
           </div>
           
-          <h1>{produto.nome}</h1>
+          {/* DESCRIÇÃO */}
           {produto.descricao && (
             <div className="product-description-section">
               <p className="product-description-text">{produto.descricao}</p>
             </div>
           )}
           
-          {/* Informações específicas se existirem */}
+          {/* INFORMAÇÕES ESPECÍFICAS */}
           {produto.faixaEtaria && (
             <div className="age-info">
               <FontAwesomeIcon icon={faChild} />
@@ -423,47 +371,53 @@ const ProdutoDetalhePage = () => {
           
           {produto.notas && (
             <div className="notes-info">
-              <span className="note-text">📝 {produto.notas}</span>
+              <span>📝 {produto.notas}</span>
             </div>
           )}
           
+          {/* PREÇO */}
           <div className="price-container">
             {typeof produto.preco === 'object' ? (
-              <div className="multi-price-container">
-                <div className="price-selector">
+              <>
+                <span className="current-price">R$ {getPrecoAtual().toFixed(2)}</span>
+                <select 
+                  className="price-select"
+                  value={tipoPrecoSelecionado || duracaoSelecionada}
+                  onChange={(e) => {
+                    if (produto.categoria === 'transporte-passeios') {
+                      setDuracaoSelecionada(e.target.value);
+                    } else {
+                      setTipoPrecoSelecionado(e.target.value);
+                    }
+                  }}
+                >
                   {Object.keys(produto.preco).map((tipo) => (
-                    <button
-                      key={tipo}
-                      className={`price-option ${(tipoPrecoSelecionado === tipo || duracaoSelecionada === tipo) ? 'selected' : ''}`}
-                      onClick={() => {
-                        if (produto.categoria === 'transporte-passeios') {
-                          setDuracaoSelecionada(tipo);
-                        } else {
-                          setTipoPrecoSelecionado(tipo);
-                        }
-                      }}
-                    >
-                      <FontAwesomeIcon icon={getIconeTipoPreco(tipo)} />
-                      <span>{getNomeTipoPreco(tipo)}</span>
-                      <span className="price-option-value">R$ {produto.preco[tipo].toFixed(2)}</span>
-                    </button>
+                    <option key={tipo} value={tipo}>
+                      {getNomeTipoPreco(tipo)} - R$ {produto.preco[tipo].toFixed(2)}
+                    </option>
                   ))}
-                </div>
-                <div className="selected-price">
-                  <span className="current-price">R$ {getPrecoAtual().toFixed(2)}</span>
-                  <span className="price-type">
-                    {produto.categoria === 'transporte-passeios' ? 'por período' : 'por pessoa'}
-                  </span>
-                </div>
-              </div>
+                </select>
+                <span style={{fontSize: '0.9rem', color: '#666'}}>
+                  {produto.categoria === 'transporte-passeios' ? 'por período' : 'por pessoa'}
+                </span>
+              </>
             ) : (
               <>
                 <span className="current-price">R$ {produto.preco.toFixed(2)}</span>
-                <span className="price-type">por pessoa</span>
+                <span style={{fontSize: '0.9rem', color: '#666'}}>por pessoa</span>
                 {produto.precoAntigo && (
                   <>
-                    <span className="old-price">R$ {produto.precoAntigo.toFixed(2)}</span>
-                    <span className="discount-badge">
+                    <span style={{textDecoration: 'line-through', color: '#999'}}>
+                      R$ {produto.precoAntigo.toFixed(2)}
+                    </span>
+                    <span style={{
+                      background: '#ff6b6b',
+                      color: 'white',
+                      padding: '3px 8px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      fontWeight: '600'
+                    }}>
                       {Math.round((1 - produto.preco / produto.precoAntigo) * 100)}% OFF
                     </span>
                   </>
@@ -472,6 +426,7 @@ const ProdutoDetalhePage = () => {
             )}
           </div>
           
+          {/* AVALIAÇÃO */}
           <div className="rating-container">
             <div className="stars">
               {[...Array(5)].map((_, i) => (
@@ -481,7 +436,8 @@ const ProdutoDetalhePage = () => {
             <span className="review-count">({produto.reviews || 45} avaliações)</span>
             <span className="rating-value">⭐ {produto.avaliacao || 4.8}/5</span>
           </div>
-
+          
+          {/* DETALHES */}
           <div className="details-grid">
             <div className="detail-item">
               <FontAwesomeIcon icon={faClock} />
@@ -492,45 +448,38 @@ const ProdutoDetalhePage = () => {
             </div>
             
             <div className="detail-item">
-              <FontAwesomeIcon icon={getIconeCategoria()} />
+              <FontAwesomeIcon icon={faUser} />
               <div>
                 <span className="detail-label">Categoria</span>
-                <span className="detail-value">
-                  {produto.categoria === 'passeios' ? 'Passeio Turístico' :
-                   produto.categoria === 'vinicolas' ? 'Rota das Vinícolas' :
-                   produto.categoria === 'jantares' ? 'Jantar Temático' :
-                   produto.categoria === 'ingressos' ? 'Ingresso' :
-                   produto.categoria === 'natal-luz' ? 'Natal Luz' :
-                   produto.categoria === 'transfers' ? 'Transfer' :
-                   produto.categoria === 'transporte-passeios' ? 'Transporte' : produto.categoria}
-                </span>
+                <span className="detail-value">{getNomeCategoria(produto.categoria)}</span>
               </div>
             </div>
           </div>
-
+          
+          {/* CONTROLES - QUANTIDADE E DATA */}
           {produto.categoria === 'transporte-passeios' ? (
-            <div className="transport-duration">
+            <div className="duration-selector">
               <label>
-                <FontAwesomeIcon icon={faCar} style={{marginRight: '8px'}} />
-                Selecione a duração do transporte:
+                <FontAwesomeIcon icon={faCar} />
+                Duração do transporte:
               </label>
-              <div className="duration-options">
+              <select 
+                className="duration-select"
+                value={duracaoSelecionada}
+                onChange={(e) => setDuracaoSelecionada(e.target.value)}
+              >
                 {Object.keys(produto.preco).map((duracao) => (
-                  <button
-                    key={duracao}
-                    className={`duration-option ${duracaoSelecionada === duracao ? 'selected' : ''}`}
-                    onClick={() => setDuracaoSelecionada(duracao)}
-                  >
-                    {duracao}
-                  </button>
+                  <option key={duracao} value={duracao}>
+                    {duracao} - R$ {produto.preco[duracao].toFixed(2)}
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
           ) : (
-            <>
-              <div className="quantity-selector">
+            <div className="controls-row">
+              <div className="control-group">
                 <label>
-                  <FontAwesomeIcon icon={faTicketAlt} style={{marginRight: '8px'}} />
+                  <FontAwesomeIcon icon={faTicketAlt} />
                   Quantidade:
                 </label>
                 <div className="quantity-controls">
@@ -555,40 +504,32 @@ const ProdutoDetalhePage = () => {
                 </div>
               </div>
               
-              <div className="date-selector">
+              <div className="control-group">
                 <label>
-                  <FontAwesomeIcon icon={faCalendarAlt} style={{marginRight: '8px'}} />
-                  Selecione a data:
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+                  Data:
                 </label>
                 <input 
                   type="date"
+                  className="date-input"
                   value={dataSelecionada}
                   onChange={(e) => setDataSelecionada(e.target.value)}
                   min={new Date().toISOString().split('T')[0]}
                 />
               </div>
-            </>
+            </div>
           )}
           
-          {/* BOTÕES EXPANSÍVEIS */}
+          {/* SEÇÕES EXPANSÍVEIS SIMPLIFICADAS */}
           <div className="expandable-sections">
             <div className="section-buttons-grid">
               <button 
                 className={`section-btn ${activeSection === 'roteiro' ? 'active' : ''}`}
                 onClick={() => toggleSection('roteiro')}
               >
-                <FontAwesomeIcon icon={faTheaterMasks} />
+                <FontAwesomeIcon icon={faRoute} />
                 <span>Roteiro</span>
                 <FontAwesomeIcon icon={activeSection === 'roteiro' ? faChevronUp : faChevronDown} />
-              </button>
-              
-              <button 
-                className={`section-btn ${activeSection === 'pontos' ? 'active' : ''}`}
-                onClick={() => toggleSection('pontos')}
-              >
-                <FontAwesomeIcon icon={faMapMarkerAlt} />
-                <span>Pontos de Visitação</span>
-                <FontAwesomeIcon icon={activeSection === 'pontos' ? faChevronUp : faChevronDown} />
               </button>
               
               <button 
@@ -601,34 +542,16 @@ const ProdutoDetalhePage = () => {
               </button>
               
               <button 
-                className={`section-btn ${activeSection === 'saidas' ? 'active' : ''}`}
-                onClick={() => toggleSection('saidas')}
-              >
-                <FontAwesomeIcon icon={faBus} />
-                <span>Saídas</span>
-                <FontAwesomeIcon icon={activeSection === 'saidas' ? faChevronUp : faChevronDown} />
-              </button>
-              
-              <button 
-                className={`section-btn ${activeSection === 'importante' ? 'active' : ''}`}
-                onClick={() => toggleSection('importante')}
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
-                <span>Importante Saber</span>
-                <FontAwesomeIcon icon={activeSection === 'importante' ? faChevronUp : faChevronDown} />
-              </button>
-              
-              <button 
-                className={`section-btn ${activeSection === 'politicas' ? 'active' : ''}`}
-                onClick={() => toggleSection('politicas')}
+                className={`section-btn ${activeSection === 'cancelamento' ? 'active' : ''}`}
+                onClick={() => toggleSection('cancelamento')}
               >
                 <FontAwesomeIcon icon={faFileContract} />
-                <span>Políticas de Cancelamento</span>
-                <FontAwesomeIcon icon={activeSection === 'politicas' ? faChevronUp : faChevronDown} />
+                <span>Cancelamento</span>
+                <FontAwesomeIcon icon={activeSection === 'cancelamento' ? faChevronUp : faChevronDown} />
               </button>
             </div>
             
-            {/* CONTEÚDO DAS SEÇÕES EXPANSÍVEIS */}
+            {/* CONTEÚDO DAS SEÇÕES */}
             {activeSection && (
               <div className="section-content-container">
                 {renderSectionContent(activeSection)}
@@ -636,77 +559,45 @@ const ProdutoDetalhePage = () => {
             )}
           </div>
           
-          <div className="product-features">
-            <div className="feature">
-              <FontAwesomeIcon icon={faCheck} className="feature-icon" />
-              <span className="feature-text">Confirmação imediata</span>
-            </div>
-            <div className="feature">
-              <FontAwesomeIcon icon={faClock} className="feature-icon" />
-              <span className="feature-text">
-                {produto.categoria === 'transporte-passeios' ? 'Horário flexível' : 'Cancelamento grátis*'}
-              </span>
-            </div>
-            {produto.inclui && (
-              <div className="feature">
-                <FontAwesomeIcon icon={faUsers} className="feature-icon" />
-                <span className="feature-text">{produto.inclui.length} itens inclusos</span>
-              </div>
-            )}
-          </div>
-          
-          {/* Lista do que está incluído */}
-          {produto.inclui && produto.inclui.length > 0 && (
-            <div className="included-items">
-              <h4>🎁 O que está incluído:</h4>
-              <ul>
-                {produto.inclui.map((item, index) => (
-                  <li key={index}>
-                    <FontAwesomeIcon icon={faCheck} className="check-icon" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          
-          <div className="total-container">
-            <div className="total-item">
+          {/* RESUMO E AÇÕES */}
+          <div className="total-summary">
+            <div className="total-line">
               <span>Valor {produto.categoria === 'transporte-passeios' ? 'do período:' : 'unitário:'}</span>
               <span>R$ {getPrecoAtual().toFixed(2)}</span>
             </div>
+            
             {produto.categoria !== 'transporte-passeios' && (
-              <div className="total-item">
+              <div className="total-line">
                 <span>Quantidade:</span>
                 <span>{quantidade}</span>
               </div>
             )}
-            <div className="total-item total">
-              <span>Total:</span>
-              <span className="total-price">
-                R$ {(
-                  getPrecoAtual() * 
-                  (produto.categoria === 'transporte-passeios' ? 1 : quantidade)
-                ).toFixed(2)}
+            
+            <div className="total-line" style={{paddingTop: '15px', borderTop: '2px solid #ddd'}}>
+              <strong>TOTAL:</strong>
+              <span className="total-amount">
+                R$ {(getPrecoAtual() * (produto.categoria === 'transporte-passeios' ? 1 : quantidade)).toFixed(2)}
               </span>
+            </div>
+            
+            <div className="action-buttons">
+              <button onClick={handleAddToCart} className="btn-add-cart">
+                <FontAwesomeIcon icon={faShoppingCart} /> 
+                {produto.categoria === 'transporte-passeios' ? 'Contratar Transporte' : 'Comprar Agora'}
+              </button>
+              <button onClick={handleWhatsApp} className="btn-whatsapp">
+                <FontAwesomeIcon icon={faInfoCircle} />
+                Tirar Dúvidas
+              </button>
             </div>
           </div>
           
-          <div className="action-buttons">
-            <button onClick={handleAddToCart} className="btn-add-cart">
-              <FontAwesomeIcon icon={faShoppingCart} /> 
-              {produto.categoria === 'transporte-passeios' ? 'Contratar Transporte' : 'Comprar Agora'}
-            </button>
-            <button onClick={handleWhatsApp} className="btn-whatsapp">
-              Tirar Dúvidas no WhatsApp
-            </button>
-          </div>
-          
+          {/* NOTA FINAL */}
           <div className="product-note">
             <p>
               <strong>Importante:</strong> {produto.categoria === 'transporte-passeios' 
-                ? 'O transporte deve ser agendado com antecedência. Em caso de alterações, entre em contato com 24h de antecedência.' 
-                : 'Reservas são válidas apenas para a data selecionada. Em caso de dúvidas sobre disponibilidade ou horários, entre em contato conosco.'}
+                ? 'O transporte deve ser agendado com antecedência. Alterações com 24h de antecedência.' 
+                : 'Reservas válidas para a data selecionada. Em caso de dúvidas, entre em contato.'}
             </p>
           </div>
         </div>

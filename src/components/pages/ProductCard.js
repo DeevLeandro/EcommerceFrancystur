@@ -118,13 +118,6 @@ const ProductCard = ({ produto }) => {
               <FontAwesomeIcon icon={faClock} />
               <span>{produto.duracao}</span>
             </div>
-            
-            {produto.inclui && (
-              <div className="product-includes">
-                <FontAwesomeIcon icon={faUsers} />
-                <span>{produto.inclui.length} itens</span>
-              </div>
-            )}
           </div>
           
           {produto.faixaEtaria && (
