@@ -47,7 +47,7 @@ const Footer = () => {
             {/* Redes Sociais */}
             <div className="footer-social">
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/francystur" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-icon facebook"
@@ -55,7 +55,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/francystur/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-icon instagram"
@@ -63,7 +63,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a 
-                href="https://wa.me/5554999999999" 
+                href="https://wa.me/5553991224480" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-icon whatsapp"
@@ -71,7 +71,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faWhatsapp} />
               </a>
               <a 
-                href="mailto:contato@francystur.com"
+                href="mailto:contato@francystur.com.br"
                 className="social-icon email"
               >
                 <FontAwesomeIcon icon={faEnvelope} />
@@ -130,22 +130,22 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faPhone} className="contact-icon" />
                 <div>
                   <p className="contact-label">Telefone/WhatsApp</p>
-                  <p className="contact-info">(54) 99999-9999</p>
+                  <p className="contact-info">(53) 99122-4480</p>
                 </div>
               </li>
               <li className="contact-item">
                 <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
                 <div>
                   <p className="contact-label">E-mail</p>
-                  <p className="contact-info">contato@francystur.com</p>
+                  <p className="contact-info">contato@francystur.com.br</p>
                 </div>
               </li>
               <li className="contact-item">
                 <FontAwesomeIcon icon={faClock} className="contact-icon" />
                 <div>
                   <p className="contact-label">Horário de Atendimento</p>
-                  <p className="contact-info">Seg-Sex: 8h às 22h</p>
-                  <p className="contact-info">Sáb-Dom: 9h às 20h</p>
+                  <p className="contact-info">Seg-Sex: 9h às 18:30</p>
+                  <p className="contact-info">Sáb-Dom: Fechado</p>
                 </div>
               </li>
             </ul>
