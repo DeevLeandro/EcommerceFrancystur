@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from "../Header"; // Importe o Header aqui
+import Header from "../Header";
 import { todosProdutos } from "../data/products";
 import ProdutoCard from "../pages/ProductCard";
+import ComentariosTripAdvisor from '../ComentariosTripAdvisor';
 
 const HomePage = () => {
   const produtosDestaque = todosProdutos.slice(0, 6);
   
   return (
     <>
-      <Header/> {/* Header agora está dentro do HomePage */}
+      <Header/>
       <div className="home-container">
         <div className="hero-section">
           <h1>Bem-vindo à FrancysTur!</h1>
           <p>Sua melhor experiência em Gramado e região</p>
         </div>
+        
         <section className="destaque-section">
           <h2>Produtos em Destaque</h2>
           <div className="produtos-grid">
@@ -23,6 +25,9 @@ const HomePage = () => {
             ))}
           </div>
         </section>
+        
+        {/* SEÇÃO DE COMENTÁRIOS - CORRIGIDA */}
+        <ComentariosTripAdvisor />
         
         <section className="categorias-section">
           <h2>Categorias</h2>
