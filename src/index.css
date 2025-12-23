@@ -3130,6 +3130,57 @@ button, .btn {
   box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
+/* Estilos para o aviso do Maria Fumaça */
+.maria-fumaca-notice {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.maria-fumaca-notice svg {
+  color: #856404;
+  min-width: 20px;
+}
+
+.maria-fumaca-notice span {
+  color: #856404;
+}
+
+/* Estilo para campo de data inválido */
+.date-input:invalid {
+  border-color: #dc3545 !important;
+}
+
+.date-input:valid {
+  border-color: #28a745 !important;
+}
+
+/* Animação para o aviso */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo para botões desabilitados */
+.btn-add-cart:disabled,
+.btn-whatsapp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+.btn-add-cart:disabled:hover,
+.btn-whatsapp:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 /* Resumo do total */
 .total-summary {
   background: #f8f9fa;

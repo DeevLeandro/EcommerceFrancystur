@@ -19,7 +19,9 @@ import {
   faUser,
   faInfoCircle,
   faFileContract,
-  faRoute
+  faRoute,
+  faExclamationTriangle,
+  faTrain
 } from "@fortawesome/free-solid-svg-icons";
 import { todosProdutos } from "../data/products";
 import { useCart } from "../CartContext";
@@ -45,10 +47,74 @@ const ProdutoDetalhePage = () => {
     "/images/logo.jpg"
   ].filter(Boolean);
 
-  // Definir data atual como padrão quando o componente carrega
+  // Função para verificar se o produto inclui Trem Maria Fumaça
+  const incluiMariaFumaca = () => {
+    const produtosComMariaFumaca = [4, 6, 7, 8]; // IDs dos produtos que incluem o trem
+    return produtosComMariaFumaca.includes(produto?.id);
+  };
+
+  // Função para verificar se uma data é válida para passeios com Maria Fumaça
+  const isDataValidaParaMariaFumaca = (dataString) => {
+    if (!incluiMariaFumaca()) return true;
+    
+    if (!dataString) return false;
+    
+    const data = new Date(dataString + 'T00:00:00');
+    const diaDaSemana = data.getDay(); // 0 = Domingo, 1 = Segunda, etc.
+    
+    // Dias permitidos: Sábado (6), Domingo (0), Quarta (3), Sexta (5)
+    // CORREÇÃO: Seguindo seu pedido: somente sábado, domingo, quarta e sexta
+    return diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6;
+  };
+
+  // Função para obter o próximo dia válido (corrigida)
+  const getProximaDataValida = () => {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    
+    // Se o produto não inclui Maria Fumaça, retorna amanhã
+    if (!incluiMariaFumaca()) {
+      const amanha = new Date(hoje);
+      amanha.setDate(amanha.getDate() + 1);
+      return amanha.toISOString().split('T')[0];
+    }
+    
+    // Para produtos com Maria Fumaça, busca o próximo dia permitido
+    for (let i = 1; i <= 14; i++) { // Verifica até 14 dias à frente
+      const dataBusca = new Date(hoje);
+      dataBusca.setDate(dataBusca.getDate() + i);
+      const diaDaSemana = dataBusca.getDay();
+      
+      // Dias permitidos: Domingo (0), Quarta (3), Sexta (5), Sábado (6)
+      if (diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6) {
+        return dataBusca.toISOString().split('T')[0];
+      }
+    }
+    
+    // Fallback: retorna amanhã (será validado)
+    const amanha = new Date(hoje);
+    amanha.setDate(amanha.getDate() + 1);
+    return amanha.toISOString().split('T')[0];
+  };
+
+  // Função para obter a data de amanhã (para produtos normais)
+  const getDataAmanha = () => {
+    const amanha = new Date();
+    amanha.setDate(amanha.getDate() + 1);
+    return amanha.toISOString().split('T')[0];
+  };
+
+  // Definir data inicial quando o componente carrega
   useEffect(() => {
-    const hoje = new Date().toISOString().split('T')[0];
-    setDataSelecionada(hoje);
+    let dataInicial;
+    
+    if (incluiMariaFumaca()) {
+      dataInicial = getProximaDataValida();
+    } else {
+      dataInicial = getDataAmanha();
+    }
+    
+    setDataSelecionada(dataInicial);
     
     if (produto) {
       if (typeof produto.preco === 'object') {
@@ -62,6 +128,81 @@ const ProdutoDetalhePage = () => {
     }
   }, [produto]);
   
+  // Função para validar a data selecionada (corrigida)
+  const validarData = (dataString) => {
+    if (!dataString) return { valida: false, mensagem: 'Selecione uma data' };
+    
+    const data = new Date(dataString + 'T00:00:00');
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    
+    // Verifica se é data passada
+    if (data < hoje) {
+      return { valida: false, mensagem: 'Não é possível selecionar datas passadas' };
+    }
+    
+    // Verifica se é hoje
+    if (data.getTime() === hoje.getTime()) {
+      return { 
+        valida: false, 
+        mensagem: 'A reserva deve ser feita com pelo menos 1 dia de antecedência' 
+      };
+    }
+    
+    // Validação específica para Maria Fumaça
+    if (incluiMariaFumaca()) {
+      const diaDaSemana = data.getDay();
+      const nomeDia = getNomeDiaSemana(dataString);
+      
+      if (!isDataValidaParaMariaFumaca(dataString)) {
+        const diasPermitidos = ['Domingo', 'Quarta-feira', 'Sexta-feira', 'Sábado'];
+        return { 
+          valida: false, 
+          mensagem: `O Trem Maria Fumaça opera apenas aos seguintes dias: ${diasPermitidos.join(', ')}. 
+          Você selecionou ${nomeDia}.` 
+        };
+      }
+    }
+    
+    return { 
+      valida: true, 
+      mensagem: `${getNomeDiaSemana(dataString)} - Data válida ✓` 
+    };
+  };
+
+  // Função para formatar o nome do dia da semana
+  const getNomeDiaSemana = (dataString) => {
+    if (!dataString) return '';
+    
+    const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const data = new Date(dataString + 'T00:00:00');
+    return dias[data.getDay()];
+  };
+
+  // Função para gerar lista dos próximos 30 dias válidos (apenas para Maria Fumaça)
+  const getProximasDatasValidas = () => {
+    if (!incluiMariaFumaca()) return [];
+    
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const datasValidas = [];
+    
+    for (let i = 1; i <= 30; i++) {
+      const data = new Date(hoje);
+      data.setDate(data.getDate() + i);
+      const diaDaSemana = data.getDay();
+      
+      if (diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6) {
+        datasValidas.push({
+          data: data.toISOString().split('T')[0],
+          nomeDia: getNomeDiaSemana(data.toISOString().split('T')[0])
+        });
+      }
+    }
+    
+    return datasValidas;
+  };
+
   if (!produto) {
     return (
       <div style={{textAlign: 'center', padding: '50px 20px'}}>
@@ -122,13 +263,20 @@ const ProdutoDetalhePage = () => {
   };
   
   const handleAddToCart = () => {
+    const validacao = validarData(dataSelecionada);
+    if (!validacao.valida) {
+      alert(validacao.mensagem);
+      return;
+    }
+    
     const preco = getPrecoAtual();
     const itemCarrinho = {
       ...produto,
       preco: preco,
       quantidade,
       dataSelecionada: dataSelecionada || 'A combinar',
-      tipoPreco: tipoPrecoSelecionado || duracaoSelecionada || 'padrão'
+      tipoPreco: tipoPrecoSelecionado || duracaoSelecionada || 'padrão',
+      diaDaSemana: getNomeDiaSemana(dataSelecionada)
     };
     
     adicionarAoCarrinho(itemCarrinho);
@@ -136,10 +284,17 @@ const ProdutoDetalhePage = () => {
   };
   
   const handleWhatsApp = () => {
+    const validacao = validarData(dataSelecionada);
+    if (!validacao.valida) {
+      alert(validacao.mensagem);
+      return;
+    }
+    
     const preco = getPrecoAtual();
     const tipo = tipoPrecoSelecionado || duracaoSelecionada || 'adulto';
     const nomeTipo = getNomeTipoPreco(tipo);
     const total = preco * (produto.categoria === 'transporte-passeios' ? 1 : quantidade);
+    const diaDaSemana = getNomeDiaSemana(dataSelecionada);
     
     let mensagem = `Olá! Tenho interesse no produto:\n*${produto.nome}*\n\n`;
     
@@ -151,7 +306,7 @@ const ProdutoDetalhePage = () => {
       mensagem += `• Quantidade: ${quantidade} pessoa(s)\n`;
     }
     
-    mensagem += `• Data: ${dataSelecionada || 'A combinar'}\n` +
+    mensagem += `• Data: ${dataSelecionada} (${diaDaSemana})\n` +
                 `• Valor unitário: R$ ${preco.toFixed(2)}\n` +
                 `• Valor total: R$ ${total.toFixed(2)}\n\n`;
     
@@ -161,6 +316,10 @@ const ProdutoDetalhePage = () => {
     
     if (produto.notas) {
       mensagem += `*Observações:* ${produto.notas}\n\n`;
+    }
+    
+    if (incluiMariaFumaca()) {
+      mensagem += `*Inclui Trem Maria Fumaça* (opera às Quartas, Sextas, Sábados e Domingos)\n\n`;
     }
     
     mensagem += `Poderia me fornecer mais informações?`;
@@ -274,6 +433,10 @@ const ProdutoDetalhePage = () => {
         return null;
     }
   };
+
+  // Validação atual da data
+  const validacaoData = validarData(dataSelecionada);
+  const proximasDatasValidas = getProximasDatasValidas();
 
   return (
     <div className="product-detail-page">
@@ -509,13 +672,84 @@ const ProdutoDetalhePage = () => {
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   Data:
                 </label>
-                <input 
-                  type="date"
-                  className="date-input"
-                  value={dataSelecionada}
-                  onChange={(e) => setDataSelecionada(e.target.value)}
-                  min={new Date().toISOString().split('T')[0]}
-                />
+                <div style={{display: 'flex', flexDirection: 'column', gap: '5px'}}>
+                  <input 
+                    type="date"
+                    className="date-input"
+                    value={dataSelecionada}
+                    onChange={(e) => setDataSelecionada(e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    style={{
+                      borderColor: validacaoData.valida ? '#28a745' : '#dc3545',
+                      borderWidth: '2px'
+                    }}
+                  />
+                  {dataSelecionada && (
+                    <span style={{
+                      fontSize: '0.85rem',
+                      color: validacaoData.valida ? '#28a745' : '#dc3545',
+                      fontWeight: validacaoData.valida ? 'normal' : '600',
+                      padding: '5px',
+                      borderRadius: '4px',
+                      background: validacaoData.valida ? '#d4edda' : '#f8d7da'
+                    }}>
+                      {validacaoData.valida ? 
+                        `✅ ${validacaoData.mensagem}` : 
+                        `❌ ${validacaoData.mensagem}`
+                      }
+                    </span>
+                  )}
+                  
+                  {/* Sugestão de próximas datas válidas (apenas para Maria Fumaça) */}
+                  {incluiMariaFumaca() && proximasDatasValidas.length > 0 && (
+                    <div style={{
+                      marginTop: '10px',
+                      padding: '10px',
+                      background: '#f8f9fa',
+                      borderRadius: '6px',
+                      border: '1px solid #ddd'
+                    }}>
+                      <p style={{fontSize: '0.85rem', marginBottom: '8px', fontWeight: '600'}}>
+                        📅 Próximas datas disponíveis:
+                      </p>
+                      <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '8px'
+                      }}>
+                        {proximasDatasValidas.slice(0, 5).map((data, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => setDataSelecionada(data.data)}
+                            style={{
+                              padding: '6px 10px',
+                              background: data.data === dataSelecionada ? '#2a9d8f' : '#e9ecef',
+                              color: data.data === dataSelecionada ? 'white' : '#495057',
+                              border: '1px solid #ced4da',
+                              borderRadius: '4px',
+                              fontSize: '0.8rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                              if (data.data !== dataSelecionada) {
+                                e.target.style.background = '#dee2e6';
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (data.data !== dataSelecionada) {
+                                e.target.style.background = '#e9ecef';
+                              }
+                            }}
+                          >
+                            {data.data} ({data.nomeDia.split('-')[0]})
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -573,6 +807,13 @@ const ProdutoDetalhePage = () => {
               </div>
             )}
             
+            {produto.categoria !== 'transporte-passeios' && (
+              <div className="total-line">
+                <span>Data selecionada:</span>
+                <span>{dataSelecionada} ({getNomeDiaSemana(dataSelecionada)})</span>
+              </div>
+            )}
+            
             <div className="total-line" style={{paddingTop: '15px', borderTop: '2px solid #ddd'}}>
               <strong>TOTAL:</strong>
               <span className="total-amount">
@@ -581,11 +822,29 @@ const ProdutoDetalhePage = () => {
             </div>
             
             <div className="action-buttons">
-              <button onClick={handleAddToCart} className="btn-add-cart">
+              <button 
+                onClick={handleAddToCart} 
+                className="btn-add-cart"
+                disabled={!validacaoData.valida}
+                style={{
+                  opacity: validacaoData.valida ? 1 : 0.6,
+                  cursor: validacaoData.valida ? 'pointer' : 'not-allowed',
+                  background: validacaoData.valida ? '#2a9d8f' : '#6c757d'
+                }}
+              >
                 <FontAwesomeIcon icon={faShoppingCart} /> 
                 {produto.categoria === 'transporte-passeios' ? 'Contratar Transporte' : 'Comprar Agora'}
+                {!validacaoData.valida && ' (Data inválida)'}
               </button>
-              <button onClick={handleWhatsApp} className="btn-whatsapp">
+              <button 
+                onClick={handleWhatsApp} 
+                className="btn-whatsapp"
+                disabled={!validacaoData.valida}
+                style={{
+                  opacity: validacaoData.valida ? 1 : 0.6,
+                  cursor: validacaoData.valida ? 'pointer' : 'not-allowed'
+                }}
+              >
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Tirar Dúvidas
               </button>

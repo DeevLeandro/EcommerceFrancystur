@@ -32,7 +32,7 @@ const Slidedata = [
     subtitulo: "Embarque na Magia",
     descricao: "Viva um passeio inesquecível.",
     destaque: "Veja os Pacotes",
-    link: "/ingressos" // Mesma página de ingressos
+    link: "/passeios" // Mesma página de ingressos
   },
   {
     id: 4,
