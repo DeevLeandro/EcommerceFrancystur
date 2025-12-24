@@ -1290,6 +1290,12 @@ export const produtos = {
       nome: "Casa Valduga Experience",
       preco: 195.00,
       imagem: "/images/casa-valduga.jpg",
+      imagens: [
+        "/images/casa-valduga.jpg",
+        "/images/casa-valduga-2.jpg",
+        "/images/casa-valduga-3.jpg",
+        "/images/casa-valduga-4.jpg"
+      ],
       categoria: "vinicolas",
       duracao: "Aprox 3h",
       inclui: ["Transporte", "Tour pela vinícola", "Degustação especial", "Guia"],

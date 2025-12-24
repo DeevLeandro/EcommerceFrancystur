@@ -324,7 +324,7 @@ const ProdutoDetalhePage = () => {
     
     mensagem += `Poderia me fornecer mais informações?`;
     
-    const numeroWhatsApp = "5553991224480";
+    const numeroWhatsApp = "5554996623736";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
   };
@@ -422,7 +422,7 @@ const ProdutoDetalhePage = () => {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
                   <strong>Contato para cancelamentos:</strong>
-                  <span>WhatsApp: (53) 99122-4480</span>
+                  <span>WhatsApp: (54) 99662-3736</span>
                 </div>
               </div>
             </div>

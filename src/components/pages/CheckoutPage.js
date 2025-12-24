@@ -23,8 +23,8 @@ const CheckoutPage = () => {
     return acc + (produto.preco * produto.quantidade);
   }, 0);
   
-  // Formatar número para WhatsApp (exemplo com DDD 53)
-  const telefone = '5553991224480'; // Número com DDI e DDD
+  // Formatar número para WhatsApp (exemplo com DDD 54)
+  const telefone = '5554996623736'; // Número com DDI e DDD
   
   const enviarWhatsApp = () => {
     // Montar lista de produtos

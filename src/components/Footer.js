@@ -63,7 +63,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a 
-                href="https://wa.me/5553991224480" 
+                href="https://wa.me/5554996623736" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-icon whatsapp"
@@ -130,7 +130,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faPhone} className="contact-icon" />
                 <div>
                   <p className="contact-label">Telefone/WhatsApp</p>
-                  <p className="contact-info">(53) 99122-4480</p>
+                  <p className="contact-info">(54) 99662-3736</p>
                 </div>
               </li>
               <li className="contact-item">
