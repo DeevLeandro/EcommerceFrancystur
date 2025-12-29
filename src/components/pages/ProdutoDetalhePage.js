@@ -21,7 +21,11 @@ import {
   faFileContract,
   faRoute,
   faExclamationTriangle,
-  faTrain
+  faTrain,
+  faUsers,
+  faCalendarDay,
+  faMoneyBillWave,
+  faCommentDots
 } from "@fortawesome/free-solid-svg-icons";
 import { todosProdutos } from "../data/products";
 import { useCart } from "../CartContext";
@@ -39,7 +43,6 @@ const ProdutoDetalhePage = () => {
   
   const produto = todosProdutos.find(p => p.id === parseInt(id));
   
-  // Array de imagens para o produto
   const produtoImages = produto?.imagens || [
     produto?.imagem,
     "/images/logo.jpg",
@@ -47,64 +50,53 @@ const ProdutoDetalhePage = () => {
     "/images/logo.jpg"
   ].filter(Boolean);
 
-  // Função para verificar se o produto inclui Trem Maria Fumaça
   const incluiMariaFumaca = () => {
-    const produtosComMariaFumaca = [4, 6, 7, 8]; // IDs dos produtos que incluem o trem
+    const produtosComMariaFumaca = [4, 6, 7, 8];
     return produtosComMariaFumaca.includes(produto?.id);
   };
 
-  // Função para verificar se uma data é válida para passeios com Maria Fumaça
   const isDataValidaParaMariaFumaca = (dataString) => {
     if (!incluiMariaFumaca()) return true;
     
     if (!dataString) return false;
     
     const data = new Date(dataString + 'T00:00:00');
-    const diaDaSemana = data.getDay(); // 0 = Domingo, 1 = Segunda, etc.
+    const diaDaSemana = data.getDay();
     
-    // Dias permitidos: Sábado (6), Domingo (0), Quarta (3), Sexta (5)
-    // CORREÇÃO: Seguindo seu pedido: somente sábado, domingo, quarta e sexta
     return diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6;
   };
 
-  // Função para obter o próximo dia válido (corrigida)
   const getProximaDataValida = () => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     
-    // Se o produto não inclui Maria Fumaça, retorna amanhã
     if (!incluiMariaFumaca()) {
       const amanha = new Date(hoje);
       amanha.setDate(amanha.getDate() + 1);
       return amanha.toISOString().split('T')[0];
     }
     
-    // Para produtos com Maria Fumaça, busca o próximo dia permitido
-    for (let i = 1; i <= 14; i++) { // Verifica até 14 dias à frente
+    for (let i = 1; i <= 14; i++) {
       const dataBusca = new Date(hoje);
       dataBusca.setDate(dataBusca.getDate() + i);
       const diaDaSemana = dataBusca.getDay();
       
-      // Dias permitidos: Domingo (0), Quarta (3), Sexta (5), Sábado (6)
       if (diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6) {
         return dataBusca.toISOString().split('T')[0];
       }
     }
     
-    // Fallback: retorna amanhã (será validado)
     const amanha = new Date(hoje);
     amanha.setDate(amanha.getDate() + 1);
     return amanha.toISOString().split('T')[0];
   };
 
-  // Função para obter a data de amanhã (para produtos normais)
   const getDataAmanha = () => {
     const amanha = new Date();
     amanha.setDate(amanha.getDate() + 1);
     return amanha.toISOString().split('T')[0];
   };
 
-  // Definir data inicial quando o componente carrega
   useEffect(() => {
     let dataInicial;
     
@@ -128,7 +120,6 @@ const ProdutoDetalhePage = () => {
     }
   }, [produto]);
   
-  // Função para validar a data selecionada (corrigida)
   const validarData = (dataString) => {
     if (!dataString) return { valida: false, mensagem: 'Selecione uma data' };
     
@@ -136,12 +127,10 @@ const ProdutoDetalhePage = () => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     
-    // Verifica se é data passada
     if (data < hoje) {
       return { valida: false, mensagem: 'Não é possível selecionar datas passadas' };
     }
     
-    // Verifica se é hoje
     if (data.getTime() === hoje.getTime()) {
       return { 
         valida: false, 
@@ -149,7 +138,6 @@ const ProdutoDetalhePage = () => {
       };
     }
     
-    // Validação específica para Maria Fumaça
     if (incluiMariaFumaca()) {
       const diaDaSemana = data.getDay();
       const nomeDia = getNomeDiaSemana(dataString);
@@ -170,7 +158,6 @@ const ProdutoDetalhePage = () => {
     };
   };
 
-  // Função para formatar o nome do dia da semana
   const getNomeDiaSemana = (dataString) => {
     if (!dataString) return '';
     
@@ -179,7 +166,6 @@ const ProdutoDetalhePage = () => {
     return dias[data.getDay()];
   };
 
-  // Função para gerar lista dos próximos 30 dias válidos (apenas para Maria Fumaça)
   const getProximasDatasValidas = () => {
     if (!incluiMariaFumaca()) return [];
     
@@ -195,7 +181,8 @@ const ProdutoDetalhePage = () => {
       if (diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6) {
         datasValidas.push({
           data: data.toISOString().split('T')[0],
-          nomeDia: getNomeDiaSemana(data.toISOString().split('T')[0])
+          nomeDia: getNomeDiaSemana(data.toISOString().split('T')[0]),
+          diaNumero: data.getDate().toString().padStart(2, '0')
         });
       }
     }
@@ -205,19 +192,11 @@ const ProdutoDetalhePage = () => {
 
   if (!produto) {
     return (
-      <div style={{textAlign: 'center', padding: '50px 20px'}}>
-        <h1 style={{color: '#666', marginBottom: '20px'}}>Produto não encontrado</h1>
+      <div className="product-not-found">
+        <h1>Produto não encontrado</h1>
         <button 
           onClick={() => navigate('/')}
-          style={{
-            padding: '10px 20px',
-            background: '#2a9d8f',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '1rem'
-          }}
+          className="btn-back-home"
         >
           Voltar para a página inicial
         </button>
@@ -290,10 +269,8 @@ const ProdutoDetalhePage = () => {
       return;
     }
     
-    const preco = getPrecoAtual();
     const tipo = tipoPrecoSelecionado || duracaoSelecionada || 'adulto';
     const nomeTipo = getNomeTipoPreco(tipo);
-    const total = preco * (produto.categoria === 'transporte-passeios' ? 1 : quantidade);
     const diaDaSemana = getNomeDiaSemana(dataSelecionada);
     
     let mensagem = `Olá! Tenho interesse no produto:\n*${produto.nome}*\n\n`;
@@ -306,13 +283,7 @@ const ProdutoDetalhePage = () => {
       mensagem += `• Quantidade: ${quantidade} pessoa(s)\n`;
     }
     
-    mensagem += `• Data: ${dataSelecionada} (${diaDaSemana})\n` +
-                `• Valor unitário: R$ ${preco.toFixed(2)}\n` +
-                `• Valor total: R$ ${total.toFixed(2)}\n\n`;
-    
-    if (produto.faixaEtaria) {
-      mensagem += `*Faixa etária:* ${produto.faixaEtaria}\n\n`;
-    }
+    mensagem += `• Data: ${dataSelecionada} (${diaDaSemana})\n\n`;
     
     if (produto.notas) {
       mensagem += `*Observações:* ${produto.notas}\n\n`;
@@ -322,7 +293,7 @@ const ProdutoDetalhePage = () => {
       mensagem += `*Inclui Trem Maria Fumaça* (opera às Quartas, Sextas, Sábados e Domingos)\n\n`;
     }
     
-    mensagem += `Poderia me fornecer mais informações?`;
+    mensagem += `Poderia me fornecer mais informações sobre preços e disponibilidade?`;
     
     const numeroWhatsApp = "5554996623736";
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
@@ -332,524 +303,247 @@ const ProdutoDetalhePage = () => {
   const toggleSection = (section) => {
     setActiveSection(activeSection === section ? null : section);
   };
-  
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === produtoImages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-  
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === 0 ? produtoImages.length - 1 : prevIndex - 1
-    );
-  };
-  
-  const goToImage = (index) => {
-    setCurrentImageIndex(index);
-  };
 
-  const renderSectionContent = (section) => {
-    switch(section) {
-      case 'roteiro':
-        if (produto.roteiro) {
-          return (
-            <div className="section-content" 
-              dangerouslySetInnerHTML={{ __html: produto.roteiro }} 
-            />
-          );
-        } else {
-          return (
-            <div className="section-content">
-              <h4>Roteiro Detalhado</h4>
-              <p>Informações de roteiro específicas para este produto serão fornecidas na confirmação da reserva.</p>
-              <p>Para mais detalhes sobre o roteiro, entre em contato conosco.</p>
-            </div>
-          );
-        }
-      
-      case 'horarios':
-        if (produto.horarios) {
-          return (
-            <div className="section-content">
-              <h4>Horários Disponíveis:</h4>
-              <div style={{ display: 'grid', gap: '10px', marginTop: '15px' }}>
-                {produto.horarios.map((horario, index) => (
-                  <div key={index} style={{
-                    padding: '10px',
-                    background: '#f8f9fa',
-                    borderRadius: '6px',
-                    border: '1px solid #ddd'
-                  }}>
-                    <FontAwesomeIcon icon={faClock} style={{ marginRight: '8px', color: '#2a9d8f' }} />
-                    <span>{horario}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <div className="section-content">
-              <h4>Horários</h4>
-              <p>Horários flexíveis conforme disponibilidade. Entre em contato para agendar o melhor horário para você.</p>
-            </div>
-          );
-        }
-      
-      case 'cancelamento':
-        if (produto.politicasCancelamento) {
-          return (
-            <div className="section-content" 
-              dangerouslySetInnerHTML={{ __html: produto.politicasCancelamento }} 
-            />
-          );
-        } else {
-          return (
-            <div className="section-content">
-              <h4>Políticas de Cancelamento</h4>
-              <div style={{ 
-                display: 'grid', 
-                gap: '10px', 
-                marginTop: '15px',
-                padding: '15px',
-                background: '#f8f9fa',
-                borderRadius: '6px'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
-                  <strong>Cancelamento padrão:</strong>
-                  <span>Consulte as políticas específicas para este produto</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0' }}>
-                  <strong>Contato para cancelamentos:</strong>
-                  <span>WhatsApp: (54) 99662-3736</span>
-                </div>
-              </div>
-            </div>
-          );
-        }
-      
-      default:
-        return null;
-    }
-  };
-
-  // Validação atual da data
-  const validacaoData = validarData(dataSelecionada);
   const proximasDatasValidas = getProximasDatasValidas();
+  const validacaoData = validarData(dataSelecionada);
 
   return (
     <div className="product-detail-page">
-      <div className="product-detail-container">
+      {/* LAYOUT DA GALERIA NO FORMATO DA IMAGEM */}
+      <div className="product-gallery-container">
+        {/* TÍTULO ACIMA DAS IMAGENS */}
+        <h1 className="product-title">{produto.nome}</h1>
         
-        {/* SEÇÃO DE IMAGENS - Carrossel que o cliente gostou */}
-        <div className="product-image-section">
-          <div className="main-image-container">
+        {/* LINHA 1: IMAGENS */}
+        <div className="product-images-row">
+          {/* IMAGEM GRANDE PRINCIPAL */}
+          <div className="gallery-large gallery-main">
             <img 
-              src={produtoImages[currentImageIndex]} 
-              alt={`${produto.nome} - Foto ${currentImageIndex + 1}`}
-              className="main-product-image"
+              src={produtoImages[0] || "/images/default-product.jpg"} 
+              alt={`${produto.nome}`}
+              className="main-gallery-image"
               loading="lazy"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = "/images/default-product.jpg";
               }}
             />
-            
-            {produtoImages.length > 1 && (
-              <>
-                <button 
-                  className="nav-button prev" 
-                  onClick={prevImage}
-                  aria-label="Imagem anterior"
-                >
-                  <FontAwesomeIcon icon={faChevronLeft} />
-                </button>
-                <button 
-                  className="nav-button next" 
-                  onClick={nextImage}
-                  aria-label="Próxima imagem"
-                >
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-                
-                <div className="image-counter">
-                  <span>{currentImageIndex + 1}</span> / <span>{produtoImages.length}</span>
-                </div>
-              </>
-            )}
           </div>
           
-          {/* MINIATURAS */}
-          {produtoImages.length > 1 && (
-            <div className="image-thumbnails">
-              {produtoImages.map((img, index) => (
-                <div 
-                  key={index}
-                  className={`thumbnail ${currentImageIndex === index ? 'active' : ''}`}
-                  onClick={() => goToImage(index)}
-                >
-                  <img 
-                    src={img} 
-                    alt={`${produto.nome} miniatura ${index + 1}`}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+          {/* COLUNA DIREITA COM 2 IMAGENS PEQUENAS */}
+          <div className="gallery-secondary-column">
+            <div className="gallery-large gallery-secondary">
+              {produtoImages[1] && (
+                <img 
+                  src={produtoImages[1]} 
+                  alt={`${produto.nome} - Foto 2`}
+                  className="secondary-gallery-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/images/default-product.jpg";
+                  }}
+                />
+              )}
             </div>
-          )}
-          
-          <div className="image-badge">
-            <FontAwesomeIcon icon={faImages} />
-            <span>{produtoImages.length} {produtoImages.length === 1 ? 'foto' : 'fotos'}</span>
+            
+            <div className="gallery-small gallery-small-1">
+              {produtoImages[2] && (
+                <img 
+                  src={produtoImages[2]} 
+                  alt={`${produto.nome} - Foto 3`}
+                  className="small-gallery-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/images/default-product.jpg";
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
         
-        <div className="product-info-section">
-          
-          {/* CABEÇALHO E INFORMAÇÕES BÁSICAS */}
-          <div className="product-header">
-            <div className="location-badge">
-              <FontAwesomeIcon icon={faMapMarkerAlt} />
-              <span>{getNomeCategoria(produto.categoria)}</span>
+        {/* LINHA 2: CARD DE INFORMAÇÕES (ESTILO DA IMAGEM) */}
+        <div className="image-info-card">
+          <div className="info-card-row">
+            <div className="activity-badge">
+              {incluiMariaFumaca() ? 'Inclui Trem Maria Fumaça' : 'Passeio Turístico'}
             </div>
             
-            <h1>{produto.nome}</h1>
-          </div>
-          
-          {/* DESCRIÇÃO */}
-          {produto.descricao && (
-            <div className="product-description-section">
-              <p className="product-description-text">{produto.descricao}</p>
-            </div>
-          )}
-          
-          {/* INFORMAÇÕES ESPECÍFICAS */}
-          {produto.faixaEtaria && (
-            <div className="age-info">
-              <FontAwesomeIcon icon={faChild} />
-              <span>{produto.faixaEtaria}</span>
-            </div>
-          )}
-          
-          {produto.notas && (
-            <div className="notes-info">
-              <span>📝 {produto.notas}</span>
-            </div>
-          )}
-          
-          {/* PREÇO */}
-          <div className="price-container">
-            {typeof produto.preco === 'object' ? (
-              <>
-                <span className="current-price">R$ {getPrecoAtual().toFixed(2)}</span>
-                <select 
-                  className="price-select"
-                  value={tipoPrecoSelecionado || duracaoSelecionada}
-                  onChange={(e) => {
-                    if (produto.categoria === 'transporte-passeios') {
-                      setDuracaoSelecionada(e.target.value);
-                    } else {
-                      setTipoPrecoSelecionado(e.target.value);
-                    }
-                  }}
-                >
-                  {Object.keys(produto.preco).map((tipo) => (
-                    <option key={tipo} value={tipo}>
-                      {getNomeTipoPreco(tipo)} - R$ {produto.preco[tipo].toFixed(2)}
-                    </option>
-                  ))}
-                </select>
-                <span style={{fontSize: '0.9rem', color: '#666'}}>
-                  {produto.categoria === 'transporte-passeios' ? 'por período' : 'por pessoa'}
-                </span>
-              </>
-            ) : (
-              <>
-                <span className="current-price">R$ {produto.preco.toFixed(2)}</span>
-                <span style={{fontSize: '0.9rem', color: '#666'}}>por pessoa</span>
-                {produto.precoAntigo && (
-                  <>
-                    <span style={{textDecoration: 'line-through', color: '#999'}}>
-                      R$ {produto.precoAntigo.toFixed(2)}
-                    </span>
-                    <span style={{
-                      background: '#ff6b6b',
-                      color: 'white',
-                      padding: '3px 8px',
-                      borderRadius: '10px',
-                      fontSize: '0.8rem',
-                      fontWeight: '600'
-                    }}>
-                      {Math.round((1 - produto.preco / produto.precoAntigo) * 100)}% OFF
-                    </span>
-                  </>
-                )}
-              </>
-            )}
-          </div>
-          
-          {/* AVALIAÇÃO */}
-          <div className="rating-container">
-            <div className="stars">
-              {[...Array(5)].map((_, i) => (
-                <FontAwesomeIcon key={i} icon={faStar} />
-              ))}
-            </div>
-            <span className="review-count">({produto.reviews || 45} avaliações)</span>
-            <span className="rating-value">⭐ {produto.avaliacao || 4.8}/5</span>
-          </div>
-          
-          {/* DETALHES */}
-          <div className="details-grid">
-            <div className="detail-item">
-              <FontAwesomeIcon icon={faClock} />
-              <div>
-                <span className="detail-label">Duração</span>
-                <span className="detail-value">{produto.duracao}</span>
-              </div>
-            </div>
-            
-            <div className="detail-item">
-              <FontAwesomeIcon icon={faUser} />
-              <div>
-                <span className="detail-label">Categoria</span>
-                <span className="detail-value">{getNomeCategoria(produto.categoria)}</span>
-              </div>
+            <div className="days-highlight">
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              Dias: 
+              {incluiMariaFumaca() 
+                ? ' Dom Qua Sex Sáb' 
+                : ' Dom Seg Ter Qua Qui Sex Sáb'
+              }
             </div>
           </div>
-          
-          {/* CONTROLES - QUANTIDADE E DATA */}
-          {produto.categoria === 'transporte-passeios' ? (
-            <div className="duration-selector">
-              <label>
-                <FontAwesomeIcon icon={faCar} />
-                Duração do transporte:
-              </label>
-              <select 
-                className="duration-select"
-                value={duracaoSelecionada}
-                onChange={(e) => setDuracaoSelecionada(e.target.value)}
+        </div>
+        
+        {/* REMOVIDO: Seção de descrição */}
+      </div>
+      
+      {/* LAYOUT EM DUAS COLUNAS */}
+      <div className="product-layout-container">
+        {/* COLUNA ESQUERDA - CONTEÚDO */}
+        <div className="product-content-column">
+          {/* SEÇÕES EXPANSÍVEIS EM LISTA VERTICAL */}
+          <div className="expandable-sections-vertical">
+            <div className="section-list">
+              <button 
+                className={`section-list-item ${activeSection === 'roteiro' ? 'active' : ''}`}
+                onClick={() => toggleSection('roteiro')}
               >
-                {Object.keys(produto.preco).map((duracao) => (
-                  <option key={duracao} value={duracao}>
-                    {duracao} - R$ {produto.preco[duracao].toFixed(2)}
-                  </option>
-                ))}
-              </select>
-            </div>
-          ) : (
-            <div className="controls-row">
-              <div className="control-group">
-                <label>
-                  <FontAwesomeIcon icon={faTicketAlt} />
-                  Quantidade:
-                </label>
-                <div className="quantity-controls">
-                  <button 
-                    className="qty-btn"
-                    onClick={() => setQuantidade(prev => Math.max(1, prev - 1))}
-                  >
-                    -
-                  </button>
-                  <input 
-                    type="number" 
-                    value={quantidade}
-                    onChange={(e) => setQuantidade(parseInt(e.target.value) || 1)}
-                    min="1"
-                  />
-                  <button 
-                    className="qty-btn"
-                    onClick={() => setQuantidade(prev => prev + 1)}
-                  >
-                    +
-                  </button>
+                <div className="section-list-icon">
+                  <FontAwesomeIcon icon={faRoute} />
                 </div>
-              </div>
+                <div className="section-list-content">
+                  <h3>Roteiro Completo</h3>
+                  <p>Veja todos os detalhes do passeio</p>
+                </div>
+                <div className="section-list-arrow">
+                  <FontAwesomeIcon icon={activeSection === 'roteiro' ? faChevronUp : faChevronDown} />
+                </div>
+              </button>
               
-              <div className="control-group">
-                <label>
-                  <FontAwesomeIcon icon={faCalendarAlt} />
-                  Data:
-                </label>
-                <div style={{display: 'flex', flexDirection: 'column', gap: '5px'}}>
-                  <input 
-                    type="date"
-                    className="date-input"
-                    value={dataSelecionada}
-                    onChange={(e) => setDataSelecionada(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
-                    style={{
-                      borderColor: validacaoData.valida ? '#28a745' : '#dc3545',
-                      borderWidth: '2px'
-                    }}
-                  />
-                  {dataSelecionada && (
-                    <span style={{
-                      fontSize: '0.85rem',
-                      color: validacaoData.valida ? '#28a745' : '#dc3545',
-                      fontWeight: validacaoData.valida ? 'normal' : '600',
-                      padding: '5px',
-                      borderRadius: '4px',
-                      background: validacaoData.valida ? '#d4edda' : '#f8d7da'
-                    }}>
-                      {validacaoData.valida ? 
-                        `✅ ${validacaoData.mensagem}` : 
-                        `❌ ${validacaoData.mensagem}`
-                      }
-                    </span>
+              {activeSection === 'roteiro' && (
+                <div className="section-list-content-panel">
+                  {produto.roteiro ? (
+                    <div className="section-content" 
+                      dangerouslySetInnerHTML={{ __html: produto.roteiro }} 
+                    />
+                  ) : (
+                    <div className="section-content">
+                      <h4>Roteiro Detalhado</h4>
+                      <p>Informações de roteiro específicas para este produto serão fornecidas na confirmação da reserva.</p>
+                      <p>Para mais detalhes sobre o roteiro, entre em contato conosco.</p>
+                    </div>
                   )}
-                  
-                  {/* Sugestão de próximas datas válidas (apenas para Maria Fumaça) */}
-                  {incluiMariaFumaca() && proximasDatasValidas.length > 0 && (
-                    <div style={{
-                      marginTop: '10px',
-                      padding: '10px',
-                      background: '#f8f9fa',
-                      borderRadius: '6px',
-                      border: '1px solid #ddd'
-                    }}>
-                      <p style={{fontSize: '0.85rem', marginBottom: '8px', fontWeight: '600'}}>
-                        📅 Próximas datas disponíveis:
-                      </p>
-                      <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '8px'
-                      }}>
-                        {proximasDatasValidas.slice(0, 5).map((data, index) => (
-                          <button
-                            key={index}
-                            type="button"
-                            onClick={() => setDataSelecionada(data.data)}
-                            style={{
-                              padding: '6px 10px',
-                              background: data.data === dataSelecionada ? '#2a9d8f' : '#e9ecef',
-                              color: data.data === dataSelecionada ? 'white' : '#495057',
-                              border: '1px solid #ced4da',
-                              borderRadius: '4px',
-                              fontSize: '0.8rem',
-                              cursor: 'pointer',
-                              transition: 'all 0.2s'
-                            }}
-                            onMouseEnter={(e) => {
-                              if (data.data !== dataSelecionada) {
-                                e.target.style.background = '#dee2e6';
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (data.data !== dataSelecionada) {
-                                e.target.style.background = '#e9ecef';
-                              }
-                            }}
-                          >
-                            {data.data} ({data.nomeDia.split('-')[0]})
-                          </button>
+                </div>
+              )}
+              
+              <button 
+                className={`section-list-item ${activeSection === 'horarios' ? 'active' : ''}`}
+                onClick={() => toggleSection('horarios')}
+              >
+                <div className="section-list-icon">
+                  <FontAwesomeIcon icon={faClock} />
+                </div>
+                <div className="section-list-content">
+                  <h3>Horários</h3>
+                  <p>Disponibilidade e horários de partida</p>
+                </div>
+                <div className="section-list-arrow">
+                  <FontAwesomeIcon icon={activeSection === 'horarios' ? faChevronUp : faChevronDown} />
+                </div>
+              </button>
+              
+              {activeSection === 'horarios' && (
+                <div className="section-list-content-panel">
+                  {produto.horarios ? (
+                    <div className="section-content">
+                      <h4>Horários Disponíveis:</h4>
+                      <div className="horarios-grid">
+                        {produto.horarios.map((horario, index) => (
+                          <div key={index} className="horario-item">
+                            <FontAwesomeIcon icon={faClock} />
+                            <span>{horario}</span>
+                          </div>
                         ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="section-content">
+                      <h4>Horários</h4>
+                      <p>Horários flexíveis conforme disponibilidade. Entre em contato para agendar o melhor horário para você.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              <button 
+                className={`section-list-item ${activeSection === 'cancelamento' ? 'active' : ''}`}
+                onClick={() => toggleSection('cancelamento')}
+              >
+                <div className="section-list-icon">
+                  <FontAwesomeIcon icon={faFileContract} />
+                </div>
+                <div className="section-list-content">
+                  <h3>Políticas de Cancelamento</h3>
+                  <p>Condições para cancelamento e reembolso</p>
+                </div>
+                <div className="section-list-arrow">
+                  <FontAwesomeIcon icon={activeSection === 'cancelamento' ? faChevronUp : faChevronDown} />
+                </div>
+              </button>
+              
+              {activeSection === 'cancelamento' && (
+                <div className="section-list-content-panel">
+                  {produto.politicasCancelamento ? (
+                    <div className="section-content" 
+                      dangerouslySetInnerHTML={{ __html: produto.politicasCancelamento }} 
+                    />
+                  ) : (
+                    <div className="section-content">
+                      <h4>Políticas de Cancelamento</h4>
+                      <div className="cancelamento-info">
+                        <div className="cancelamento-line">
+                          <strong>Cancelamento padrão:</strong>
+                          <span>Consulte as políticas específicas para este produto</span>
+                        </div>
+                        <div className="cancelamento-line">
+                          <strong>Contato para cancelamentos:</strong>
+                          <span>WhatsApp: (54) 99662-3736</span>
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
-              </div>
+              )}
             </div>
-          )}
+          </div>
           
-          {/* SEÇÕES EXPANSÍVEIS SIMPLIFICADAS */}
-          <div className="expandable-sections">
-            <div className="section-buttons-grid">
-              <button 
-                className={`section-btn ${activeSection === 'roteiro' ? 'active' : ''}`}
-                onClick={() => toggleSection('roteiro')}
-              >
-                <FontAwesomeIcon icon={faRoute} />
-                <span>Roteiro</span>
-                <FontAwesomeIcon icon={activeSection === 'roteiro' ? faChevronUp : faChevronDown} />
-              </button>
-              
-              <button 
-                className={`section-btn ${activeSection === 'horarios' ? 'active' : ''}`}
-                onClick={() => toggleSection('horarios')}
-              >
+          {/* DETALHES ADICIONAIS */}
+          <section className="content-section">
+            <h2 className="section-title">Informações Importantes</h2>
+            <div className="details-grid">
+              <div className="detail-item">
                 <FontAwesomeIcon icon={faClock} />
-                <span>Horários</span>
-                <FontAwesomeIcon icon={activeSection === 'horarios' ? faChevronUp : faChevronDown} />
-              </button>
+                <div>
+                  <span className="detail-label">Duração</span>
+                  <span className="detail-value">{produto.duracao}</span>
+                </div>
+              </div>
               
-              <button 
-                className={`section-btn ${activeSection === 'cancelamento' ? 'active' : ''}`}
-                onClick={() => toggleSection('cancelamento')}
-              >
-                <FontAwesomeIcon icon={faFileContract} />
-                <span>Cancelamento</span>
-                <FontAwesomeIcon icon={activeSection === 'cancelamento' ? faChevronUp : faChevronDown} />
-              </button>
-            </div>
-            
-            {/* CONTEÚDO DAS SEÇÕES */}
-            {activeSection && (
-              <div className="section-content-container">
-                {renderSectionContent(activeSection)}
+              <div className="detail-item">
+                <FontAwesomeIcon icon={faCalendarDay} />
+                <div>
+                  <span className="detail-label">Disponibilidade</span>
+                  <span className="detail-value">
+                    {incluiMariaFumaca() ? 'Quarta, Sexta, Sábado e Domingo' : 'Todos os dias'}
+                  </span>
+                </div>
               </div>
-            )}
-          </div>
-          
-          {/* RESUMO E AÇÕES */}
-          <div className="total-summary">
-            <div className="total-line">
-              <span>Valor {produto.categoria === 'transporte-passeios' ? 'do período:' : 'unitário:'}</span>
-              <span>R$ {getPrecoAtual().toFixed(2)}</span>
-            </div>
-            
-            {produto.categoria !== 'transporte-passeios' && (
-              <div className="total-line">
-                <span>Quantidade:</span>
-                <span>{quantidade}</span>
+              
+              <div className="detail-item">
+                <FontAwesomeIcon icon={faUsers} />
+                <div>
+                  <span className="detail-label">Tipo</span>
+                  <span className="detail-value">{getNomeCategoria(produto.categoria)}</span>
+                </div>
               </div>
-            )}
-            
-            {produto.categoria !== 'transporte-passeios' && (
-              <div className="total-line">
-                <span>Data selecionada:</span>
-                <span>{dataSelecionada} ({getNomeDiaSemana(dataSelecionada)})</span>
+              
+              <div className="detail-item">
+                <FontAwesomeIcon icon={faMoneyBillWave} />
+                <div>
+                  <span className="detail-label">Pagamento</span>
+                  <span className="detail-value">Cartão, PIX, Dinheiro</span>
+                </div>
               </div>
-            )}
-            
-            <div className="total-line" style={{paddingTop: '15px', borderTop: '2px solid #ddd'}}>
-              <strong>TOTAL:</strong>
-              <span className="total-amount">
-                R$ {(getPrecoAtual() * (produto.categoria === 'transporte-passeios' ? 1 : quantidade)).toFixed(2)}
-              </span>
             </div>
-            
-            <div className="action-buttons">
-              <button 
-                onClick={handleAddToCart} 
-                className="btn-add-cart"
-                disabled={!validacaoData.valida}
-                style={{
-                  opacity: validacaoData.valida ? 1 : 0.6,
-                  cursor: validacaoData.valida ? 'pointer' : 'not-allowed',
-                  background: validacaoData.valida ? '#2a9d8f' : '#6c757d'
-                }}
-              >
-                <FontAwesomeIcon icon={faShoppingCart} /> 
-                {produto.categoria === 'transporte-passeios' ? 'Contratar Transporte' : 'Comprar Agora'}
-                {!validacaoData.valida && ' (Data inválida)'}
-              </button>
-              <button 
-                onClick={handleWhatsApp} 
-                className="btn-whatsapp"
-                disabled={!validacaoData.valida}
-                style={{
-                  opacity: validacaoData.valida ? 1 : 0.6,
-                  cursor: validacaoData.valida ? 'pointer' : 'not-allowed'
-                }}
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
-                Tirar Dúvidas
-              </button>
-            </div>
-          </div>
+          </section>
           
           {/* NOTA FINAL */}
           <div className="product-note">
@@ -858,6 +552,177 @@ const ProdutoDetalhePage = () => {
                 ? 'O transporte deve ser agendado com antecedência. Alterações com 24h de antecedência.' 
                 : 'Reservas válidas para a data selecionada. Em caso de dúvidas, entre em contato.'}
             </p>
+          </div>
+        </div>
+        
+        {/* COLUNA DIREITA - CARD DE RESERVA STICKY */}
+        <div className="booking-column">
+          <div className="booking-card">
+            <div className="booking-card-header">
+              <h3 className="booking-card-title">Solicitar Reserva</h3>
+              <div className="price-info">
+                <span className="price-info-text">Preços negociáveis via WhatsApp</span>
+              </div>
+            </div>
+            
+            <div className="booking-card-body">
+              {/* QUANTIDADE */}
+              {produto.categoria !== 'transporte-passeios' && (
+                <div className="booking-field">
+                  <label className="booking-label">
+                    <FontAwesomeIcon icon={faUsers} />
+                    Quantidade de pessoas:
+                  </label>
+                  <div className="quantity-controls">
+                    <button 
+                      className="qty-btn"
+                      onClick={() => setQuantidade(prev => Math.max(1, prev - 1))}
+                    >
+                      -
+                    </button>
+                    <input 
+                      type="number" 
+                      value={quantidade}
+                      onChange={(e) => setQuantidade(parseInt(e.target.value) || 1)}
+                      min="1"
+                      className="quantity-input"
+                    />
+                    <button 
+                      className="qty-btn"
+                      onClick={() => setQuantidade(prev => prev + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              )}
+              
+              {/* DATAS EM QUADRADINHOS */}
+              <div className="booking-field">
+                <label className="booking-label">
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+                  Selecione a data:
+                </label>
+                
+                {/* CALENDÁRIO DE QUADRADINHOS */}
+                <div className="date-squares-container">
+                  <div className="current-month">Próximos dias disponíveis</div>
+                  <div className="date-squares">
+                    {proximasDatasValidas.length > 0 ? (
+                      proximasDatasValidas.slice(0, 15).map((data, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => setDataSelecionada(data.data)}
+                          className={`date-square ${data.data === dataSelecionada ? 'selected' : ''}`}
+                          title={`${data.data} - ${data.nomeDia}`}
+                        >
+                          <span className="date-number">{data.diaNumero}</span>
+                          <span className="date-weekday">{data.nomeDia.substring(0, 3)}</span>
+                        </button>
+                      ))
+                    ) : (
+                      // Fallback para produtos sem Maria Fumaça
+                      Array.from({ length: 15 }, (_, i) => {
+                        const date = new Date();
+                        date.setDate(date.getDate() + i + 1);
+                        const dayNumber = date.getDate().toString().padStart(2, '0');
+                        const dateStr = date.toISOString().split('T')[0];
+                        const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                        const weekday = weekdays[date.getDay()];
+                        
+                        return (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => setDataSelecionada(dateStr)}
+                            className={`date-square ${dateStr === dataSelecionada ? 'selected' : ''}`}
+                            title={`${dateStr} - ${weekday}`}
+                          >
+                            <span className="date-number">{dayNumber}</span>
+                            <span className="date-weekday">{weekday}</span>
+                          </button>
+                        );
+                      })
+                    )}
+                  </div>
+                  
+                  {dataSelecionada && (
+                    <div className="selected-date-info">
+                      <div className={`date-validation ${validacaoData.valida ? 'valid' : 'invalid'}`}>
+                        {validacaoData.valida ? 
+                          `✅ ${getNomeDiaSemana(dataSelecionada)}, ${dataSelecionada}` : 
+                          `❌ ${validacaoData.mensagem}`
+                        }
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* AVISO MARIA FUMAÇA */}
+                {incluiMariaFumaca() && (
+                  <div className="maria-fumaca-notice">
+                    <FontAwesomeIcon icon={faTrain} />
+                    <span>Inclui Trem Maria Fumaça (opera às Quartas, Sextas, Sábados e Domingos)</span>
+                  </div>
+                )}
+              </div>
+              
+              {/* RESUMO DA SOLICITAÇÃO */}
+              <div className="booking-summary">
+                <div className="summary-line">
+                  <span>Passeio:</span>
+                  <span className="summary-value">{produto.nome}</span>
+                </div>
+                
+                {produto.categoria !== 'transporte-passeios' && (
+                  <div className="summary-line">
+                    <span>Quantidade:</span>
+                    <span className="summary-value">{quantidade} pessoa(s)</span>
+                  </div>
+                )}
+                
+                <div className="summary-line">
+                  <span>Data selecionada:</span>
+                  <span className="summary-value">
+                    {dataSelecionada} ({getNomeDiaSemana(dataSelecionada)})
+                  </span>
+                </div>
+              </div>
+              
+              {/* BOTÕES DE AÇÃO */}
+              <div className="booking-actions">
+                <button 
+                  onClick={handleWhatsApp} 
+                  className="btn-whatsapp-primary"
+                  disabled={!validacaoData.valida}
+                >
+                  <FontAwesomeIcon icon={faCommentDots} />
+                  Consultar Preços no WhatsApp
+                </button>
+                
+                <div className="action-note">
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  <span>Entre em contato para consultar preços e disponibilidade</span>
+                </div>
+              </div>
+              
+              {/* GARANTIA DE SEGURANÇA */}
+              <div className="security-guarantee">
+                <div className="guarantee-item">
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Reserva segura</span>
+                </div>
+                <div className="guarantee-item">
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Cancelamento facilitado*</span>
+                </div>
+                <div className="guarantee-item">
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Suporte personalizado</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
