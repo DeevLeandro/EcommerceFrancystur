@@ -627,93 +627,170 @@ export const produtos = {
         </div>
       `
     },
-    {
-      id: 7,
-      nome: "Vale dos Vinhedos Premium e Trem Maria Fumaça",
-      preco: {
-        adulto: 589.00,
-        jovem: 399.00
-      },
-      imagem: "/images/vale-vinhedos-premium.jpg",
-      imagens: [
-        "/images/vale-vinhedos-premium.jpg",
-        "/images/vale-vinhedos-premium-5.jpg",
-        "/images/vale-vinhedos-premium-3.jpg",
-        "/images/vale-vinhedos-premium-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 11h",
-      inclui: ["Transporte executivo", "Degustações premium", "Ingresso trem", "Guia especializado", "Almoço gourmet"],
-      faixaEtaria: "Adultos: R$589 | Jovens: R$399 | Crianças até 6 não pagam",
-      avaliacao: 4.9,
-      reviews: 78,
-      descricao: "O mais completo roteiro enoturístico da região! Viaje no tempo no Trem Maria Fumaça e mergulhe na excelência dos vinhos premium do Vale dos Vinhedos. Degustações selecionadas, guia especializado e transporte confortável - tudo pensado para sua experiência perfeita.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Premium Vale dos Vinhedos</h4>
+{
+  id: 7,
+  nome: "Passeio Maria Fumaça Classic",
+  preco: {
+    adulto: 589.00,
+    jovem: 399.00
+  },
+  imagem: "/images/vale-vinhedos-premium.jpg",
+  imagens: [
+    "/images/vale-vinhedos-premium.jpg",
+    "/images/vale-vinhedos-premium-5.jpg",
+    "/images/vale-vinhedos-premium-3.jpg",
+    "/images/vale-vinhedos-premium-4.jpg"
+  ],
+  categoria: "passeios",
+  duracao: "Aprox 11h",
+  inclui: ["Transporte executivo", "Degustações premium", "Ingresso trem", "Guia especializado", "Almoço gourmet"],
+  faixaEtaria: "Adultos: R$589 | Jovens: R$399 | Crianças até 6 não pagam",
+  avaliacao: 4.9,
+  reviews: 78,
+  descricao: "O mais completo roteiro enoturístico da região! Viaje no tempo no Trem Maria Fumaça e mergulhe na excelência dos vinhos premium do Vale dos Vinhedos. Degustações selecionadas, guia especializado e transporte confortável - tudo pensado para sua experiência perfeita.",
+  roteiro: `
+    <div class="section-content">
+      <h4>🎭 ROTEIRO CLASSIC</h4>
+      
+      <div class="roteiro-timeline">
+        <div class="roteiro-item">
+          <strong>🎭 Teatro Epopéia Italiana</strong>
+          <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
+        </div>
+        
+        <div class="roteiro-item">
+          <strong>🍇 Vinícola Aurora – Bento Gonçalves</strong>
+          <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
+        </div>
+        
+        <div class="roteiro-item">
+          <strong>🥘 Almoço incluso</strong>
+          <p>Almoço em restaurante comida típica italiana. Bebidas não inclusas.</p>
+        </div>
+        
+        <div class="roteiro-item">
+          <strong>🧵 Malharia Local</strong>
+          <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
+        </div>
+        
+        <div class="roteiro-item">
+          <strong>🛠 Showroom Tramontina – Carlos Barbosa</strong>
+          <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
+        </div>
+        
+        <div class="roteiro-item">
+          <strong>🧀 Queijaria Fetina Valbrenta</strong>
+          <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
+        </div>
+        
+        <div class="roteiro-section">
+          <h5>✅ INCLUI:</h5>
           <ul>
-            <li>07:00 - Saída com transporte executivo</li>
-            <li>09:00 - Trem Maria Fumaça (assentos especiais)</li>
-            <li>10:30 - Vinícola premium (tour em caves subterrâneos)</li>
-            <li>12:00 - Almoço gourmet em restaurante premiado</li>
-            <li>13:30 - Segunda vinícola premium (degustação reservada)</li>
-            <li>15:00 - Queijaria artesanal (produtos exclusivos)</li>
-            <li>16:00 - Chocolateira local (harmonização com vinho)</li>
-            <li>17:00 - Retorno para Gramado</li>
-            <li>19:00 - Chegada no ponto de origem</li>
+            <li>Transporte da agência ida e volta</li>
+            <li>Transporte entre todas as cidades visitadas</li>
+            <li>Bilhete do Trem Maria Fumaça</li>
+            <li>Ingresso da Epopeia Italiana</li>
+            <li>Almoço</li>
+            <li>Todas as degustações padrão nos locais mencionados</li>
           </ul>
         </div>
-      `,
-      pontosVisita: [
-        "Trem Maria Fumaça (classe premium)",
-        "Vinícola com caves subterrâneos",
-        "Restaurante gourmet premiado",
-        "Segunda vinícola exclusiva",
-        "Queijaria artesanal",
-        "Chocolateira especializada",
-        "Loja de produtos regionais premium"
-      ],
-      horarios: [
-        "Saída: 07:00h",
-        "Retorno: 19:00h",
-        "Duração: 12 horas",
-        "Dias: Terça a Domingo"
-      ],
-      saidas: [
-        "Gramado: ponto central",
-        "Canela: mediante agendamento",
-        "Transporte executivo compartilhado"
-      ],
-      informacoesImportantes: [
-        "Degustações premium (vinhos selecionados)",
-        "Almoço gourmet incluso",
-        "Guia enólogo especializado",
-        "Grupo reduzido (máx 12 pessoas)",
-        "Reservas com 72h de antecedência",
-        "Não recomendado para menores de 18 anos",
-        "Vestimenta casual elegante sugerida"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 14 dias antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 7-14 dias antes:</strong>
-            <span>Reembolso de 70%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 72h:</strong>
-            <span>Sem reembolso</span>
-          </div>
+        
+        <div class="roteiro-section">
+          <h5>❌ NÃO INCLUI:</h5>
+          <ul>
+            <li>Bebidas durante o almoço</li>
+            <li>Compras pessoais nas lojas visitadas</li>
+          </ul>
         </div>
-      `
-    },
+        
+        <div class="roteiro-section">
+          <h5>🕒 HORÁRIOS PREVISTOS</h5>
+          <ul>
+            <li><strong>Saída de Gramado/Canela:</strong> previsto 06h00</li>
+            <li><strong>Retorno previsto:</strong> entre 19:00 e 20:00</li>
+            <li><em>(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</em></li>
+          </ul>
+        </div>
+        
+        <div class="roteiro-section">
+          <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
+          <ul>
+            <li><strong>Distância:</strong> Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</li>
+            <li><strong>Sobre o Trem Maria Fumaça:</strong> O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</li>
+            <li><strong>Sobre o Transporte:</strong> Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</li>
+            <li><strong>Sobre a Ordem das Atrações:</strong> A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</li>
+          </ul>
+        </div>
+        
+        <hr />
+        
+        <h5>Detalhes Adicionais:</h5>
+        <ul>
+          <li>07:00 - Saída com transporte executivo</li>
+          <li>09:00 - Trem Maria Fumaça (assentos especiais)</li>
+          <li>10:30 - Vinícola premium (tour em caves subterrâneos)</li>
+          <li>12:00 - Almoço gourmet em restaurante premiado</li>
+          <li>13:30 - Segunda vinícola premium (degustação reservada)</li>
+          <li>15:00 - Queijaria artesanal (produtos exclusivos)</li>
+          <li>16:00 - Chocolateira local (harmonização com vinho)</li>
+          <li>17:00 - Retorno para Gramado</li>
+          <li>19:00 - Chegada no ponto de origem</li>
+        </ul>
+      </div>
+    </div>
+  `,
+  pontosVisita: [
+    "Trem Maria Fumaça (classe premium)",
+    "Teatro Epopéia Italiana",
+    "Vinícola Aurora",
+    "Restaurante comida típica italiana",
+    "Malharia local",
+    "Showroom Tramontina",
+    "Queijaria Fetina Valbrenta",
+    "Loja de produtos regionais premium"
+  ],
+  horarios: [
+    "Saída: 06:00h",
+    "Retorno: 19:00-20:00h",
+    "Duração: 13-14 horas",
+    "Dias: Quarta, Sexta, Sábado, Domingo"
+  ],
+  saidas: [
+    "Gramado: ponto central",
+    "Canela: mediante agendamento",
+    "Transporte compartilhado"
+  ],
+  informacoesImportantes: [
+    "Trem Maria Fumaça incluso",
+    "Ingresso Epopéia Italiana incluso",
+    "Almoço incluso (bebidas não)",
+    "Todas as degustações incluídas",
+    "Guia especializado",
+    "Grupo compartilhado",
+    "Reservas com antecedência",
+    "Vestimenta casual confortável"
+  ],
+  politicasCancelamento: `
+    <div class="cancellation-policy">
+      <div class="policy-item">
+        <strong>Cancelamento até 14 dias antes:</strong>
+        <span>Reembolso de 100%</span>
+      </div>
+      <div class="policy-item">
+        <strong>Cancelamento entre 7-14 dias antes:</strong>
+        <span>Reembolso de 70%</span>
+      </div>
+      <div class="policy-item">
+        <strong>Cancelamento entre 3-7 dias antes:</strong>
+        <span>Reembolso de 50%</span>
+      </div>
+      <div class="policy-item">
+        <strong>Cancelamento com menos de 72h:</strong>
+        <span>Sem reembolso</span>
+      </div>
+    </div>
+  `
+},
     {
       id: 8,
       nome: "Trem Maria Fumaça e Vinícola Casa Valduga",

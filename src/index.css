@@ -2603,6 +2603,68 @@ button, .btn {
   z-index: 1;
 }
 
+
+/* Adicione estas regras ao seu CSS existente do ProductCard */
+
+.product-days-availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  color: #666;
+  background: #f8f9fa;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #eaeaea;
+}
+
+.product-days-availability svg {
+  color: #2a9d8f;
+  font-size: 0.8rem;
+}
+
+.product-price-consult {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.consult-text {
+  font-size: 0.9rem;
+  color: #2a9d8f;
+  font-weight: 600;
+}
+
+.consult-note {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Opcional: você pode querer estilizar os produtos com Maria Fumaça de forma diferente */
+.product-card.maria-fumaca {
+  border: 2px solid #ff9800;
+}
+
+/* Se quiser destacar os produtos com Maria Fumaça */
+.product-card:has(.product-days-availability span:contains('Quarta, Sexta, Sábado, Domingo')) {
+  position: relative;
+}
+
+.product-card:has(.product-days-availability span:contains('Quarta, Sexta, Sábado, Domingo'))::before {
+  content: "🚂";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 /* ===== PÁGINA DE DETALHE DO PRODUTO - LAYOUT REFATORADO ===== */
 
 .product-detail-page {
