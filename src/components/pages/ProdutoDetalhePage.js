@@ -25,7 +25,11 @@ import {
   faUsers,
   faCalendarDay,
   faMoneyBillWave,
-  faCommentDots
+  faCommentDots,
+  faBaby,
+  faArrowLeft,
+  faArrowRight,
+  faUserTie
 } from "@fortawesome/free-solid-svg-icons";
 import { todosProdutos } from "../data/products";
 import { useCart } from "../CartContext";
@@ -34,12 +38,16 @@ const ProdutoDetalhePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { adicionarAoCarrinho } = useCart();
-  const [quantidade, setQuantidade] = useState(1);
+  const [quantidadeAdultos, setQuantidadeAdultos] = useState(1);
+  const [quantidadeCriancas, setQuantidadeCriancas] = useState(0);
+  const [quantidadeCortesias, setQuantidadeCortesias] = useState(0);
+  const [quantidadeIdosos, setQuantidadeIdosos] = useState(0); // Nova variável para idosos
   const [dataSelecionada, setDataSelecionada] = useState('');
   const [tipoPrecoSelecionado, setTipoPrecoSelecionado] = useState('');
   const [duracaoSelecionada, setDuracaoSelecionada] = useState('');
   const [activeSection, setActiveSection] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [mesAtual, setMesAtual] = useState(new Date().getMonth());
+  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear());
   
   const produto = todosProdutos.find(p => p.id === parseInt(id));
   
@@ -54,6 +62,39 @@ const ProdutoDetalhePage = () => {
     const produtosComMariaFumaca = [4, 6, 7, 8];
     return produtosComMariaFumaca.includes(produto?.id);
   };
+
+  // Função para obter faixa etária específica do produto
+  const getFaixaEtariaProduto = () => {
+    if (!produto) return { criancaMin: 5, criancaMax: 11, cortesiaMax: 4 };
+    
+    // Analisar a faixaEtaria do produto
+    const faixaEtaria = produto.faixaEtaria || '';
+    
+    // Produto ID 4: "Menores de 6 anos não pagam"
+    if (produto.id === 4) {
+      return { criancaMin: 6, criancaMax: 11, cortesiaMax: 5 };
+    }
+    
+    // Produto ID 6: "Crianças 6-10: R$459 | Menores 6 não pagam"
+    if (produto.id === 6) {
+      return { criancaMin: 6, criancaMax: 10, cortesiaMax: 5 };
+    }
+    
+    // Produto ID 7: "Crianças até 6 não pagam"
+    if (produto.id === 7) {
+      return { criancaMin: 6, criancaMax: 11, cortesiaMax: 5 };
+    }
+    
+    // Produto ID 8: "Crianças 6-10: R$399"
+    if (produto.id === 8) {
+      return { criancaMin: 6, criancaMax: 10, cortesiaMax: 5 };
+    }
+    
+    // Default: padrão geral
+    return { criancaMin: 5, criancaMax: 11, cortesiaMax: 4 };
+  };
+
+  const faixaEtaria = getFaixaEtariaProduto();
 
   const isDataValidaParaMariaFumaca = (dataString) => {
     if (!incluiMariaFumaca()) return true;
@@ -166,28 +207,66 @@ const ProdutoDetalhePage = () => {
     return dias[data.getDay()];
   };
 
-  const getProximasDatasValidas = () => {
-    if (!incluiMariaFumaca()) return [];
-    
+  const getNomeMes = (mesNumero, ano) => {
+    const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
+                   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    return meses[mesNumero] + ' ' + ano;
+  };
+
+  const getDiasDoMes = (mes, ano) => {
+    const diasNoMes = new Date(ano, mes + 1, 0).getDate();
+    const dias = [];
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
-    const datasValidas = [];
     
-    for (let i = 1; i <= 30; i++) {
-      const data = new Date(hoje);
-      data.setDate(data.getDate() + i);
-      const diaDaSemana = data.getDay();
+    for (let dia = 1; dia <= diasNoMes; dia++) {
+      const data = new Date(ano, mes, dia);
+      const dataString = data.toISOString().split('T')[0];
+      const passada = data < hoje;
+      let disponivel = true;
       
-      if (diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6) {
-        datasValidas.push({
-          data: data.toISOString().split('T')[0],
-          nomeDia: getNomeDiaSemana(data.toISOString().split('T')[0]),
-          diaNumero: data.getDate().toString().padStart(2, '0')
-        });
+      if (passada) {
+        disponivel = false;
+      } else if (incluiMariaFumaca()) {
+        const diaDaSemana = data.getDay();
+        disponivel = diaDaSemana === 0 || diaDaSemana === 3 || diaDaSemana === 5 || diaDaSemana === 6;
       }
+      
+      dias.push({
+        data: dataString,
+        diaNumero: dia.toString().padStart(2, '0'),
+        nomeDia: getNomeDiaSemana(dataString),
+        passada: passada,
+        disponivel: disponivel,
+        hoje: data.getTime() === hoje.getTime()
+      });
     }
     
-    return datasValidas;
+    return dias;
+  };
+
+  const proximoMes = () => {
+    if (mesAtual === 11) {
+      setMesAtual(0);
+      setAnoAtual(anoAtual + 1);
+    } else {
+      setMesAtual(mesAtual + 1);
+    }
+  };
+
+  const mesAnterior = () => {
+    if (mesAtual === 0) {
+      setMesAtual(11);
+      setAnoAtual(anoAtual - 1);
+    } else {
+      setMesAtual(mesAtual - 1);
+    }
+  };
+
+  const irParaMesAtual = () => {
+    const hoje = new Date();
+    setMesAtual(hoje.getMonth());
+    setAnoAtual(hoje.getFullYear());
   };
 
   if (!produto) {
@@ -204,30 +283,6 @@ const ProdutoDetalhePage = () => {
     );
   }
   
-  const getPrecoAtual = () => {
-    if (typeof produto.preco === 'object') {
-      if (produto.categoria === 'transporte-passeios') {
-        return duracaoSelecionada ? produto.preco[duracaoSelecionada] : Object.values(produto.preco)[0];
-      } else {
-        return tipoPrecoSelecionado ? produto.preco[tipoPrecoSelecionado] : Object.values(produto.preco)[0];
-      }
-    }
-    return produto.preco;
-  };
-  
-  const getNomeTipoPreco = (tipo) => {
-    const nomes = {
-      'adulto': 'Adulto',
-      'crianca': 'Criança (5-11 anos)',
-      'jovem': 'Jovem (12-17 anos)',
-      'senior': 'Idoso (60+ anos)',
-      '4 horas': '4 horas',
-      '8 horas': '8 horas',
-      '12 horas': '12 horas'
-    };
-    return nomes[tipo] || tipo;
-  };
-  
   const getNomeCategoria = (categoria) => {
     const nomes = {
       'passeios': 'Passeio Turístico',
@@ -241,27 +296,6 @@ const ProdutoDetalhePage = () => {
     return nomes[categoria] || categoria;
   };
   
-  const handleAddToCart = () => {
-    const validacao = validarData(dataSelecionada);
-    if (!validacao.valida) {
-      alert(validacao.mensagem);
-      return;
-    }
-    
-    const preco = getPrecoAtual();
-    const itemCarrinho = {
-      ...produto,
-      preco: preco,
-      quantidade,
-      dataSelecionada: dataSelecionada || 'A combinar',
-      tipoPreco: tipoPrecoSelecionado || duracaoSelecionada || 'padrão',
-      diaDaSemana: getNomeDiaSemana(dataSelecionada)
-    };
-    
-    adicionarAoCarrinho(itemCarrinho);
-    navigate('/checkout');
-  };
-  
   const handleWhatsApp = () => {
     const validacao = validarData(dataSelecionada);
     if (!validacao.valida) {
@@ -269,21 +303,20 @@ const ProdutoDetalhePage = () => {
       return;
     }
     
-    const tipo = tipoPrecoSelecionado || duracaoSelecionada || 'adulto';
-    const nomeTipo = getNomeTipoPreco(tipo);
     const diaDaSemana = getNomeDiaSemana(dataSelecionada);
+    const dataObj = new Date(dataSelecionada + 'T00:00:00');
+    const mes = getNomeMes(dataObj.getMonth(), dataObj.getFullYear()).split(' ')[0];
     
     let mensagem = `Olá! Tenho interesse no produto:\n*${produto.nome}*\n\n`;
     
-    if (tipoPrecoSelecionado || duracaoSelecionada) {
-      mensagem += `• Tipo/Tarifa: ${nomeTipo}\n`;
-    }
+    mensagem += `• Adultos: ${quantidadeAdultos}\n`;
+    mensagem += `• Idosos (60+ anos): ${quantidadeIdosos}\n`;
+    mensagem += `• Crianças (${faixaEtaria.criancaMin}-${faixaEtaria.criancaMax} anos): ${quantidadeCriancas}\n`;
+    mensagem += `• Cortesias (0-${faixaEtaria.cortesiaMax} anos): ${quantidadeCortesias}\n`;
+    mensagem += `• Data: ${dataSelecionada} (${diaDaSemana} - ${mes})\n\n`;
     
-    if (produto.categoria !== 'transporte-passeios') {
-      mensagem += `• Quantidade: ${quantidade} pessoa(s)\n`;
-    }
-    
-    mensagem += `• Data: ${dataSelecionada} (${diaDaSemana})\n\n`;
+    const totalPessoas = quantidadeAdultos + quantidadeIdosos + quantidadeCriancas + quantidadeCortesias;
+    mensagem += `*TOTAL DE PESSOAS:* ${totalPessoas}\n\n`;
     
     if (produto.notas) {
       mensagem += `*Observações:* ${produto.notas}\n\n`;
@@ -304,8 +337,11 @@ const ProdutoDetalhePage = () => {
     setActiveSection(activeSection === section ? null : section);
   };
 
-  const proximasDatasValidas = getProximasDatasValidas();
   const validacaoData = validarData(dataSelecionada);
+  const diasDoMes = getDiasDoMes(mesAtual, anoAtual);
+  const hoje = new Date();
+  const hojeString = hoje.toISOString().split('T')[0];
+  const totalPessoas = quantidadeAdultos + quantidadeIdosos + quantidadeCriancas + quantidadeCortesias;
 
   return (
     <div className="product-detail-page">
@@ -381,8 +417,6 @@ const ProdutoDetalhePage = () => {
             </div>
           </div>
         </div>
-        
-        {/* REMOVIDO: Seção de descrição */}
       </div>
       
       {/* LAYOUT EM DUAS COLUNAS */}
@@ -566,85 +600,52 @@ const ProdutoDetalhePage = () => {
             </div>
             
             <div className="booking-card-body">
-              {/* QUANTIDADE */}
-              {produto.categoria !== 'transporte-passeios' && (
-                <div className="booking-field">
-                  <label className="booking-label">
-                    <FontAwesomeIcon icon={faUsers} />
-                    Quantidade de pessoas:
-                  </label>
-                  <div className="quantity-controls">
-                    <button 
-                      className="qty-btn"
-                      onClick={() => setQuantidade(prev => Math.max(1, prev - 1))}
-                    >
-                      -
-                    </button>
-                    <input 
-                      type="number" 
-                      value={quantidade}
-                      onChange={(e) => setQuantidade(parseInt(e.target.value) || 1)}
-                      min="1"
-                      className="quantity-input"
-                    />
-                    <button 
-                      className="qty-btn"
-                      onClick={() => setQuantidade(prev => prev + 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              )}
-              
-              {/* DATAS EM QUADRADINHOS */}
+              {/* DATAS EM QUADRADINHOS (AGORA ACIMA DA QUANTIDADE) */}
               <div className="booking-field">
                 <label className="booking-label">
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   Selecione a data:
                 </label>
                 
-                {/* CALENDÁRIO DE QUADRADINHOS */}
+                {/* CALENDÁRIO DE QUADRADINHOS COM CONTROLE DE MÊS */}
                 <div className="date-squares-container">
-                  <div className="current-month">Próximos dias disponíveis</div>
+                  <div className="month-controls">
+                    <button className="month-nav-btn" onClick={mesAnterior}>
+                      <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
+                    
+                    <div className="current-month-display">
+                      <strong>{getNomeMes(mesAtual, anoAtual)}</strong>
+                      <button className="today-btn" onClick={irParaMesAtual}>
+                        Hoje
+                      </button>
+                    </div>
+                    
+                    <button className="month-nav-btn" onClick={proximoMes}>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </div>
+                  
                   <div className="date-squares">
-                    {proximasDatasValidas.length > 0 ? (
-                      proximasDatasValidas.slice(0, 15).map((data, index) => (
-                        <button
-                          key={index}
-                          type="button"
-                          onClick={() => setDataSelecionada(data.data)}
-                          className={`date-square ${data.data === dataSelecionada ? 'selected' : ''}`}
-                          title={`${data.data} - ${data.nomeDia}`}
-                        >
-                          <span className="date-number">{data.diaNumero}</span>
-                          <span className="date-weekday">{data.nomeDia.substring(0, 3)}</span>
-                        </button>
-                      ))
-                    ) : (
-                      // Fallback para produtos sem Maria Fumaça
-                      Array.from({ length: 15 }, (_, i) => {
-                        const date = new Date();
-                        date.setDate(date.getDate() + i + 1);
-                        const dayNumber = date.getDate().toString().padStart(2, '0');
-                        const dateStr = date.toISOString().split('T')[0];
-                        const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-                        const weekday = weekdays[date.getDay()];
-                        
-                        return (
-                          <button
-                            key={i}
-                            type="button"
-                            onClick={() => setDataSelecionada(dateStr)}
-                            className={`date-square ${dateStr === dataSelecionada ? 'selected' : ''}`}
-                            title={`${dateStr} - ${weekday}`}
-                          >
-                            <span className="date-number">{dayNumber}</span>
-                            <span className="date-weekday">{weekday}</span>
-                          </button>
-                        );
-                      })
-                    )}
+                    {diasDoMes.map((dia, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => dia.disponivel && setDataSelecionada(dia.data)}
+                        className={`date-square ${dia.data === dataSelecionada ? 'selected' : ''} 
+                                   ${dia.passada ? 'past-date' : ''} 
+                                   ${!dia.disponivel && !dia.passada ? 'unavailable-date' : ''}
+                                   ${dia.hoje ? 'today-date' : ''}`}
+                        title={`${dia.data} - ${dia.nomeDia}${!dia.disponivel && !dia.passada ? ' (Não disponível)' : ''}`}
+                        disabled={!dia.disponivel || dia.passada}
+                      >
+                        <span className="date-number">{dia.diaNumero}</span>
+                        <span className="date-weekday">{dia.nomeDia.substring(0, 3)}</span>
+                        {dia.passada && <div className="date-passed">Passado</div>}
+                        {dia.hoje && <div className="date-today">Hoje</div>}
+                        {!dia.disponivel && !dia.passada && <div className="date-unavailable">Indisponível</div>}
+                      </button>
+                    ))}
                   </div>
                   
                   {dataSelecionada && (
@@ -657,6 +658,26 @@ const ProdutoDetalhePage = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* LEGENDA DO CALENDÁRIO */}
+                  <div className="calendar-legend">
+                    <div className="legend-item">
+                      <div className="legend-color available"></div>
+                      <span>Disponível</span>
+                    </div>
+                    <div className="legend-item">
+                      <div className="legend-color selected"></div>
+                      <span>Selecionado</span>
+                    </div>
+                    <div className="legend-item">
+                      <div className="legend-color unavailable"></div>
+                      <span>Indisponível</span>
+                    </div>
+                    <div className="legend-item">
+                      <div className="legend-color past"></div>
+                      <span>Passado</span>
+                    </div>
+                  </div>
                 </div>
                 
                 {/* AVISO MARIA FUMAÇA */}
@@ -668,6 +689,140 @@ const ProdutoDetalhePage = () => {
                 )}
               </div>
               
+              {/* QUANTIDADES SEPARADAS PARA ADULTOS, IDOSOS, CRIANÇAS E CORTESIAS */}
+              {produto.categoria !== 'transporte-passeios' && (
+                <div className="booking-field">
+                  <label className="booking-label">
+                    <FontAwesomeIcon icon={faUsers} />
+                    Quantidade de pessoas:
+                  </label>
+                  
+                  <div className="quantity-groups">
+                    {/* ADULTOS */}
+                    <div className="quantity-group">
+                      <div className="quantity-group-label">
+                        <FontAwesomeIcon icon={faUser} />
+                        <span>Adultos</span>
+                      </div>
+                      <div className="quantity-controls">
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeAdultos(prev => Math.max(0, prev - 1))}
+                        >
+                          -
+                        </button>
+                        <input 
+                          type="number" 
+                          value={quantidadeAdultos}
+                          onChange={(e) => setQuantidadeAdultos(parseInt(e.target.value) || 0)}
+                          min="0"
+                          className="quantity-input"
+                        />
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeAdultos(prev => prev + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* IDOSOS (60+ anos) */}
+                    <div className="quantity-group">
+                      <div className="quantity-group-label">
+                        <FontAwesomeIcon icon={faUserTie} />
+                        <span>Idosos (60+ anos)</span>
+                      </div>
+                      <div className="quantity-controls">
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeIdosos(prev => Math.max(0, prev - 1))}
+                        >
+                          -
+                        </button>
+                        <input 
+                          type="number" 
+                          value={quantidadeIdosos}
+                          onChange={(e) => setQuantidadeIdosos(parseInt(e.target.value) || 0)}
+                          min="0"
+                          className="quantity-input"
+                        />
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeIdosos(prev => prev + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* CRIANÇAS (idade específica do produto) */}
+                    <div className="quantity-group">
+                      <div className="quantity-group-label">
+                        <FontAwesomeIcon icon={faChild} />
+                        <span>Crianças ({faixaEtaria.criancaMin}-{faixaEtaria.criancaMax} anos)</span>
+                      </div>
+                      <div className="quantity-controls">
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeCriancas(prev => Math.max(0, prev - 1))}
+                        >
+                          -
+                        </button>
+                        <input 
+                          type="number" 
+                          value={quantidadeCriancas}
+                          onChange={(e) => setQuantidadeCriancas(parseInt(e.target.value) || 0)}
+                          min="0"
+                          className="quantity-input"
+                        />
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeCriancas(prev => prev + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* CORTESIAS (0-4 ou 0-5 anos dependendo do produto) */}
+                    <div className="quantity-group">
+                      <div className="quantity-group-label">
+                        <FontAwesomeIcon icon={faBaby} />
+                        <span>Cortesias (0-{faixaEtaria.cortesiaMax} anos)</span>
+                      </div>
+                      <div className="quantity-controls">
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeCortesias(prev => Math.max(0, prev - 1))}
+                        >
+                          -
+                        </button>
+                        <input 
+                          type="number" 
+                          value={quantidadeCortesias}
+                          onChange={(e) => setQuantidadeCortesias(parseInt(e.target.value) || 0)}
+                          min="0"
+                          className="quantity-input"
+                        />
+                        <button 
+                          className="qty-btn"
+                          onClick={() => setQuantidadeCortesias(prev => prev + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* TOTAL */}
+                    <div className="quantity-total">
+                      <span>Total de pessoas:</span>
+                      <strong>{totalPessoas}</strong>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {/* RESUMO DA SOLICITAÇÃO */}
               <div className="booking-summary">
                 <div className="summary-line">
@@ -676,10 +831,28 @@ const ProdutoDetalhePage = () => {
                 </div>
                 
                 {produto.categoria !== 'transporte-passeios' && (
-                  <div className="summary-line">
-                    <span>Quantidade:</span>
-                    <span className="summary-value">{quantidade} pessoa(s)</span>
-                  </div>
+                  <>
+                    <div className="summary-line">
+                      <span>Adultos:</span>
+                      <span className="summary-value">{quantidadeAdultos}</span>
+                    </div>
+                    <div className="summary-line">
+                      <span>Idosos (60+):</span>
+                      <span className="summary-value">{quantidadeIdosos}</span>
+                    </div>
+                    <div className="summary-line">
+                      <span>Crianças ({faixaEtaria.criancaMin}-{faixaEtaria.criancaMax}):</span>
+                      <span className="summary-value">{quantidadeCriancas}</span>
+                    </div>
+                    <div className="summary-line">
+                      <span>Cortesias (0-{faixaEtaria.cortesiaMax}):</span>
+                      <span className="summary-value">{quantidadeCortesias}</span>
+                    </div>
+                    <div className="summary-line total-line">
+                      <span>Total pessoas:</span>
+                      <span className="summary-value total-value">{totalPessoas}</span>
+                    </div>
+                  </>
                 )}
                 
                 <div className="summary-line">
@@ -695,7 +868,7 @@ const ProdutoDetalhePage = () => {
                 <button 
                   onClick={handleWhatsApp} 
                   className="btn-whatsapp-primary"
-                  disabled={!validacaoData.valida}
+                  disabled={!validacaoData.valida || totalPessoas === 0}
                 >
                   <FontAwesomeIcon icon={faCommentDots} />
                   Consultar Preços no WhatsApp

@@ -3315,7 +3315,66 @@ button, .btn {
   border-color: #2a9d8f;
 }
 
-/* CALENDÁRIO DE QUADRADINHOS */
+/* ===== ESTILOS PARA OS CONTROLES DE MÊS NO CALENDÁRIO ===== */
+.month-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.month-nav-btn {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.month-nav-btn:hover {
+  background: #2a9d8f;
+  border-color: #2a9d8f;
+  color: white;
+}
+
+.current-month-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+}
+
+.current-month-display strong {
+  font-size: 1.1rem;
+}
+
+.today-btn {
+  padding: 4px 12px;
+  background: #f0f9f8;
+  border: 1px solid #2a9d8f;
+  border-radius: 20px;
+  color: #2a9d8f;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.today-btn:hover {
+  background: #2a9d8f;
+  color: white;
+}
+
+/* ===== CALENDÁRIO DE QUADRADINHOS ===== */
 .date-squares-container {
   background: white;
   border-radius: 10px;
@@ -3350,9 +3409,10 @@ button, .btn {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 5px;
+  position: relative;
 }
 
-.date-square:hover {
+.date-square:hover:not(.past-date):not(.unavailable-date) {
   border-color: #2a9d8f;
   background: #f0f9f8;
   transform: translateY(-2px);
@@ -3382,6 +3442,64 @@ button, .btn {
   opacity: 1;
 }
 
+/* ESTADOS DOS BOTÕES DE DATA */
+.date-square.past-date {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.date-square.past-date:hover {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+  transform: none;
+}
+
+.date-square.unavailable-date {
+  background: #fff5f5;
+  border-color: #ffcdd2;
+  color: #999;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.date-square.unavailable-date:hover {
+  background: #fff5f5;
+  border-color: #ffcdd2;
+  transform: none;
+}
+
+.date-square.today-date {
+  border-color: #ff9800;
+  background: #fff8e1;
+}
+
+.date-passed, .date-today, .date-unavailable {
+  position: absolute;
+  bottom: 2px;
+  font-size: 0.6rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.date-passed {
+  background: #f5f5f5;
+  color: #999;
+}
+
+.date-today {
+  background: #ff9800;
+  color: white;
+}
+
+.date-unavailable {
+  background: #ffcdd2;
+  color: #c62828;
+  font-size: 0.55rem;
+}
+
 .selected-date-info {
   margin-top: 15px;
   padding-top: 15px;
@@ -3409,6 +3527,52 @@ button, .btn {
   font-weight: 600;
 }
 
+/* LEGENDA DO CALENDÁRIO */
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-color.available {
+  background: white;
+  border-color: #e0e0e0;
+}
+
+.legend-color.selected {
+  background: #2a9d8f;
+  border-color: #2a9d8f;
+}
+
+.legend-color.unavailable {
+  background: #fff5f5;
+  border-color: #ffcdd2;
+}
+
+.legend-color.past {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+}
+
 .maria-fumaca-notice {
   background: #fff3cd;
   border: 1px solid #ffc107;
@@ -3427,7 +3591,62 @@ button, .btn {
   min-width: 20px;
 }
 
-/* RESUMO DA SOLICITAÇÃO */
+/* ===== ESTILOS PARA OS GRUPOS DE QUANTIDADE ===== */
+
+.quantity-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+}
+
+.quantity-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.quantity-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.quantity-group-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.quantity-group-label svg {
+  color: #2a9d8f;
+  font-size: 1.1rem;
+}
+
+.quantity-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 0 0;
+  margin-top: 15px;
+  border-top: 2px solid #2a9d8f;
+  font-weight: 600;
+  color: #333;
+}
+
+.quantity-total strong {
+  font-size: 1.2rem;
+  color: #2a9d8f;
+}
+
+/* ===== RESUMO DA SOLICITAÇÃO ===== */
 .booking-summary {
   background: #f8f9fa;
   border-radius: 8px;
@@ -3456,7 +3675,21 @@ button, .btn {
   max-width: 60%;
 }
 
-/* BOTÕES DE AÇÃO */
+.total-line {
+  font-weight: 700;
+  color: #333;
+  border-top: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-top: 5px;
+  padding: 12px 0;
+}
+
+.total-value {
+  font-size: 1.1rem;
+  color: #2a9d8f;
+}
+
+/* ===== BOTÕES DE AÇÃO ===== */
 .booking-actions {
   display: flex;
   flex-direction: column;
@@ -3508,7 +3741,7 @@ button, .btn {
   flex-shrink: 0;
 }
 
-/* GARANTIA DE SEGURANÇA */
+/* ===== GARANTIA DE SEGURANÇA ===== */
 .security-guarantee {
   margin-top: 20px;
   padding-top: 20px;
@@ -3568,6 +3801,10 @@ button, .btn {
   
   .product-images-row {
     height: 350px;
+  }
+  
+  .date-squares {
+    grid-template-columns: repeat(7, 1fr);
   }
 }
 
@@ -3641,7 +3878,49 @@ button, .btn {
   }
   
   .date-squares {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .month-controls {
+    padding: 8px 0;
+  }
+  
+  .current-month-display strong {
+    font-size: 1rem;
+  }
+  
+  .calendar-legend {
+    gap: 8px;
+  }
+  
+  .legend-item {
+    font-size: 0.7rem;
+  }
+  
+  .legend-color {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .quantity-groups {
+    padding: 15px;
+  }
+  
+  .quantity-group-label {
+    font-size: 0.9rem;
+  }
+  
+  .quantity-controls {
+    gap: 5px;
+  }
+  
+  .qty-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .quantity-input {
+    width: 60px;
   }
 }
 
@@ -3668,6 +3947,19 @@ button, .btn {
   
   .date-squares {
     grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  
+  .date-square {
+    padding: 3px;
+  }
+  
+  .date-number {
+    font-size: 1rem;
+  }
+  
+  .date-weekday {
+    font-size: 0.6rem;
   }
   
   .booking-actions {
@@ -3681,6 +3973,22 @@ button, .btn {
   .section-list-icon {
     width: 36px;
     height: 36px;
+  }
+  
+  .quantity-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .quantity-controls {
+    align-self: stretch;
+    justify-content: center;
+  }
+  
+  .quantity-group-label {
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -3696,7 +4004,7 @@ button, .btn {
 /* EFETOS HOVER */
 .detail-item,
 .section-list-item,
-.date-square,
+.date-square:not(.past-date):not(.unavailable-date),
 .qty-btn {
   cursor: pointer;
   transition: all 0.2s ease;
@@ -3713,6 +4021,129 @@ button, .btn {
     animation: none;
     transition: none;
   }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+button:focus-visible,
+input:focus-visible,
+.date-square:focus-visible {
+  outline: 2px solid #2a9d8f;
+  outline-offset: 2px;
+}
+
+/* ===== ESTILOS PARA ESTADOS DESABILITADOS ===== */
+button:disabled,
+.date-square:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ===== ANIMAÇÕES ADICIONAIS ===== */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn-whatsapp-primary:not(:disabled):hover {
+  animation: pulse 0.3s ease-in-out;
+}
+
+/* ===== ESTILOS PARA O SCROLL SUAVE ===== */
+.expandable-sections-vertical {
+  scroll-margin-top: 20px;
+}
+
+.section-list-content-panel {
+  scroll-margin-top: 10px;
+}
+
+/* ===== AJUSTES FINAIS ===== */
+.product-detail-page * {
+  box-sizing: border-box;
+}
+
+/* Garantir que as imagens sejam responsivas */
+.main-gallery-image,
+.secondary-gallery-image,
+.small-gallery-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Melhorar a legibilidade do texto */
+.section-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Espaçamento consistente */
+.booking-field:last-child {
+  margin-bottom: 0;
+}
+
+/* Estilos para quando há erro de carregamento de imagem */
+img[src*="default-product.jpg"] {
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Estilos para o conteúdo de roteiro */
+.section-content {
+  line-height: 1.6;
+  color: #555;
+}
+
+.section-content h4 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.section-content p {
+  margin-bottom: 15px;
+}
+
+.section-content ul, .section-content ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.section-content li {
+  margin-bottom: 8px;
+}
+
+/* Estilos para os horários */
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.horario-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.horario-item:hover {
+  border-color: #2a9d8f;
+  background: #f0f9f8;
+  transform: translateY(-2px);
+}
+
+.horario-item svg {
+  color: #2a9d8f;
 }
 
 /* components/Footer.css */

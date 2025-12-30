@@ -1,1164 +1,1865 @@
 export const produtos = {
-  passeios: [
-    {
-      id: 1,
-      nome: "Tour pela Cidade de Gramado",
-      preco: 120.00,
-      imagem: "/images/gramado-tour.jpg",
-      imagens: [
-        "/images/gramado-tour.jpg",
-        "/images/gramado-tour-2.jpg",
-        "/images/gramado-tour-3.jpg",
-        "/images/gramado-tour-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 4h",
-      inclui: ["Guia turístico", "Transporte", "Ingressos para atrações"],
-      avaliacao: 4.8,
-      reviews: 156,
-      descricao: "Descubra os encantos da Suíça brasileira em um tour completo pela charmosa Gramado! Visite as principais atrações, ruas pitorescas e pontos turísticos mais fotografados. Uma experiência perfeita para quem deseja conhecer a essência desta cidade mágica.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Detalhado do Tour pela Cidade</h4>
-          <ul>
-            <li>08:30 - Saída do ponto de encontro no centro de Gramado (Rua Madre Verônica, 50)</li>
-            <li>09:00 - Visita ao Lago Negro e Rua Coberta (fotos e história do local)</li>
-            <li>10:00 - Palácio dos Festivais (explicação sobre o Natal Luz) e Igreja Matriz São Pedro</li>
-            <li>11:00 - Rua Torta (famoso ponto fotográfico) e mirantes da cidade</li>
-            <li>12:00 - Almoço em restaurante típico (opcional, não incluso - sugestões do guia)</li>
-            <li>13:30 - Mini Mundo e Mundo a Vapor (visita às áreas externas, fotos)</li>
-            <li>15:00 - Museu do Perfume e visita a fábrica de chocolates com degustação</li>
-            <li>16:00 - Tempo livre para compras no centro (lojas de couro, chocolate, artesanato)</li>
-            <li>17:00 - Retorno aos hotéis ou ponto inicial</li>
-          </ul>
-          <p class="note">*Tempo aproximado em cada atração pode variar conforme trânsito e interesse do grupo.</p>
-        </div>
-      `,
-      pontosVisita: [
-        "Lago Negro",
-        "Rua Coberta",
-        "Palácio dos Festivais", 
-        "Igreja Matriz São Pedro",
-        "Rua Torta e mirantes",
-        "Mini Mundo (exterior)",
-        "Mundo a Vapor (exterior)",
-        "Museu do Perfume",
-        "Fábricas de chocolate",
-        "Centro de artesanato"
-      ],
-      horarios: [
-        "Manhã: 08:30h (saída)",
-        "Tarde: 14:00h (saída)",
-        "Duração: 4 horas aproximadamente"
-      ],
-      saidas: [
-        "Ponto principal: Rua Madre Verônica, 50 - Centro, Gramado",
-        "Hotéis centrais mediante agendamento prévio (24h antes)",
-        "Terminal Rodoviário de Gramado (mediante acordo)",
-        "Não inclui busca em hotéis fora do centro"
-      ],
-      informacoesImportantes: [
-        "Levar documento de identificação original ou cópia",
-        "Calçados confortáveis são essenciais (muito caminhar)",
-        "Protetor solar e agasalho recomendados (clima variável)",
-        "Ponto de encontro: Rua Madre Verônica, 50 - Centro",
-        "Chegar com 15 minutos de antecedência",
-        "Tour disponível em português e espanhol",
-        "Crianças até 5 anos não pagam (no colo)",
-        "Fotos permitidas em todos os locais"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 72h antes:</strong>
-            <span>Reembolso de 100% do valor pago</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 24h e 72h antes:</strong>
-            <span>Reembolso de 50% do valor pago</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 24h:</strong>
-            <span>Sem direito a reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>No-show (não comparecimento):</strong>
-            <span>Sem direito a reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Condições climáticas:</strong>
-            <span>Em caso de chuva intensa, passeio será remarcado sem custos</span>
-          </div>
-          <div class="policy-item">
-            <strong>Remarcações:</strong>
-            <span>Permitidas até 24h antes, sujeitas à disponibilidade</span>
-          </div>
-        </div>
-      `
-    },
-    {
-      id: 2,
-      nome: "Parque Snowland",
-      preco: 180.00,
-      imagem: "/images/snowland.jpg",
-      imagens: [
-        "/images/snowland.jpg",
-        "/images/snowland-2.jpg",
-        "/images/snowland-3.jpg",
-        "/images/snowland-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 6h",
-      inclui: ["Ingresso", "Equipamentos (casaco, botas, luvas)", "Acompanhante", "Aula básica de esqui"],
-      avaliacao: 4.9,
-      reviews: 230,
-      descricao: "Viva a magia da neve no maior parque indoor da América Latina! Esquie, ande de trenó e divirta-se em atrações geladas durante o ano todo. Uma experiência invernal autêntica no coração do Brasil - perfeita para famílias e aventureiros!",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Completo Snowland</h4>
-          <ul>
-            <li>08:00 - Saída de Gramado (ponto central) / 08:30 de Canela</li>
-            <li>09:30 - Chegada ao Snowland (Cambará do Sul)</li>
-            <li>10:00 - Recepção e distribuição de equipamentos (casaco, botas, luvas)</li>
-            <li>10:30 - Aula de esqui básica para iniciantes (30 minutos com instrutor)</li>
-            <li>11:30 - Pista de esqui livre (prática individual)</li>
-            <li>12:30 - Almoço no restaurante do parque (opcional, não incluso)</li>
-            <li>13:30 - Toboágua de gelo e trenó infantil</li>
-            <li>14:30 - Vila Alpina (fotos com cenários europeus)</li>
-            <li>15:30 - Atrações de inverno (esqui cross, snowboard básico)</li>
-            <li>16:30 - Tempo livre para fotos e compras na loja de souvenirs</li>
-            <li>17:30 - Devolução dos equipamentos e retorno para Gramado</li>
-            <li>19:00 - Chegada prevista em Gramado</li>
-          </ul>
-        </div>
-      `,
-      pontosVisita: [
-        "Pista de esqui principal (temperatura: -5°C)",
-        "Trenó infantil (para crianças 3-10 anos)",
-        "Toboágua de gelo (altura: 8 metros)",
-        "Vila Alpina (cenários fotográficos)",
-        "Praça de alimentação (várias opções)",
-        "Loja de souvenirs e artigos de inverno",
-        "Espaço para fotos profissionais",
-        "Pista de snowboard para iniciantes"
-      ],
-      horarios: [
-        "Saída Gramado: 08:00h",
-        "Saída Canela: 08:30h",
-        "Turno da manhã: 10:00h - 13:00h",
-        "Turno da tarde: 14:00h - 17:00h",
-        "Tempo no parque: 5-6 horas"
-      ],
-      saidas: [
-        "Gramado Centro: 08:00h - Praça Major Nicoletti",
-        "Canela Centro: 08:30h - Em frente à Catedral",
-        "Hotelaria mediante agendamento (24h antes)",
-        "Não inclui busca em hotéis afastados"
-      ],
-      informacoesImportantes: [
-        "Levar roupa de baixo quente (meias grossas, calça térmica)",
-        "Luvas próprias são permitidas (recomendado)",
-        "Idade mínima: 3 anos completos",
-        "Grávidas não é recomendado participar",
-        "Pessoas com problemas cardíacos ou respiratórios consultar médico",
-        "Trocar de roupa disponível no local (trazer roupa extra)",
-        "Não é permitido entrar com alimentos",
-        "Fotos profissionais disponíveis por taxa adicional",
-        "Estacionamento gratuito para visitantes"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 7 dias antes:</strong>
-            <span>Reembolso de 100% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 70% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento até 48h antes:</strong>
-            <span>Reembolso de 50% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 48h:</strong>
-            <span>Sem direito a reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Equipamentos:</strong>
-            <span>Danos aos equipamentos serão cobrados separadamente</span>
-          </div>
-          <div class="policy-item">
-            <strong>Snowland:</strong>
-            <span>Ingresso não é reembolsável após entrada no parque</span>
-          </div>
-        </div>
-      `
-    },
-    {
-      id: 4,
-      nome: "Trem Maria Fumaça e Vale dos Vinhedos - Saída Coletiva",
-      preco: 425.00,
-      imagem: "/images/trem-vale-vinhedos.jpg",
-      imagens: [
-        "/images/trem-vale-vinhedos.jpg",
-        "/images/trem-vale-vinhedos-2.jpg",
-        "/images/trem-vale-vinhedos-3.jpg",
-        "/images/trem-vale-vinhedos-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 12h",
-      inclui: ["Transporte coletivo", "Ingresso Trem Maria Fumaça", "Visita a vinícolas", "Degustações padrão", "Almoço"],
-      notas: "Menores de 6 anos não pagam (sem direito a degustação)",
-      avaliacao: 4.8,
-      reviews: 124,
-      descricao: "Uma viagem no tempo a bordo do histórico Trem Maria Fumaça, seguida por uma experiência sensorial no Vale dos Vinhedos! Combine a nostalgia das locomotivas a vapor com a sofisticação dos vinhos premiados da região. Uma jornada única pela história e cultura gaúcha.",
-      roteiro: `
-       <div class="section-content">
-  <h4>Roteiro Completo Trem + Vinícolas</h4>
-  <ul>
-    <li><strong>06:00</strong> - Saída de Gramado (ponto central)</li>
-    <li><strong>06:30</strong> - Embarque em Canela (ponto de encontro)</li>
-    <li><strong>08:30</strong> - Chegada em Bento Gonçalves</li>
-    <li><strong>09:00</strong> - Embarque no Trem Maria Fumaça (trajeto de 1h30)</li>
-    <li><strong>10:30</strong> - Chegada em Carlos Barbosa e traslado para vinícola</li>
-    <li><strong>11:00</strong> - Vinícola Aurora - tour e degustação padrão</li>
-    <li><strong>12:30</strong> - Almoço em restaurante típico italiano (incluído)</li>
-    <li><strong>14:00</strong> - Teatro Epopéia Italiana (espetáculo de 50 minutos)</li>
-    <li><strong>15:30</strong> - Queijaria Fetina Valbrenta - degustação de queijos e salames</li>
-    <li><strong>16:30</strong> - Showroom Tramontina (visita e tempo para compras)</li>
-    <li><strong>17:30</strong> - Início do retorno para Gramado</li>
-    <li><strong>19:30</strong> - Chegada prevista em Gramado (20:00 em Canela)</li>
-  </ul>
-  
-  <div class="attractions-details">
-    <h5>🎂 Trem Maria Fumaça – Trajeto-Bento, Garibaldi e Carlos Barbosa</h5>
-    <p>Show a bordo com músicas típicas, apresentações artísticas e degustação padrão de vinho, suco de uva e espumante (conforme regras da operadora).</p>
-    
-    <h5>🎭 Teatro Epopéia Italiana</h5>
-    <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
-    
-    <h5>🍇 Vinícola Aurora – Bento Gonçalves</h5>
-    <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
-    
-    <h5>🥘 Almoço incluso</h5>
-    <p>Restaurante Cantina italiana. Bebidas não inclusas.</p>
-    
-    <h5>🧵 Malharia Local</h5>
-    <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
-    
-    <h5>🛠 Showroom Tramontina – Carlos Barbosa</h5>
-    <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
-    
-    <h5>🧀 Queijaria Fetina Valbrenta</h5>
-    <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
-  </div>
-  
-  <div class="inclusions">
-    <h5>✅ INCLUI:</h5>
-    <ul>
-      <li>Transporte da agência ida e volta</li>
-      <li>Transporte entre todas as cidades visitadas</li>
-      <li>Bilhete do Trem Maria Fumaça</li>
-      <li>Ingresso da Epopeia Italiana</li>
-      <li>Almoço</li>
-      <li>Todas as degustações padrão nos locais mencionados</li>
-    </ul>
-    
-    <h5>❌ NÃO INCLUI:</h5>
-    <ul>
-      <li>Bebidas durante o almoço</li>
-      <li>Compras pessoais nas lojas visitadas</li>
-    </ul>
-  </div>
-  
-  <div class="schedule-info">
-    <h5>🕒 HORÁRIOS PREVISTOS</h5>
-    <p><strong>Saída de Gramado/Canela:</strong> previsto 06h00</p>
-    <p><strong>Retorno previsto:</strong> entre 19:00 e 20:00</p>
-    <p class="note">(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</p>
-  </div>
-  
-  <div class="important-info">
-    <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
-    <p><strong>Distância:</strong><br>
-    Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</p>
-    
-    <p><strong>Sobre o Trem Maria Fumaça:</strong><br>
-    O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</p>
-    
-    <p><strong>Sobre o Transporte:</strong><br>
-    Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</p>
-    
-    <p><strong>Sobre a Ordem das Atrações:</strong><br>
-    A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</p>
-  </div>
-  
-  <p class="note">*Ordem das atrações pode ser alterada conforme logística do dia.</p>
-</div>
-      `,
-      pontosVisita: [
-        "Trem Maria Fumaça (Bento Gonçalves a Carlos Barbosa)",
-        "Vinícola Aurora (tour e degustação)",
-        "Teatro Epopéia Italiana (espetáculo)",
-        "Queijaria Fetina Valbrenta (degustação)",
-        "Showroom Tramontina (visita)",
-        "Restaurante Cantina Italiana (almoço)",
-        "Parada em malharia local (opcional)"
-      ],
-      horarios: [
-        "Saída Gramado: 06:00h",
-        "Saída Canela: 06:30h",
-        "Trem Maria Fumaça: 09:00h (horário fixo)",
-        "Retorno Gramado: 19:30h - 20:00h",
-        "Duração total: 12-14 horas"
-      ],
-      saidas: [
-        "Gramado: 06:00h - Ponto central (informado na confirmação)",
-        "Canela: 06:30h - Em frente à Catedral de Pedra",
-        "Não inclui busca em hotel",
-        "Transporte coletivo (micro-ônibus ou ônibus)"
-      ],
-      informacoesImportantes: [
-        "Duração total: 12-14 horas (dia completo)",
-        "Distância: 120km (Gramado até Bento Gonçalves)",
-        "Guia não acompanha dentro do trem (regra da operadora)",
-        "Ordem das atrações pode ser alterada conforme logística",
-        "Levar agasalho (mais frio no Vale dos Vinhedos)",
-        "Cartão de crédito aceito nas vinícolas",
-        "Degustação alcoólica apenas para maiores de 18 anos",
-        "Documento com foto obrigatório para degustações",
-        "Sucos disponíveis para menores e não bebedores"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 15 dias antes:</strong>
-            <span>Reembolso de 100% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 8-15 dias antes:</strong>
-            <span>Reembolso de 80% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 50% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 72h:</strong>
-            <span>Sem direito a reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Trem Maria Fumaça:</strong>
-            <span>Ingresso não é reembolsável após emissão (72h antes)</span>
-          </div>
-          <div class="policy-item">
-            <strong>Almoço:</strong>
-            <span>Cancelamento com menos de 48h: cobrança de 100% do almoço</span>
-          </div>
-          <div class="policy-item">
-            <strong>Grupos:</strong>
-            <span>Para grupos acima de 10 pessoas, políticas diferenciadas</span>
-          </div>
-        </div>
-      `
-    },
-    {
-      id: 5,
-      nome: "Olivas de Gramado",
-      preco: {
-        adulto: 259.00,
-        senior: 189.00,
-        jovem: 189.00
-      },
-      imagem: "/images/olivas-gramado.jpg",
-       imagens: [
-        "/images/olivas-gramado.jpg",
-        "/images/olivas-gramado-2.jpg",
-        "/images/olivas-gramado-3.jpg",
-        "/images/olivas-gramado-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 3h",
-      inclui: ["Transporte", "Ingresso", "Degustação guiada", "Guia especializado"],
-      faixaEtaria: "Adultos 17-59: R$259 | 60+: R$189 | Jovens 12-16: R$189",
-      avaliacao: 4.6,
-      reviews: 87,
-      descricao: "Uma imersão gastronômica no universo das azeitonas e azeites! Conheça o processo artesanal de produção, aprenda sobre os diferentes tipos de azeite e participe de uma degustação exclusiva. Perfeito para foodies e amantes da culinária mediterrânea.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Olivas de Gramado</h4>
-          <ul>
-            <li>14:00 - Saída do ponto de encontro em Gramado</li>
-            <li>14:30 - Chegada à Olivais Gramado</li>
-            <li>14:45 - Tour pelos olivais (explicação sobre cultivo)</li>
-            <li>15:15 - Processo de produção artesanal (moinho tradicional)</li>
-            <li>15:45 - Degustação guiada de azeites (6 variedades)</li>
-            <li>16:15 - Aula de harmonização (azeites com alimentos)</li>
-            <li>16:45 - Tempo livre na loja (compras de produtos)</li>
-            <li>17:15 - Retorno para Gramado</li>
-            <li>17:45 - Chegada no ponto inicial</li>
-          </ul>
-        </div>
-      `,
-      pontosVisita: [
-        "Olivais de Gramado (plantações)",
-        "Moinho tradicional de azeite",
-        "Sala de produção artesanal",
-        "Sala de degustação",
-        "Loja de produtos (azeites, azeitonas, patês)",
-        "Jardim de oliveiras centenárias"
-      ],
-      horarios: [
-        "Tarde: 14:00h (saída)",
-        "Duração: 3 horas",
-        "Todas as quintas e sábados",
-        "Agendar com 48h de antecedência"
-      ],
-      saidas: [
-        "Gramado Centro: 14:00h",
-        "Ponto único de encontro",
-        "Grupos mínimos: 4 pessoas",
-        "Transporte incluso no trajeto"
-      ],
-      informacoesImportantes: [
-        "Degustação inclui 6 tipos de azeite",
-        "Azeitonas e patês incluídos na degustação",
-        "Produtos disponíveis para compra no local",
-        "Desconto de 10% nas compras durante o tour",
-        "Estacionamento gratuito no local",
-        "Acessível para cadeirantes",
-        "Tour em português, inglês ou espanhol",
-        "Reservas com 48h de antecedência"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 7 dias antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 70%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com 48h-72h:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 48h:</strong>
-            <span>Sem reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Grupo mínimo:</strong>
-            <span>Se não atingir 4 pessoas, tour pode ser remarcado</span>
-          </div>
-        </div>
-      `
-    },
-    {
-      id: 6,
-      nome: "Vale dos Vinhedos e Trem Maria Fumaça",
-      preco: {
-        adulto: 599.00,
-        crianca: 459.00
-      },
-      imagem: "/images/vale-vinhedos-executivo.jpg",
-      imagens: [
-        "/images/vale-vinhedos-executivo.jpg",
-        "/images/trem-vale-vinhedos-5.jpg",
-        "/images/trem-vale-vinhedos-3.jpg",
-        "/images/trem-vale-vinhedos-4.jpg"
-      ],
-      categoria: "passeios",
-      duracao: "Aprox 11h",
-      inclui: ["Carro executivo privativo", "Motorista", "Ingressos", "Degustações", "Almoço"],
-      faixaEtaria: "Adultos: R$599 | Crianças 6-10: R$459 | Menores 6 não pagam",
-      avaliacao: 4.9,
-      reviews: 95,
-      descricao: "Uma viagem no tempo a bordo do histórico Trem Maria Fumaça, seguida por uma experiência sensorial no Vale dos Vinhedos! Combine a nostalgia das locomotivas a vapor com a sofisticação dos vinhos premiados da região. Uma jornada única pela história e cultura gaúcha.",
-      roteiro: `
-       <div class="section-content">
-  <h4>Roteiro Completo Trem + Vinícolas</h4>
-  <ul>
-    <li><strong>06:00</strong> - Saída de Gramado (ponto central)</li>
-    <li><strong>06:30</strong> - Embarque em Canela (ponto de encontro)</li>
-    <li><strong>08:30</strong> - Chegada em Bento Gonçalves</li>
-    <li><strong>09:00</strong> - Embarque no Trem Maria Fumaça (trajeto de 1h30)</li>
-    <li><strong>10:30</strong> - Chegada em Carlos Barbosa e traslado para vinícola</li>
-    <li><strong>11:00</strong> - Vinícola Aurora - tour e degustação padrão</li>
-    <li><strong>12:30</strong> - Almoço em restaurante típico italiano (incluído)</li>
-    <li><strong>14:00</strong> - Teatro Epopéia Italiana (espetáculo de 50 minutos)</li>
-    <li><strong>15:30</strong> - Queijaria Fetina Valbrenta - degustação de queijos e salames</li>
-    <li><strong>16:30</strong> - Showroom Tramontina (visita e tempo para compras)</li>
-    <li><strong>17:30</strong> - Início do retorno para Gramado</li>
-    <li><strong>19:30</strong> - Chegada prevista em Gramado (20:00 em Canela)</li>
-  </ul>
-  
-  <div class="attractions-details">
-    <h5>🎂 Trem Maria Fumaça – Trajeto-Bento, Garibaldi e Carlos Barbosa</h5>
-    <p>Show a bordo com músicas típicas, apresentações artísticas e degustação padrão de vinho, suco de uva e espumante (conforme regras da operadora).</p>
-    
-    <h5>🎭 Teatro Epopéia Italiana</h5>
-    <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
-    
-    <h5>🍇 Vinícola Aurora – Bento Gonçalves</h5>
-    <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
-    
-    <h5>🥘 Almoço incluso</h5>
-    <p>Restaurante Cantina italiana. Bebidas não inclusas.</p>
-    
-    <h5>🧵 Malharia Local</h5>
-    <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
-    
-    <h5>🛠 Showroom Tramontina – Carlos Barbosa</h5>
-    <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
-    
-    <h5>🧀 Queijaria Fetina Valbrenta</h5>
-    <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
-  </div>
-  
-  <div class="inclusions">
-    <h5>✅ INCLUI:</h5>
-    <ul>
-      <li>Transporte da agência ida e volta</li>
-      <li>Transporte entre todas as cidades visitadas</li>
-      <li>Bilhete do Trem Maria Fumaça</li>
-      <li>Ingresso da Epopeia Italiana</li>
-      <li>Almoço</li>
-      <li>Todas as degustações padrão nos locais mencionados</li>
-    </ul>
-    
-    <h5>❌ NÃO INCLUI:</h5>
-    <ul>
-      <li>Bebidas durante o almoço</li>
-      <li>Compras pessoais nas lojas visitadas</li>
-    </ul>
-  </div>
-  
-  <div class="schedule-info">
-    <h5>🕒 HORÁRIOS PREVISTOS</h5>
-    <p><strong>Saída de Gramado/Canela:</strong> previsto 06h00</p>
-    <p><strong>Retorno previsto:</strong> entre 19:00 e 20:00</p>
-    <p class="note">(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</p>
-  </div>
-  
-  <div class="important-info">
-    <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
-    <p><strong>Distância:</strong><br>
-    Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</p>
-    
-    <p><strong>Sobre o Trem Maria Fumaça:</strong><br>
-    O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</p>
-    
-    <p><strong>Sobre o Transporte:</strong><br>
-    Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</p>
-    
-    <p><strong>Sobre a Ordem das Atrações:</strong><br>
-    A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</p>
-  </div>
-  
-  <p class="note">*Ordem das atrações pode ser alterada conforme logística do dia.</p>
-</div>
-      `,
-      pontosVisita: [
-        "Trem Maria Fumaça (Bento Gonçalves a Carlos Barbosa)",
-        "Vinícola Aurora (tour e degustação)",
-        "Teatro Epopéia Italiana (espetáculo)",
-        "Queijaria Fetina Valbrenta (degustação)",
-        "Showroom Tramontina (visita)",
-        "Restaurante Cantina Italiana (almoço)",
-        "Parada em malharia local (opcional)"
-      ],
-      horarios: [
-        "Saída Gramado: 06:00h",
-        "Saída Canela: 06:30h",
-        "Trem Maria Fumaça: 09:00h (horário fixo)",
-        "Retorno Gramado: 19:30h - 20:00h",
-        "Duração total: 12-14 horas"
-      ],
-      saidas: [
-        "Gramado: 06:00h - Ponto central (informado na confirmação)",
-        "Canela: 06:30h - Em frente à Catedral de Pedra",
-        "Não inclui busca em hotel",
-        "Transporte coletivo (micro-ônibus ou ônibus)"
-      ],
-      informacoesImportantes: [
-        "Duração total: 12-14 horas (dia completo)",
-        "Distância: 120km (Gramado até Bento Gonçalves)",
-        "Guia não acompanha dentro do trem (regra da operadora)",
-        "Ordem das atrações pode ser alterada conforme logística",
-        "Levar agasalho (mais frio no Vale dos Vinhedos)",
-        "Cartão de crédito aceito nas vinícolas",
-        "Degustação alcoólica apenas para maiores de 18 anos",
-        "Documento com foto obrigatório para degustações",
-        "Sucos disponíveis para menores e não bebedores"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 15 dias antes:</strong>
-            <span>Reembolso de 100% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 8-15 dias antes:</strong>
-            <span>Reembolso de 80% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 50% do valor</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 72h:</strong>
-            <span>Sem direito a reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Trem Maria Fumaça:</strong>
-            <span>Ingresso não é reembolsável após emissão (72h antes)</span>
-          </div>
-          <div class="policy-item">
-            <strong>Almoço:</strong>
-            <span>Cancelamento com menos de 48h: cobrança de 100% do almoço</span>
-          </div>
-          <div class="policy-item">
-            <strong>Grupos:</strong>
-            <span>Para grupos acima de 10 pessoas, políticas diferenciadas</span>
-          </div>
-        </div>
-      `
-    },
-{
-  id: 7,
-  nome: "Passeio Maria Fumaça Classic",
-  preco: {
-    adulto: 589.00,
-    jovem: 399.00
-  },
-  imagem: "/images/vale-vinhedos-premium.jpg",
-  imagens: [
-    "/images/vale-vinhedos-premium.jpg",
-    "/images/vale-vinhedos-premium-5.jpg",
-    "/images/vale-vinhedos-premium-3.jpg",
-    "/images/vale-vinhedos-premium-4.jpg"
-  ],
-  categoria: "passeios",
-  duracao: "Aprox 11h",
-  inclui: ["Transporte executivo", "Degustações premium", "Ingresso trem", "Guia especializado", "Almoço gourmet"],
-  faixaEtaria: "Adultos: R$589 | Jovens: R$399 | Crianças até 6 não pagam",
-  avaliacao: 4.9,
-  reviews: 78,
-  descricao: "O mais completo roteiro enoturístico da região! Viaje no tempo no Trem Maria Fumaça e mergulhe na excelência dos vinhos premium do Vale dos Vinhedos. Degustações selecionadas, guia especializado e transporte confortável - tudo pensado para sua experiência perfeita.",
-  roteiro: `
-    <div class="section-content">
-      <h4>🎭 ROTEIRO CLASSIC</h4>
-      
-      <div class="roteiro-timeline">
-        <div class="roteiro-item">
-          <strong>🎭 Teatro Epopéia Italiana</strong>
-          <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
-        </div>
-        
-        <div class="roteiro-item">
-          <strong>🍇 Vinícola Aurora – Bento Gonçalves</strong>
-          <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
-        </div>
-        
-        <div class="roteiro-item">
-          <strong>🥘 Almoço incluso</strong>
-          <p>Almoço em restaurante comida típica italiana. Bebidas não inclusas.</p>
-        </div>
-        
-        <div class="roteiro-item">
-          <strong>🧵 Malharia Local</strong>
-          <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
-        </div>
-        
-        <div class="roteiro-item">
-          <strong>🛠 Showroom Tramontina – Carlos Barbosa</strong>
-          <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
-        </div>
-        
-        <div class="roteiro-item">
-          <strong>🧀 Queijaria Fetina Valbrenta</strong>
-          <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
-        </div>
-        
-        <div class="roteiro-section">
-          <h5>✅ INCLUI:</h5>
-          <ul>
-            <li>Transporte da agência ida e volta</li>
-            <li>Transporte entre todas as cidades visitadas</li>
-            <li>Bilhete do Trem Maria Fumaça</li>
-            <li>Ingresso da Epopeia Italiana</li>
-            <li>Almoço</li>
-            <li>Todas as degustações padrão nos locais mencionados</li>
-          </ul>
-        </div>
-        
-        <div class="roteiro-section">
-          <h5>❌ NÃO INCLUI:</h5>
-          <ul>
-            <li>Bebidas durante o almoço</li>
-            <li>Compras pessoais nas lojas visitadas</li>
-          </ul>
-        </div>
-        
-        <div class="roteiro-section">
-          <h5>🕒 HORÁRIOS PREVISTOS</h5>
-          <ul>
-            <li><strong>Saída de Gramado/Canela:</strong> previsto 06h00</li>
-            <li><strong>Retorno previsto:</strong> entre 19:00 e 20:00</li>
-            <li><em>(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</em></li>
-          </ul>
-        </div>
-        
-        <div class="roteiro-section">
-          <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
-          <ul>
-            <li><strong>Distância:</strong> Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</li>
-            <li><strong>Sobre o Trem Maria Fumaça:</strong> O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</li>
-            <li><strong>Sobre o Transporte:</strong> Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</li>
-            <li><strong>Sobre a Ordem das Atrações:</strong> A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</li>
-          </ul>
-        </div>
-        
-        <hr />
-        
-        <h5>Detalhes Adicionais:</h5>
+passeios: [
+  {
+    id: 1,
+    nome: "Tour pela Cidade de Gramado",
+    preco: 120.00,
+    imagem: "/images/gramado-tour.jpg",
+    imagens: [
+      "/images/gramado-tour.jpg",
+      "/images/gramado-tour-2.jpg",
+      "/images/gramado-tour-3.jpg",
+      "/images/gramado-tour-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Guia turístico", "Transporte", "Ingressos para atrações"],
+    avaliacao: 4.8,
+    reviews: 156,
+    descricao: "Descubra os encantos da Suíça brasileira em um tour completo pela charmosa Gramado! Visite as principais atrações, ruas pitorescas e pontos turísticos mais fotografados. Uma experiência perfeita para quem deseja conhecer a essência desta cidade mágica.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Detalhado do Tour pela Cidade</h4>
         <ul>
-          <li>07:00 - Saída com transporte executivo</li>
-          <li>09:00 - Trem Maria Fumaça (assentos especiais)</li>
-          <li>10:30 - Vinícola premium (tour em caves subterrâneos)</li>
-          <li>12:00 - Almoço gourmet em restaurante premiado</li>
-          <li>13:30 - Segunda vinícola premium (degustação reservada)</li>
-          <li>15:00 - Queijaria artesanal (produtos exclusivos)</li>
-          <li>16:00 - Chocolateira local (harmonização com vinho)</li>
-          <li>17:00 - Retorno para Gramado</li>
-          <li>19:00 - Chegada no ponto de origem</li>
+          <li>08:30 - Saída do ponto de encontro no centro de Gramado (Rua Madre Verônica, 50)</li>
+          <li>09:00 - Visita ao Lago Negro e Rua Coberta (fotos e história do local)</li>
+          <li>10:00 - Palácio dos Festivais (explicação sobre o Natal Luz) e Igreja Matriz São Pedro</li>
+          <li>11:00 - Rua Torta (famoso ponto fotográfico) e mirantes da cidade</li>
+          <li>12:00 - Almoço em restaurante típico (opcional, não incluso - sugestões do guia)</li>
+          <li>13:30 - Mini Mundo e Mundo a Vapor (visita às áreas externas, fotos)</li>
+          <li>15:00 - Museu do Perfume e visita a fábrica de chocolates com degustação</li>
+          <li>16:00 - Tempo livre para compras no centro (lojas de couro, chocolate, artesanato)</li>
+          <li>17:00 - Retorno aos hotéis ou ponto inicial</li>
+        </ul>
+        <p class="note">*Tempo aproximado em cada atração pode variar conforme trânsito e interesse do grupo.</p>
+      </div>
+    `,
+    pontosVisita: [
+      "Lago Negro",
+      "Rua Coberta",
+      "Palácio dos Festivais", 
+      "Igreja Matriz São Pedro",
+      "Rua Torta e mirantes",
+      "Mini Mundo (exterior)",
+      "Mundo a Vapor (exterior)",
+      "Museu do Perfume",
+      "Fábricas de chocolate",
+      "Centro de artesanato"
+    ],
+    horarios: [
+      "Manhã: 08:30h (saída)",
+      "Tarde: 14:00h (saída)",
+      "Duração: 4 horas aproximadamente"
+    ],
+    saidas: [
+      "Ponto principal: Rua Madre Verônica, 50 - Centro, Gramado",
+      "Hotéis centrais mediante agendamento prévio (24h antes)",
+      "Terminal Rodoviário de Gramado (mediante acordo)",
+      "Não inclui busca em hotéis fora do centro"
+    ],
+    informacoesImportantes: [
+      "Levar documento de identificação original ou cópia",
+      "Calçados confortáveis são essenciais (muito caminhar)",
+      "Protetor solar e agasalho recomendados (clima variável)",
+      "Ponto de encontro: Rua Madre Verônica, 50 - Centro",
+      "Chegar com 15 minutos de antecedência",
+      "Tour disponível em português e espanhol",
+      "Crianças até 5 anos não pagam (no colo)",
+      "Fotos permitidas em todos os locais"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 72h antes:</strong>
+          <span>Reembolso de 100% do valor pago</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24h e 72h antes:</strong>
+          <span>Reembolso de 50% do valor pago</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem direito a reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>No-show (não comparecimento):</strong>
+          <span>Sem direito a reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Condições climáticas:</strong>
+          <span>Em caso de chuva intensa, passeio será remarcado sem custos</span>
+        </div>
+        <div class="policy-item">
+          <strong>Remarcações:</strong>
+          <span>Permitidas até 24h antes, sujeitas à disponibilidade</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 2,
+    nome: "Parque Snowland",
+    preco: 180.00,
+    imagem: "/images/snowland.jpg",
+    imagens: [
+      "/images/snowland.jpg",
+      "/images/snowland-2.jpg",
+      "/images/snowland-3.jpg",
+      "/images/snowland-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 6h",
+    inclui: ["Ingresso", "Equipamentos (casaco, botas, luvas)", "Acompanhante", "Aula básica de esqui"],
+    avaliacao: 4.9,
+    reviews: 230,
+    descricao: "Viva a magia da neve no maior parque indoor da América Latina! Esquie, ande de trenó e divirta-se em atrações geladas durante o ano todo. Uma experiência invernal autêntica no coração do Brasil - perfeita para famílias e aventureiros!",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Completo Snowland</h4>
+        <ul>
+          <li>08:00 - Saída de Gramado (ponto central) / 08:30 de Canela</li>
+          <li>09:30 - Chegada ao Snowland (Cambará do Sul)</li>
+          <li>10:00 - Recepção e distribuição de equipamentos (casaco, botas, luvas)</li>
+          <li>10:30 - Aula de esqui básica para iniciantes (30 minutos com instrutor)</li>
+          <li>11:30 - Pista de esqui livre (prática individual)</li>
+          <li>12:30 - Almoço no restaurante do parque (opcional, não incluso)</li>
+          <li>13:30 - Toboágua de gelo e trenó infantil</li>
+          <li>14:30 - Vila Alpina (fotos com cenários europeus)</li>
+          <li>15:30 - Atrações de inverno (esqui cross, snowboard básico)</li>
+          <li>16:30 - Tempo livre para fotos e compras na loja de souvenirs</li>
+          <li>17:30 - Devolução dos equipamentos e retorno para Gramado</li>
+          <li>19:00 - Chegada prevista em Gramado</li>
         </ul>
       </div>
-    </div>
-  `,
-  pontosVisita: [
-    "Trem Maria Fumaça (classe premium)",
-    "Teatro Epopéia Italiana",
-    "Vinícola Aurora",
-    "Restaurante comida típica italiana",
-    "Malharia local",
-    "Showroom Tramontina",
-    "Queijaria Fetina Valbrenta",
-    "Loja de produtos regionais premium"
-  ],
-  horarios: [
-    "Saída: 06:00h",
-    "Retorno: 19:00-20:00h",
-    "Duração: 13-14 horas",
-    "Dias: Quarta, Sexta, Sábado, Domingo"
-  ],
-  saidas: [
-    "Gramado: ponto central",
-    "Canela: mediante agendamento",
-    "Transporte compartilhado"
-  ],
-  informacoesImportantes: [
-    "Trem Maria Fumaça incluso",
-    "Ingresso Epopéia Italiana incluso",
-    "Almoço incluso (bebidas não)",
-    "Todas as degustações incluídas",
-    "Guia especializado",
-    "Grupo compartilhado",
-    "Reservas com antecedência",
-    "Vestimenta casual confortável"
-  ],
-  politicasCancelamento: `
-    <div class="cancellation-policy">
-      <div class="policy-item">
-        <strong>Cancelamento até 14 dias antes:</strong>
-        <span>Reembolso de 100%</span>
+    `,
+    pontosVisita: [
+      "Pista de esqui principal (temperatura: -5°C)",
+      "Trenó infantil (para crianças 3-10 anos)",
+      "Toboágua de gelo (altura: 8 metros)",
+      "Vila Alpina (cenários fotográficos)",
+      "Praça de alimentação (várias opções)",
+      "Loja de souvenirs e artigos de inverno",
+      "Espaço para fotos profissionais",
+      "Pista de snowboard para iniciantes"
+    ],
+    horarios: [
+      "Saída Gramado: 08:00h",
+      "Saída Canela: 08:30h",
+      "Turno da manhã: 10:00h - 13:00h",
+      "Turno da tarde: 14:00h - 17:00h",
+      "Tempo no parque: 5-6 horas"
+    ],
+    saidas: [
+      "Gramado Centro: 08:00h - Praça Major Nicoletti",
+      "Canela Centro: 08:30h - Em frente à Catedral",
+      "Hotelaria mediante agendamento (24h antes)",
+      "Não inclui busca em hotéis afastados"
+    ],
+    informacoesImportantes: [
+      "Levar roupa de baixo quente (meias grossas, calça térmica)",
+      "Luvas próprias são permitidas (recomendado)",
+      "Idade mínima: 3 anos completos",
+      "Grávidas não é recomendado participar",
+      "Pessoas com problemas cardíacos ou respiratórios consultar médico",
+      "Trocar de roupa disponível no local (trazer roupa extra)",
+      "Não é permitido entrar com alimentos",
+      "Fotos profissionais disponíveis por taxa adicional",
+      "Estacionamento gratuito para visitantes"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento até 48h antes:</strong>
+          <span>Reembolso de 50% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem direito a reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Equipamentos:</strong>
+          <span>Danos aos equipamentos serão cobrados separadamente</span>
+        </div>
+        <div class="policy-item">
+          <strong>Snowland:</strong>
+          <span>Ingresso não é reembolsável após entrada no parque</span>
+        </div>
       </div>
-      <div class="policy-item">
-        <strong>Cancelamento entre 7-14 dias antes:</strong>
-        <span>Reembolso de 70%</span>
+    `
+  },
+  {
+    id: 3,
+    nome: "Terra Magica Florybal c/ Transporte",
+    preco: 175.00,
+    imagem: "/images/florybal-2.jpg",
+    imagens: [
+      "/images/florybal.jpeg",
+      "/images/florybal-2.jpg",
+      "/images/florybal-3.jpeg",
+      "/images/florybal-4.jpeg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Transporte ida e volta", "Ingresso ao parque", "Guia acompanhante", "Mapa do parque"],
+    avaliacao: 4.7,
+    reviews: 92,
+    descricao: "Um mundo encantado de flores, magia e diversão! Conheça o Terra Magica Florybal, um parque temático único com esculturas florais gigantes, jardins secretos e atrações interativas. Uma experiência mágica para todas as idades.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Terra Magica Florybal</h4>
+        <ul>
+          <li>09:00 - Saída do ponto de encontro em Gramado</li>
+          <li>09:30 - Chegada ao Terra Magica Florybal</li>
+          <li>09:45 - Recepção e orientações sobre o parque</li>
+          <li>10:00 - Visita ao Jardim das Esculturas Florais</li>
+          <li>11:00 - Labirinto dos Segredos (atividade interativa)</li>
+          <li>12:00 - Vila das Fadas e Duendes</li>
+          <li>13:00 - Tempo livre para almoço (restaurante no local)</li>
+          <li>14:00 - Estufa das Borboletas e Jardim Sensorial</li>
+          <li>15:00 - Loja de souvenirs e produtos artesanais</li>
+          <li>15:30 - Retorno para Gramado</li>
+          <li>16:00 - Chegada no ponto inicial</li>
+        </ul>
       </div>
-      <div class="policy-item">
-        <strong>Cancelamento entre 3-7 dias antes:</strong>
-        <span>Reembolso de 50%</span>
+    `,
+    pontosVisita: [
+      "Jardim das Esculturas Florais",
+      "Labirinto dos Segredos",
+      "Vila das Fadas e Duendes",
+      "Estufa das Borboletas",
+      "Jardim Sensorial",
+      "Mirante do Vale Encantado",
+      "Loja de souvenirs temáticos"
+    ],
+    horarios: [
+      "Manhã: 09:00h (saída)",
+      "Duração: 4 horas no parque",
+      "Total: 7 horas com transporte",
+      "Diariamente"
+    ],
+    saidas: [
+      "Gramado Centro: 09:00h",
+      "Canela Centro: 09:15h",
+      "Ponto único de encontro",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Parque totalmente acessível para cadeirantes",
+      "Área de alimentação disponível no local",
+      "Traje casual e calçados confortáveis",
+      "Protetor solar recomendado",
+      "Câmera fotográfica permitida",
+      "Não é permitido colher flores",
+      "Estacionamento gratuito para visitantes"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 2-5 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem reembolso</span>
+        </div>
       </div>
-      <div class="policy-item">
-        <strong>Cancelamento com menos de 72h:</strong>
-        <span>Sem reembolso</span>
+    `
+  },
+  {
+    id: 4,
+    nome: "Trem Maria Fumaça e Vale dos Vinhedos - Saída Coletiva",
+    preco: 425.00,
+    imagem: "/images/trem-vale-vinhedos.jpg",
+    imagens: [
+      "/images/trem-vale-vinhedos.jpg",
+      "/images/trem-vale-vinhedos-2.jpg",
+      "/images/trem-vale-vinhedos-3.jpg",
+      "/images/trem-vale-vinhedos-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 12h",
+    inclui: ["Transporte coletivo", "Ingresso Trem Maria Fumaça", "Visita a vinícolas", "Degustações padrão", "Almoço"],
+    notas: "Menores de 6 anos não pagam (sem direito a degustação)",
+    avaliacao: 4.8,
+    reviews: 124,
+    descricao: "Uma viagem no tempo a bordo do histórico Trem Maria Fumaça, seguida por uma experiência sensorial no Vale dos Vinhedos! Combine a nostalgia das locomotivas a vapor com a sofisticação dos vinhos premiados da região. Uma jornada única pela história e cultura gaúcha.",
+    roteiro: `
+     <div class="section-content">
+<h4>Roteiro Completo Trem + Vinícolas</h4>
+<ul>
+  <li><strong>06:00</strong> - Saída de Gramado (ponto central)</li>
+  <li><strong>06:30</strong> - Embarque em Canela (ponto de encontro)</li>
+  <li><strong>08:30</strong> - Chegada em Bento Gonçalves</li>
+  <li><strong>09:00</strong> - Embarque no Trem Maria Fumaça (trajeto de 1h30)</li>
+  <li><strong>10:30</strong> - Chegada em Carlos Barbosa e traslado para vinícola</li>
+  <li><strong>11:00</strong> - Vinícola Aurora - tour e degustação padrão</li>
+  <li><strong>12:30</strong> - Almoço em restaurante típico italiano (incluído)</li>
+  <li><strong>14:00</strong> - Teatro Epopéia Italiana (espetáculo de 50 minutos)</li>
+  <li><strong>15:30</strong> - Queijaria Fetina Valbrenta - degustação de queijos e salames</li>
+  <li><strong>16:30</strong> - Showroom Tramontina (visita e tempo para compras)</li>
+  <li><strong>17:30</strong> - Início do retorno para Gramado</li>
+  <li><strong>19:30</strong> - Chegada prevista em Gramado (20:00 em Canela)</li>
+</ul>
+
+<div class="attractions-details">
+  <h5>🎂 Trem Maria Fumaça – Trajeto-Bento, Garibaldi e Carlos Barbosa</h5>
+  <p>Show a bordo com músicas típicas, apresentações artísticas e degustação padrão de vinho, suco de uva e espumante (conforme regras da operadora).</p>
+  
+  <h5>🎭 Teatro Epopéia Italiana</h5>
+  <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
+  
+  <h5>🍇 Vinícola Aurora – Bento Gonçalves</h5>
+  <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
+  
+  <h5>🥘 Almoço incluso</h5>
+  <p>Restaurante Cantina italiana. Bebidas não inclusas.</p>
+  
+  <h5>🧵 Malharia Local</h5>
+  <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
+  
+  <h5>🛠 Showroom Tramontina – Carlos Barbosa</h5>
+  <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
+  
+  <h5>🧀 Queijaria Fetina Valbrenta</h5>
+  <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
+</div>
+
+<div class="inclusions">
+  <h5>✅ INCLUI:</h5>
+  <ul>
+    <li>Transporte da agência ida e volta</li>
+    <li>Transporte entre todas as cidades visitadas</li>
+    <li>Bilhete do Trem Maria Fumaça</li>
+    <li>Ingresso da Epopeia Italiana</li>
+    <li>Almoço</li>
+    <li>Todas as degustações padrão nos locais mencionados</li>
+  </ul>
+  
+  <h5>❌ NÃO INCLUI:</h5>
+  <ul>
+    <li>Bebidas durante o almoço</li>
+    <li>Compras pessoais nas lojas visitadas</li>
+  </ul>
+</div>
+
+<div class="schedule-info">
+  <h5>🕒 HORÁRIOS PREVISTOS</h5>
+  <p><strong>Saída de Gramado/Canela:</strong> previsto 06h00</p>
+  <p><strong>Retorno previsto:</strong> entre 19:00 e 20:00</p>
+  <p class="note">(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</p>
+</div>
+
+<div class="important-info">
+  <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
+  <p><strong>Distância:</strong><br>
+  Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</p>
+  
+  <p><strong>Sobre o Trem Maria Fumaça:</strong><br>
+  O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</p>
+  
+  <p><strong>Sobre o Transporte:</strong><br>
+  Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</p>
+  
+  <p><strong>Sobre a Ordem das Atrações:</strong><br>
+  A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</p>
+</div>
+
+<p class="note">*Ordem das atrações pode ser alterada conforme logística do dia.</p>
+</div>
+    `,
+    pontosVisita: [
+      "Trem Maria Fumaça (Bento Gonçalves a Carlos Barbosa)",
+      "Vinícola Aurora (tour e degustação)",
+      "Teatro Epopéia Italiana (espetáculo)",
+      "Queijaria Fetina Valbrenta (degustação)",
+      "Showroom Tramontina (visita)",
+      "Restaurante Cantina Italiana (almoço)",
+      "Parada em malharia local (opcional)"
+    ],
+    horarios: [
+      "Saída Gramado: 06:00h",
+      "Saída Canela: 06:30h",
+      "Trem Maria Fumaça: 09:00h (horário fixo)",
+      "Retorno Gramado: 19:30h - 20:00h",
+      "Duração total: 12-14 horas"
+    ],
+    saidas: [
+      "Gramado: 06:00h - Ponto central (informado na confirmação)",
+      "Canela: 06:30h - Em frente à Catedral de Pedra",
+      "Não inclui busca em hotel",
+      "Transporte coletivo (micro-ônibus ou ônibus)"
+    ],
+    informacoesImportantes: [
+      "Duração total: 12-14 horas (dia completo)",
+      "Distância: 120km (Gramado até Bento Gonçalves)",
+      "Guia não acompanha dentro do trem (regra da operadora)",
+      "Ordem das atrações pode ser alterada conforme logística",
+      "Levar agasalho (mais frio no Vale dos Vinhedos)",
+      "Cartão de crédito aceito nas vinícolas",
+      "Degustação alcoólica apenas para maiores de 18 anos",
+      "Documento com foto obrigatório para degustações",
+      "Sucos disponíveis para menores e não bebedores"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 15 dias antes:</strong>
+          <span>Reembolso de 100% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 8-15 dias antes:</strong>
+          <span>Reembolso de 80% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 50% do valor</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem direito a reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Trem Maria Fumaça:</strong>
+          <span>Ingresso não é reembolsável após emissão (72h antes)</span>
+        </div>
+        <div class="policy-item">
+          <strong>Almoço:</strong>
+          <span>Cancelamento com menos de 48h: cobrança de 100% do almoço</span>
+        </div>
+        <div class="policy-item">
+          <strong>Grupos:</strong>
+          <span>Para grupos acima de 10 pessoas, políticas diferenciadas</span>
+        </div>
       </div>
-    </div>
-  `
-},
-    {
-      id: 8,
-      nome: "Trem Maria Fumaça e Vinícola Casa Valduga",
-      preco: {
-        adulto: 799.00,
-        crianca: 399.00
-      },
-      imagem: "/images/trem-valduga.jpg",
-      categoria: "passeios",
-      duracao: "Aprox 11h",
-      inclui: ["Transporte", "Ingresso trem", "Tour na Casa Valduga", "Degustação premium", "Almoço na vinícola"],
-      faixaEtaria: "Maiores 11 anos: R$799 | Crianças 6-10: R$399",
-      avaliacao: 4.9,
-      reviews: 112,
-      descricao: "Uma experiência íntima e exclusiva! Combine a viagem histórica no Trem Maria Fumaça com uma visita privativa à renomada Casa Valduga. Conheça os caves subterrâneos, aprenda com enólogos especializados e saboreie vinhos premiados em degustação reservada.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Casa Valduga Exclusivo</h4>
-          <ul>
-            <li>06:30 - Saída de Gramado</li>
-            <li>08:30 - Chegada em Bento Gonçalves</li>
-            <li>09:00 - Trem Maria Fumaça (experiência completa)</li>
-            <li>10:30 - Chegada à Casa Valduga</li>
-            <li>11:00 - Tour pelos caves e adegas</li>
-            <li>12:30 - Almoço no restaurante da vinícola</li>
-            <li>14:00 - Degustação premium com enólogo</li>
-            <li>15:30 - Tempo livre na loja e jardins</li>
-            <li>16:30 - Retorno para Gramado</li>
-            <li>18:30 - Chegada em Gramado</li>
-          </ul>
-        </div>
-      `,
-      pontosVisita: [
-        "Trem Maria Fumaça (trajeto completo)",
-        "Casa Valduga (tour completo)",
-        "Caves subterrâneos",
-        "Adegas históricas",
-        "Restaurante da vinícola",
-        "Jardins e vinhedos",
-        "Loja de vinhos premiados"
-      ],
-      horarios: [
-        "Saída: 06:30h",
-        "Retorno: 18:30h",
-        "Duração: 12 horas",
-        "Agendamento necessário"
-      ],
-      saidas: [
-        "Gramado: ponto central",
-        "Transporte exclusivo para o grupo"
-      ],
-      informacoesImportantes: [
-        "Tour privativo na Casa Valduga",
-        "Degustação com enólogo especializado",
-        "Almoço incluso na vinícola",
-        "Vinhos premiados na degustação",
-        "Grupos pequenos (até 8 pessoas)",
-        "Reserva com 7 dias de antecedência",
-        "Vestimenta adequada para vinícola"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 21 dias antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 14-21 dias antes:</strong>
-            <span>Reembolso de 80%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 7-14 dias antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 7 dias:</strong>
-            <span>Sem reembolso</span>
-          </div>
-        </div>
-      `
+    `
+  },
+  {
+    id: 5,
+    nome: "Olivas de Gramado c/ Transporte",
+    preco: {
+      adulto: 259.00,
+      senior: 189.00,
+      jovem: 189.00
     },
-    {
-      id: 9,
-      nome: "Rota Romântica - Gramado e Canela",
-      preco: 145.00,
-      imagem: "/images/rota-romantica.jpg",
-      categoria: "passeios",
-      duracao: "Aprox 5h",
-      inclui: ["Transporte", "Guia especializado", "Paradas estratégicas", "Água mineral"],
-      avaliacao: 4.7,
-      reviews: 203,
-      descricao: "Descubra os cenários mais românticos da Serra Gaúcha! Passeie por Gramado e Canela, visitando mirantes deslumbrantes, jardins encantados e pontos históricos. Perfeito para casais e quem busca belas paisagens e momentos inesquecíveis.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Romântico</h4>
-          <ul>
-            <li>14:00 - Saída do ponto de encontro</li>
-            <li>14:30 - Mirante do Vale do Quilombo</li>
-            <li>15:15 - Parque do Caracol (vista externa)</li>
-            <li>16:00 - Catedral de Pedra de Canela</li>
-            <li>16:45 - Rua Coberta de Gramado</li>
-            <li>17:30 - Lago Negro (pôr do sol)</li>
-            <li>18:15 - Jantar romântico (opcional)</li>
-            <li>19:00 - Retorno aos hotéis</li>
-          </ul>
+    imagem: "/images/olivas-gramado.jpg",
+    imagens: [
+      "/images/olivas-gramado.jpg",
+      "/images/olivas-gramado-2.jpg",
+      "/images/olivas-gramado-3.jpg",
+      "/images/olivas-gramado-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 3h",
+    inclui: ["Transporte ida e volta", "Ingresso", "Degustação guiada", "Guia especializado"],
+    faixaEtaria: "Adultos 17-59: R$259 | 60+: R$189 | Jovens 12-16: R$189",
+    avaliacao: 4.6,
+    reviews: 87,
+    descricao: "Uma imersão gastronômica no universo das azeitonas e azeites! Conheça o processo artesanal de produção, aprenda sobre os diferentes tipos de azeite e participe de uma degustação exclusiva. Perfeito para foodies e amantes da culinária mediterrânea.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Olivas de Gramado</h4>
+        <ul>
+          <li>14:00 - Saída do ponto de encontro em Gramado</li>
+          <li>14:30 - Chegada à Olivais Gramado</li>
+          <li>14:45 - Tour pelos olivais (explicação sobre cultivo)</li>
+          <li>15:15 - Processo de produção artesanal (moinho tradicional)</li>
+          <li>15:45 - Degustação guiada de azeites (6 variedades)</li>
+          <li>16:15 - Aula de harmonização (azeites com alimentos)</li>
+          <li>16:45 - Tempo livre na loja (compras de produtos)</li>
+          <li>17:15 - Retorno para Gramado</li>
+          <li>17:45 - Chegada no ponto inicial</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Olivais de Gramado (plantações)",
+      "Moinho tradicional de azeite",
+      "Sala de produção artesanal",
+      "Sala de degustação",
+      "Loja de produtos (azeites, azeitonas, patês)",
+      "Jardim de oliveiras centenárias"
+    ],
+    horarios: [
+      "Tarde: 14:00h (saída)",
+      "Duração: 3 horas",
+      "Todas as quintas e sábados",
+      "Agendar com 48h de antecedência"
+    ],
+    saidas: [
+      "Gramado Centro: 14:00h",
+      "Ponto único de encontro",
+      "Grupos mínimos: 4 pessoas",
+      "Transporte incluso no trajeto"
+    ],
+    informacoesImportantes: [
+      "Degustação inclui 6 tipos de azeite",
+      "Azeitonas e patês incluídos na degustação",
+      "Produtos disponíveis para compra no local",
+      "Desconto de 10% nas compras durante o tour",
+      "Estacionamento gratuito no local",
+      "Acessível para cadeirantes",
+      "Tour em português, inglês ou espanhol",
+      "Reservas com 48h de antecedência"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
         </div>
-      `,
-      pontosVisita: [
-        "Mirante Vale do Quilombo",
-        "Parque do Caracol (exterior)",
-        "Catedral de Pedra de Canela",
-        "Rua Coberta de Gramado",
-        "Lago Negro",
-        "Vale do Bode (vista panorâmica)",
-        "Alameda das Hortênsias"
-      ],
-      horarios: [
-        "Tarde: 14:00h",
-        "Pôr do sol: 17:30h",
-        "Duração: 5 horas",
-        "Diariamente"
-      ],
-      saidas: [
-        "Gramado Centro: 14:00h",
-        "Hotéis centrais mediante agendamento"
-      ],
-      informacoesImportantes: [
-        "Passeio ideal para casais",
-        "Fotos românticas incluídas",
-        "Guia especializado em roteiros românticos",
-        "Água mineral fornecida",
-        "Jantar opcional com reserva prévia",
-        "Ponto de encontro definido na reserva"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 48h antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 24-48h antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 24h:</strong>
-            <span>Sem reembolso</span>
-          </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
         </div>
-      `
+        <div class="policy-item">
+          <strong>Cancelamento com 48h-72h:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Grupo mínimo:</strong>
+          <span>Se não atingir 4 pessoas, tour pode ser remarcado</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 18,
+    nome: "Tour Fotográfico Sem Transporte",
+    preco: 150.00,
+    imagem: "/images/tour-fotografico.jpg",
+    imagens: [
+      "/images/tour-fotografico.jpg",
+      "/images/tour-fotografico-2.jpg",
+      "/images/tour-fotografico-3.jpg",
+      "/images/tour-fotografico-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 3h",
+    inclui: ["Fotógrafo profissional", "Sessão de fotos em 5 locais", "20 fotos editadas", "Guia dos pontos fotográficos"],
+    avaliacao: 4.9,
+    reviews: 78,
+    descricao: "Capture os momentos mais especiais da sua viagem! Tour fotográfico pelos cenários mais belos de Gramado com fotógrafo profissional. Leve para casa lembranças incríveis dos lugares mais fotografados da Serra Gaúcha.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Tour Fotográfico</h4>
+        <ul>
+          <li>Encontro com o fotógrafo no ponto combinado</li>
+          <li>Lago Negro - cenário romântico com chalés e natureza</li>
+          <li>Rua Torta - ponto icônico e divertido</li>
+          <li>Rua Coberta - arquitetura charmosa e flores</li>
+          <li>Mirantes da cidade - vista panorâmica</li>
+          <li>Ruas do centro - momentos espontâneos</li>
+          <li>Entrega das fotos em até 7 dias</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Lago Negro",
+      "Rua Torta",
+      "Rua Coberta",
+      "Mirantes panorâmicos",
+      "Centro histórico",
+      "Jardins secretos",
+      "Pontos pouco conhecidos"
+    ],
+    horarios: [
+      "Manhã: 09:00h - 12:00h",
+      "Tarde: 14:00h - 17:00h",
+      "Pôr do sol: 17:00h - 20:00h",
+      "Diariamente"
+    ],
+    saidas: [
+      "Ponto de encontro combinado",
+      "Não inclui transporte entre locais",
+      "Cliente deve se deslocar entre pontos"
+    ],
+    informacoesImportantes: [
+      "Fotógrafo profissional especializado",
+      "20 fotos editadas inclusas",
+      "Sessão para até 4 pessoas (grupos maiores consultar)",
+      "Trajes: recomenda-se levar 2-3 mudas de roupa",
+      "Equipamento profissional incluso",
+      "Fotos entregues em álbum digital",
+      "Não inclui maquiagem ou styling"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 19,
+    nome: "Tour Fotográfico c/ Transporte",
+    preco: 220.00,
+    imagem: "/images/tour-fotografico-transporte.jpg",
+    imagens: [
+      "/images/tour-fotografico-transporte.jpg",
+      "/images/tour-fotografico-2.jpeg",
+      "/images/tour-fotografico-transporte-3.jpg",
+      "/images/tour-fotografico-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Transporte privativo", "Fotógrafo profissional", "Sessão em 8 locais", "30 fotos editadas", "Água e snacks"],
+    avaliacao: 4.9,
+    reviews: 65,
+    descricao: "Experiência fotográfica completa! Com transporte incluído, visite os melhores pontos fotográficos de Gramado e região com conforto e privacidade. Fotógrafo profissional e roteiro personalizado para capturar suas melhores lembranças.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Tour Fotográfico Premium</h4>
+        <ul>
+          <li>Busca no hotel ou local combinado</li>
+          <li>Lago Negro - fotos clássicas e românticas</li>
+          <li>Mirante Vale do Quilombo - vista deslumbrante</li>
+          <li>Catedral de Pedra - arquitetura imponente</li>
+          <li>Rua Torta - momentos divertidos</li>
+          <li>Parque Knorr - natureza e tranquilidade</li>
+          <li>Centro histórico - ruas charmosas</li>
+          <li>Pôr do sol em mirante exclusivo</li>
+          <li>Retorno ao hotel</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Lago Negro",
+      "Mirante Vale do Quilombo",
+      "Catedral de Pedra de Canela",
+      "Rua Torta",
+      "Parque Knorr",
+      "Centro histórico de Gramado",
+      "Mirante exclusivo para pôr do sol",
+      "Locais secretos indicados pelo fotógrafo"
+    ],
+    horarios: [
+      "Manhã: 08:00h - 12:00h",
+      "Tarde: 14:00h - 18:00h",
+      "Pôr do sol: 16:00h - 20:00h",
+      "Diariamente"
+    ],
+    saidas: [
+      "Hotel em Gramado/Canela",
+      "Local de sua preferência",
+      "Transporte privativo incluso"
+    ],
+    informacoesImportantes: [
+      "Transporte privativo durante todo o tour",
+      "Fotógrafo profissional especializado",
+      "30 fotos editadas em alta resolução",
+      "Água mineral e snacks inclusos",
+      "Roteiro personalizável",
+      "Sessão para até 6 pessoas",
+      "Fotos entregues em até 5 dias úteis"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 10 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 5-10 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 5 dias:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 8,
+    nome: "Tour Vale dos Vinhedos",
+    preco: 320.00,
+    imagem: "/images/vale-vinhedos-tour.jpg",
+    imagens: [
+      "/images/vale-vinhedos-tour.jpg",
+      "/images/vale-vinhedos-tour-2.jpeg",
+      "/images/vale-vinhedos-tour-3.jpeg",
+      "/images/vale-vinhedos-tour-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 8h",
+    inclui: ["Transporte ida e volta", "Visita a 2 vinícolas", "Degustações", "Guia especializado", "Água mineral"],
+    avaliacao: 4.8,
+    reviews: 143,
+    descricao: "Explore o famoso Vale dos Vinhedos, região produtora dos melhores vinhos do Brasil. Conheça vinícolas tradicionais, aprenda sobre o processo de produção e deguste vinhos premiados em uma experiência enoturística completa.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Vale dos Vinhedos</h4>
+        <ul>
+          <li>08:00 - Saída de Gramado</li>
+          <li>09:30 - Chegada ao Vale dos Vinhedos</li>
+          <li>10:00 - Primeira vinícola: tour pelas instalações</li>
+          <li>11:00 - Degustação guiada de vinhos</li>
+          <li>12:30 - Almoço em restaurante típico (opcional)</li>
+          <li>14:00 - Segunda vinícola: visita às caves</li>
+          <li>15:00 - Degustação de vinhos especiais</li>
+          <li>16:00 - Tempo livre para compras</li>
+          <li>16:30 - Retorno para Gramado</li>
+          <li>18:00 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Vale dos Vinhedos (paisagem protegida)",
+      "Vinícola tradicional familiar",
+      "Vinícola boutique premiada",
+      "Caves de envelhecimento",
+      "Loja de vinhos e produtos regionais",
+      "Restaurante típico italiano"
+    ],
+    horarios: [
+      "Saída: 08:00h",
+      "Retorno: 18:00h",
+      "Duração: 8-10 horas",
+      "Terças, quintas e sábados"
+    ],
+    saidas: [
+      "Gramado Centro: 08:00h",
+      "Canela Centro: 08:15h",
+      "Transporte coletivo confortável"
+    ],
+    informacoesImportantes: [
+      "Visita a 2 vinícolas diferentes",
+      "Degustações inclusas em ambas",
+      "Guia com conhecimento enológico",
+      "Documento com foto obrigatório para degustação",
+      "Degustação alcoólica apenas para maiores de 18 anos",
+      "Sucos disponíveis para menores e não bebedores",
+      "Reserva com 48h de antecedência"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 9,
+    nome: "Pé da Cascata",
+    preco: 110.00,
+    imagem: "/images/caracol.jpg",
+    categoria: "passeios",
+    duracao: "Aprox 3h",
+    inclui: ["Transporte", "Ingresso", "Guia local", "Seguro"],
+    avaliacao: 4.8,
+    reviews: 267,
+    descricao: "Testemunhe a majestosa Cascata do Caracol, uma das mais belas quedas d'água do Brasil! Caminhe por trilhas em meio à natureza exuberante, respire ar puro e capture fotos espetaculares. Uma conexão direta com a força e beleza da natureza serrana.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Cascata do Caracol</h4>
+        <ul>
+          <li>09:00 - Saída de Gramado</li>
+          <li>09:30 - Chegada ao Parque do Caracol</li>
+          <li>09:45 - Trilha principal até a cascata</li>
+          <li>10:30 - Chegada ao mirante principal</li>
+          <li>11:15 - Trilha secundária (opcional)</li>
+          <li>12:00 - Elevador panorâmico (ingresso incluso)</li>
+          <li>12:45 - Tempo livre no centro de visitantes</li>
+          <li>13:30 - Retorno para Gramado</li>
+          <li>14:00 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Cascata do Caracol (130m de altura)",
+      "Mirante principal",
+      "Trilhas ecológicas",
+      "Elevador panorâmico",
+      "Centro de visitantes",
+      "Loja de souvenirs",
+      "Café com vista"
+    ],
+    horarios: [
+      "Manhã: 09:00h",
+      "Tarde: 14:00h",
+      "Duração: 3 horas",
+      "Parque aberto 9h-17h"
+    ],
+    saidas: [
+      "Gramado: 09:00h e 14:00h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Calçados fechados obrigatórios",
+      "Trilhas com degraus (cerca de 900 degraus)",
+      "Não recomendado para pessoas com mobilidade reduzida",
+      "Levar água e protetor solar",
+      "Capacidade limitada do elevador",
+      "Fotos permitidas em todos os locais"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 72h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Condições climáticas:</strong>
+          <span>Em caso de chuva, pode ser remarcado</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 10,
+    nome: "Tour Gran Reserva Casa Valduga",
+    preco: {
+      adulto: 280.00,
+      premium: 350.00
     },
-    {
-      id: 10,
-      nome: "Cascata do Caracol",
-      preco: 110.00,
-      imagem: "/images/caracol.jpg",
-      categoria: "passeios",
-      duracao: "Aprox 3h",
-      inclui: ["Transporte", "Ingresso", "Guia local", "Seguro"],
-      avaliacao: 4.8,
-      reviews: 267,
-      descricao: "Testemunhe a majestosa Cascata do Caracol, uma das mais belas quedas d'água do Brasil! Caminhe por trilhas em meio à natureza exuberante, respire ar puro e capture fotos espetaculares. Uma conexão direta com a força e beleza da natureza serrana.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Cascata do Caracol</h4>
-          <ul>
-            <li>09:00 - Saída de Gramado</li>
-            <li>09:30 - Chegada ao Parque do Caracol</li>
-            <li>09:45 - Trilha principal até a cascata</li>
-            <li>10:30 - Chegada ao mirante principal</li>
-            <li>11:15 - Trilha secundária (opcional)</li>
-            <li>12:00 - Elevador panorâmico (ingresso incluso)</li>
-            <li>12:45 - Tempo livre no centro de visitantes</li>
-            <li>13:30 - Retorno para Gramado</li>
-            <li>14:00 - Chegada em Gramado</li>
-          </ul>
+    imagem: "/images/casa-valduga-gran-reserva.jpg",
+    imagens: [
+      "/images/casa-valduga-gran-reserva.jpg",
+      "/images/casa-valduga-gran-reserva-2.jpg",
+      "/images/casa-valduga-gran-reserva-3.jpg",
+      "/images/casa-valduga-gran-reserva-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 5h",
+    inclui: ["Transporte ida e volta", "Tour Gran Reserva", "Degustação premium", "Guia especializado", "Brinde exclusivo"],
+    faixaEtaria: "Adulto: R$280 | Premium: R$350 (degustação especial)",
+    avaliacao: 4.9,
+    reviews: 112,
+    descricao: "Uma experiência exclusiva na renomada Casa Valduga! Conheça os segredos dos vinhos Gran Reserva, visite caves históricos e participe de uma degustação premium com vinhos premiados. Para verdadeiros apreciadores de enologia.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Casa Valduga Gran Reserva</h4>
+        <ul>
+          <li>13:00 - Saída de Gramado</li>
+          <li>14:30 - Chegada à Casa Valduga</li>
+          <li>14:45 - Tour Gran Reserva (caves exclusivos)</li>
+          <li>15:30 - Processo de produção dos vinhos premium</li>
+          <li>16:00 - Degustação premium (5 vinhos selecionados)</li>
+          <li>17:00 - Harmonização com queijos finos (opcional)</li>
+          <li>17:45 - Tempo livre na loja exclusiva</li>
+          <li>18:15 - Retorno para Gramado</li>
+          <li>19:45 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Caves Gran Reserva (acesso exclusivo)",
+      "Sala de barricas especiais",
+      "Adegas históricas da família Valduga",
+      "Sala de degustação premium",
+      "Loja exclusiva de vinhos premiados",
+      "Jardins e vinhedos especiais"
+    ],
+    horarios: [
+      "Tarde: 13:00h (saída)",
+      "Duração: 5 horas na vinícola",
+      "Total: 6-7 horas com transporte",
+      "Segundas, quartas e sextas"
+    ],
+    saidas: [
+      "Gramado Centro: 13:00h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Tour exclusivo Gran Reserva",
+      "Degustação com vinhos premium",
+      "Guia especializado da vinícola",
+      "Brinde exclusivo para participantes",
+      "Documento obrigatório para degustação",
+      "Vestimenta casual elegante recomendada",
+      "Reservas com 72h de antecedência"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 10 dias antes:</strong>
+          <span>Reembolso de 100%</span>
         </div>
-      `,
-      pontosVisita: [
-        "Cascata do Caracol (130m de altura)",
-        "Mirante principal",
-        "Trilhas ecológicas",
-        "Elevador panorâmico",
-        "Centro de visitantes",
-        "Loja de souvenirs",
-        "Café com vista"
-      ],
-      horarios: [
-        "Manhã: 09:00h",
-        "Tarde: 14:00h",
-        "Duração: 3 horas",
-        "Parque aberto 9h-17h"
-      ],
-      saidas: [
-        "Gramado: 09:00h e 14:00h",
-        "Transporte incluso"
-      ],
-      informacoesImportantes: [
-        "Calçados fechados obrigatórios",
-        "Trilhas com degraus (cerca de 900 degraus)",
-        "Não recomendado para pessoas com mobilidade reduzida",
-        "Levar água e protetor solar",
-        "Capacidade limitada do elevador",
-        "Fotos permitidas em todos os locais"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 72h antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 24-72h antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 24h:</strong>
-            <span>Sem reembolso</span>
-          </div>
-          <div class="policy-item">
-            <strong>Condições climáticas:</strong>
-            <span>Em caso de chuva, pode ser remarcado</span>
-          </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 5-10 dias antes:</strong>
+          <span>Reembolso de 70%</span>
         </div>
-      `
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 5 dias:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 11,
+    nome: "Skyglass c/ Transporte",
+    preco: 210.00,
+    imagem: "/images/skyglass.jpg",
+    imagens: [
+      "/images/skyglass.jpg",
+      "/images/skyglass-2.jpg",
+      "/images/skyglass-3.jpg",
+      "/images/skyglass-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Transporte ida e volta", "Ingresso Skyglass", "Guia acompanhante", "Água", "Seguro"],
+    avaliacao: 4.9,
+    reviews: 156,
+    descricao: "Uma experiência única e emocionante! Caminhe sobre o vidro a 60 metros de altura e desfrute de vistas panorâmicas deslumbrantes da Serra Gaúcha. Uma atração imperdível para quem busca adrenalina e belas paisagens.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Skyglass</h4>
+        <ul>
+          <li>13:00 - Saída de Gramado</li>
+          <li>13:45 - Chegada ao Skyglass (Canela)</li>
+          <li>14:00 - Briefing de segurança e orientações</li>
+          <li>14:15 - Experiência Skyglass (caminhada sobre o vidro)</li>
+          <li>15:00 - Área de fotos e mirantes adicionais</li>
+          <li>15:30 - Café com vista (opcional)</li>
+          <li>16:00 - Tempo livre na loja de souvenirs</li>
+          <li>16:30 - Retorno para Gramado</li>
+          <li>17:15 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Skyglass (passarela de vidro)",
+      "Mirante panorâmico 360°",
+      "Torre de observação",
+      "Área de fotos profissionais",
+      "Café com vista deslumbrante",
+      "Loja de souvenirs exclusivos"
+    ],
+    horarios: [
+      "Tarde: 13:00h (saída)",
+      "Duração: 4-5 horas",
+      "Todos os dias",
+      "Melhor horário: 14h-16h"
+    ],
+    saidas: [
+      "Gramado Centro: 13:00h",
+      "Canela Centro: 13:15h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Altura: 60 metros do solo",
+      "Piso de vidro especial de segurança",
+      "Não recomendado para pessoas com vertigem",
+      "Calçados fechados obrigatórios",
+      "Seguro acidentes incluso",
+      "Fotos profissionais disponíveis (opcional)",
+      "Acesso para cadeirantes até área de observação"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 72h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Condições climáticas:</strong>
+          <span>Em caso de ventos fortes ou chuva, pode ser remarcado</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 12,
+    nome: "Tour dos Parques",
+    preco: 195.00,
+    imagem: "/images/tour-parques.jpg",
+    imagens: [
+      "/images/tour-parques.jpg",
+      "/images/tour-parques-2.jpg",
+      "/images/snowland-4.jpg",
+      "/images/tour-parques-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 6h",
+    inclui: ["Transporte", "Ingresso Mini Mundo", "Ingresso Mundo a Vapor", "Guia acompanhante", "Água"],
+    avaliacao: 4.6,
+    reviews: 89,
+    descricao: "Conheça os parques mais famosos da região em um único passeio! Mini Mundo e Mundo a Vapor - duas atrações imperdíveis que encantam crianças e adultos. Uma jornada por miniaturas perfeitas e máquinas impressionantes.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Tour dos Parques</h4>
+        <ul>
+          <li>09:00 - Saída de Gramado</li>
+          <li>09:15 - Chegada ao Mini Mundo</li>
+          <li>09:30 - 11:30: Visita ao Mini Mundo (cidades em miniatura)</li>
+          <li>11:45 - Deslocamento para Canela</li>
+          <li>12:00 - Almoço (opcional, não incluso)</li>
+          <li>13:00 - Chegada ao Mundo a Vapor</li>
+          <li>13:15 - 15:15: Visita ao Mundo a Vapor (máquinas e ciência)</li>
+          <li>15:30 - Tempo livre na loja de souvenirs</li>
+          <li>16:00 - Retorno para Gramado</li>
+          <li>16:15 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Mini Mundo (Gramado)",
+      "Mundo a Vapor (Canela)",
+      "Loja de miniaturas",
+      "Área de demonstrações científicas",
+      "Café temático"
+    ],
+    horarios: [
+      "Manhã: 09:00h (saída)",
+      "Duração: 6-7 horas",
+      "Terças, quintas e sábados",
+      "Agendar com 48h de antecedência"
+    ],
+    saidas: [
+      "Gramado Centro: 09:00h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Ingressos para ambos parques inclusos",
+      "Guia acompanhante durante todo o passeio",
+      "Água mineral fornecida",
+      "Almoço não incluso (sugestões fornecidas)",
+      "Parques acessíveis para cadeirantes",
+      "Estacionamento gratuito nos locais",
+      "Fotos permitidas em todas as áreas"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 2-5 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 13,
+    nome: "Tour Jolimont - Pisa da Uva",
+    preco: 180.00,
+    imagem: "/images/jolimont-pisa-uva.jpg",
+    imagens: [
+      "/images/jolimont-pisa-uva.jpg",
+      "/images/jolimont-pisa-uva-2.jpg",
+      "/images/jolimont-pisa-uva-3.jpg",
+      "/images/jolimont-pisa-uva-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Transporte ida e volta", "Atividade de pisa da uva", "Degustação de suco", "Guia especializado", "Certificado"],
+    avaliacao: 4.7,
+    reviews: 94,
+    descricao: "Viva uma experiência tradicional e divertida na vinícola Jolimont! Participe da pisa da uva como antigamente, aprenda sobre o processo artesanal e leve para casa um certificado de participação. Diversão garantida para toda a família!",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Pisa da Uva Jolimont</h4>
+        <ul>
+          <li>10:00 - Saída de Gramado</li>
+          <li>10:45 - Chegada à Vinícola Jolimont</li>
+          <li>11:00 - Recepção e explicação sobre a tradição</li>
+          <li>11:15 - Atividade de pisa da uva (participação)</li>
+          <li>12:00 - Degustação de suco de uva artesanal</li>
+          <li>12:30 - Tour pela vinícola e produção</li>
+          <li>13:15 - Almoço típico (opcional, não incluso)</li>
+          <li>14:00 - Entrega do certificado e tempo livre</li>
+          <li>14:30 - Retorno para Gramado</li>
+          <li>15:15 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Área da pisa da uva tradicional",
+      "Vinícola Jolimont",
+      "Sala de degustação",
+      "Adegas de produção",
+      "Loja de produtos artesanais",
+      "Jardins da vinícola"
+    ],
+    horarios: [
+      "Manhã: 10:00h (saída)",
+      "Duração: 4-5 horas",
+      "Fevereiro a Abril (temporada da uva)",
+      "Sextas e sábados"
+    ],
+    saidas: [
+      "Gramado Centro: 10:00h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Atividade sazonal (conforme colheita da uva)",
+      "Roupa que possa sujar recomendada",
+      "Atividade participativa (opcional)",
+      "Certificado de participação incluso",
+      "Degustação de suco para todas as idades",
+      "Traje casual e confortável",
+      "Reserva com antecedência obrigatória"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 14,
+    nome: "Tour Vale dos Vinhedos com Piquenique",
+    preco: 380.00,
+    imagem: "/images/vale-vinhedos-piquenique.jpg",
+    imagens: [
+      "/images/vale-vinhedos-piquenique.jpg",
+      "/images/vale-vinhedos-piquenique-2.jpeg",
+      "/images/vale-vinhedos-piquenique-3.jpg",
+      "/images/vale-vinhedos-piquenique-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 7h",
+    inclui: ["Transporte ida e volta", "Piquenique gourmet", "Visita a vinícola", "Degustação de vinhos", "Guia especializado", "Cesta personalizada"],
+    avaliacao: 4.9,
+    reviews: 67,
+    descricao: "Um passeio romântico e sofisticado pelo Vale dos Vinhedos! Desfrute de um piquenique gourmet entre os vinhedos, deguste vinhos premiados e viva momentos inesquecíveis em um dos cenários mais belos do Brasil. Perfeito para casais e ocasiões especiais.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Vale dos Vinhedos com Piquenique</h4>
+        <ul>
+          <li>10:00 - Saída de Gramado</li>
+          <li>11:30 - Chegada ao Vale dos Vinhedos</li>
+          <li>11:45 - Visita à vinícola selecionada</li>
+          <li>12:30 - Degustação de vinhos no jardim</li>
+          <li>13:30 - Piquenique gourmet entre os vinhedos</li>
+          <li>15:00 - Caminhada pelos vinhedos (opcional)</li>
+          <li>16:00 - Tempo livre para fotos e compras</li>
+          <li>16:30 - Retorno para Gramado</li>
+          <li>18:00 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Vale dos Vinhedos (paisagem deslumbrante)",
+      "Vinícola boutique selecionada",
+      "Jardins entre os vinhedos",
+      "Local do piquenique gourmet",
+      "Loja de vinhos e produtos especiais",
+      "Mirantes naturais"
+    ],
+    horarios: [
+      "Manhã: 10:00h (saída)",
+      "Piquenique: 13:30h",
+      "Duração: 7-8 horas",
+      "Quartas, sextas e domingos"
+    ],
+    saidas: [
+      "Gramado Centro: 10:00h",
+      "Hotel mediante agendamento",
+      "Transporte privativo ou compartilhado"
+    ],
+    informacoesImportantes: [
+      "Piquenique gourmet incluso (queijos, frios, frutas, pães)",
+      "Vinho ou suco incluso na cesta",
+      "Toalha e acessórios fornecidos",
+      "Grupos pequenos (até 8 pessoas)",
+      "Reserva com 72h de antecedência obrigatória",
+      "Em caso de chuva, piquenique em área coberta",
+      "Traje casual elegante recomendado"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 10 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 5-10 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 5 dias:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 15,
+    nome: "Tour de Vinícolas Jolimont",
+    preco: 240.00,
+    imagem: "/images/jolimont-pisa-uva-2.jpg",
+    imagens: [
+      "/images/jolimont-pisa-uva-2.jpg",
+      "/images/vinicolas-jolimont-2.jpg",
+      "/images/vinicolas-jolimont.jpg",
+      "/images/vinicolas-jolimont-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 5h",
+    inclui: ["Transporte ida e volta", "Visita a 2 vinícolas da família Jolimont", "Degustações guiadas", "Guia especializado", "Água mineral"],
+    avaliacao: 4.8,
+    reviews: 112,
+    descricao: "Conheça o legado da família Jolimont, uma das mais tradicionais produtoras de vinhos da Serra Gaúcha. Visite duas de suas vinícolas, aprenda sobre a história da família e deguste vinhos premiados em uma experiência autêntica e familiar.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Vinícolas Jolimont</h4>
+        <ul>
+          <li>13:00 - Saída de Gramado</li>
+          <li>13:45 - Chegada à primeira vinícola Jolimont</li>
+          <li>14:00 - Tour pela produção e história da família</li>
+          <li>14:45 - Degustação guiada de vinhos</li>
+          <li>15:30 - Deslocamento para segunda vinícola</li>
+          <li>15:45 - Visita às caves e área de envelhecimento</li>
+          <li>16:30 - Degustação de vinhos especiais</li>
+          <li>17:15 - Tempo livre para compras</li>
+          <li>17:45 - Retorno para Gramado</li>
+          <li>18:30 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Vinícola Jolimont tradicional",
+      "Vinícola Jolimont boutique",
+      "Caves de envelhecimento",
+      "Sala de degustação familiar",
+      "Museu da família Jolimont",
+      "Loja de vinhos e produtos artesanais"
+    ],
+    horarios: [
+      "Tarde: 13:00h (saída)",
+      "Duração: 5-6 horas",
+      "Terças, quintas e sábados",
+      "Agendar com 48h de antecedência"
+    ],
+    saidas: [
+      "Gramado Centro: 13:00h",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Visita a 2 vinícolas da mesma família",
+      "Degustações inclusas em ambas",
+      "História da família Jolimont contada durante o tour",
+      "Documento com foto obrigatório para degustação",
+      "Degustação alcoólica apenas para maiores de 18 anos",
+      "Sucos artesanais disponíveis para todos",
+      "Reserva recomendada com antecedência"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 16,
+    nome: "Combo dos 7 Museus",
+    preco: 190.00,
+    imagem: "/images/combo-7-museus.jpeg",
+    imagens: [
+      "/images/combo-7-museus.png",
+      "/images/combo-7-museus-2.jpg",
+      "/images/combo-7-museus-3.jpg",
+      "/images/combo-7-museus-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 6h",
+    inclui: ["Transporte entre museus", "Ingressos para 7 museus", "Roteiro guiado", "Mapa dos museus", "Água mineral"],
+    avaliacao: 4.6,
+    reviews: 134,
+    descricao: "Uma jornada cultural pelos museus mais interessantes de Gramado! Conheça a história, arte, ciência e curiosidades em 7 museus temáticos diferentes. Perfeito para famílias, estudantes e amantes da cultura.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Combo 7 Museus</h4>
+        <ul>
+          <li>09:30 - Saída do ponto de encontro</li>
+          <li>10:00 - Museu do Perfume (história e criação)</li>
+          <li>11:00 - Harley Motor Show (motos e liberdade)</li>
+          <li>12:00 - Hollywood Dream Cars (carros de cinema)</li>
+          <li>13:00 - Almoço (opcional, não incluso)</li>
+          <li>14:00 - Museu de Cera (celebridades em cera)</li>
+          <li>15:00 - Super Carros (carros esportivos)</li>
+          <li>16:00 - Museu Medieval (cavaleiros e princesas)</li>
+          <li>17:00 - Museu do Chocolate (história e degustação)</li>
+          <li>17:30 - Retorno ao ponto inicial</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Museu do Perfume",
+      "Harley Motor Show",
+      "Hollywood Dream Cars",
+      "Museu de Cera",
+      "Super Carros",
+      "Museu Medieval",
+      "Museu do Chocolate"
+    ],
+    horarios: [
+      "Manhã: 09:30h (saída)",
+      "Duração: 6-8 horas",
+      "Segundas, quartas e sextas",
+      "Tour completo com pausa para almoço"
+    ],
+    saidas: [
+      "Gramado Centro: 09:30h",
+      "Ponto único de encontro",
+      "Transporte entre museus incluso"
+    ],
+    informacoesImportantes: [
+      "Ingressos para 7 museus diferentes inclusos",
+      "Transporte entre os museus incluso",
+      "Roteiro otimizado para aproveitamento máximo",
+      "Água mineral fornecida",
+      "Almoço não incluso (sugestões fornecidas)",
+      "Calçados confortáveis recomendados",
+      "Fotos permitidas em todos os museus"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 2-5 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 17,
+    nome: "Alpen Park",
+    preco: 160.00,
+    imagem: "/images/alpen-park.jpg",
+    categoria: "passeios",
+    duracao: "Aprox 4h",
+    inclui: ["Transporte", "Ingresso", "Equipamentos de segurança", "Seguro"],
+    avaliacao: 4.8,
+    reviews: 189,
+    descricao: "Adrenalina e diversão garantidas no Alpen Park! Desafie-se nas emocionantes tirolesas, explore trilhas de aventura e divirta-se em atrações radicais seguras. O parque perfeito para famílias aventureiras e amantes de esportes radicais.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Alpen Park</h4>
+        <ul>
+          <li>13:00 - Saída de Gramado</li>
+          <li>13:20 - Chegada ao Alpen Park</li>
+          <li>13:30 - Equipamentos de segurança</li>
+          <li>14:00 - Tirolesa (3 circuitos diferentes)</li>
+          <li>15:00 - Trilha de aventura</li>
+          <li>16:00 - Atrações radicais (opcionais)</li>
+          <li>16:45 - Tempo livre para fotos</li>
+          <li>17:15 - Retorno para Gramado</li>
+          <li>17:35 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Tirolesa (500m de extensão)",
+      "Trilha de aventura",
+      "Ponte pênsil",
+      "Arvorismo",
+      "Área de escalada",
+      "Café com vista",
+      "Loja de souvenirs"
+    ],
+    horarios: [
+      "Tarde: 13:00h",
+      "Duração: 4 horas",
+      "Parque aberto 10h-18h"
+    ],
+    saidas: [
+      "Gramado: ponto central",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Peso mínimo: 30kg | máximo: 120kg",
+      "Altura mínima: 1,40m",
+      "Não recomendado para grávidas",
+      "Calçados fechados obrigatórios",
+      "Equipamentos de segurança fornecidos",
+      "Seguro acidentes incluso",
+      "Instrutores qualificados"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 72h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 6,
+    nome: "Passeio Maria Fumaça Classic",
+    preco: {
+      adulto: 589.00,
+      jovem: 399.00
     },
-    {
-      id: 11,
-      nome: "Parque da Ferradura",
-      preco: 95.00,
-      imagem: "/images/ferradura.jpg",
-      categoria: "passeios",
-      duracao: "Aprox 3h",
-      inclui: ["Transporte", "Ingresso", "Guia", "Água mineral"],
-      avaliacao: 4.6,
-      reviews: 154,
-      descricao: "Aventure-se no Parque da Ferradura e descubra um dos mais belos cânions da região! Trilhas acessíveis, mirantes deslumbrantes e uma vista de tirar o fôlego da formação em formato de ferradura. Natureza pura para todas as idades.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Parque da Ferradura</h4>
+    imagem: "/images/vale-vinhedos-premium.jpg",
+    imagens: [
+      "/images/vale-vinhedos-premium.jpg",
+      "/images/vale-vinhedos-premium-5.jpg",
+      "/images/vale-vinhedos-premium-3.jpg",
+      "/images/vale-vinhedos-premium-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 11h",
+    inclui: ["Transporte executivo", "Degustações premium", "Ingresso trem", "Guia especializado", "Almoço gourmet"],
+    faixaEtaria: "Adultos: R$589 | Jovens: R$399 | Crianças até 6 não pagam",
+    avaliacao: 4.9,
+    reviews: 78,
+    descricao: "O mais completo roteiro enoturístico da região! Viaje no tempo no Trem Maria Fumaça e mergulhe na excelência dos vinhos premium do Vale dos Vinhedos. Degustações selecionadas, guia especializado e transporte confortável - tudo pensado para sua experiência perfeita.",
+    roteiro: `
+      <div class="section-content">
+        <h4>🎭 ROTEIRO CLASSIC</h4>
+        
+        <div class="roteiro-timeline">
+          <div class="roteiro-item">
+            <strong>🎭 Teatro Epopéia Italiana</strong>
+            <p>Espetáculo com 9 cenários contando a história dos imigrantes italianos. Ingresso incluso.</p>
+          </div>
+          
+          <div class="roteiro-item">
+            <strong>🍇 Vinícola Aurora – Bento Gonçalves</strong>
+            <p>Visitação e degustação padrão da vinícola (conforme disponibilidade). Incluso.</p>
+          </div>
+          
+          <div class="roteiro-item">
+            <strong>🥘 Almoço incluso</strong>
+            <p>Almoço em restaurante comida típica italiana. Bebidas não inclusas.</p>
+          </div>
+          
+          <div class="roteiro-item">
+            <strong>🧵 Malharia Local</strong>
+            <p>Parada rápida e opcional para compras direto de fábrica. (Sem custo, sem ingresso.)</p>
+          </div>
+          
+          <div class="roteiro-item">
+            <strong>🛠 Showroom Tramontina – Carlos Barbosa</strong>
+            <p>Visita ao showroom oficial com mais de 5 mil itens em exposição. (Não é visita à fábrica e sem custo)</p>
+          </div>
+          
+          <div class="roteiro-item">
+            <strong>🧀 Queijaria Fetina Valbrenta</strong>
+            <p>Degustação padrão de queijos, salames e vinhos coloniais (conforme disponibilidade).</p>
+          </div>
+          
+          <div class="roteiro-section">
+            <h5>✅ INCLUI:</h5>
+            <ul>
+              <li>Transporte da agência ida e volta</li>
+              <li>Transporte entre todas as cidades visitadas</li>
+              <li>Bilhete do Trem Maria Fumaça</li>
+              <li>Ingresso da Epopeia Italiana</li>
+              <li>Almoço</li>
+              <li>Todas as degustações padrão nos locais mencionados</li>
+            </ul>
+          </div>
+          
+          <div class="roteiro-section">
+            <h5>❌ NÃO INCLUI:</h5>
+            <ul>
+              <li>Bebidas durante o almoço</li>
+              <li>Compras pessoais nas lojas visitadas</li>
+            </ul>
+          </div>
+          
+          <div class="roteiro-section">
+            <h5>🕒 HORÁRIOS PREVISTOS</h5>
+            <ul>
+              <li><strong>Saída de Gramado/Canela:</strong> previsto 06h00</li>
+              <li><strong>Retorno previsto:</strong> entre 19:00 e 20:00</li>
+              <li><em>(Horário pode variar conforme trânsito, tempo nas atrações e fluxo do dia.)</em></li>
+            </ul>
+          </div>
+          
+          <div class="roteiro-section">
+            <h5>ℹ INFORMAÇÕES IMPORTANTES</h5>
+            <ul>
+              <li><strong>Distância:</strong> Gramado → Bento Gonçalves: aproximadamente 120 km (1h40 a 2h de viagem).</li>
+              <li><strong>Sobre o Trem Maria Fumaça:</strong> O guia não acompanha dentro do trem (regra da operadora), mas aguarda o grupo na estação final. O passeio de trem dura cerca de 1h30.</li>
+              <li><strong>Sobre o Transporte:</strong> Todo o deslocamento de Gramado, Bento, Garibaldi e Carlos Barbosa é feito no transporte da agência. As atrações aqui mencionadas também são todas feitas com transporte da agência, podendo ser carro, van, micro-ônibus ou ônibus.</li>
+              <li><strong>Sobre a Ordem das Atrações:</strong> A ordem das visitas pode ser alterada pela FrancysTur conforme logística, clima e horários das atrações.</li>
+            </ul>
+          </div>
+          
+          <hr />
+          
+          <h5>Detalhes Adicionais:</h5>
           <ul>
-            <li>10:00 - Saída de Gramado</li>
-            <li>10:40 - Chegada ao Parque da Ferradura</li>
-            <li>11:00 - Início da trilha principal</li>
-            <li>11:45 - Mirante do Cânion</li>
-            <li>12:30 - Trilha das Cascatas</li>
-            <li>13:15 - Mirante da Ferradura (vista 360°)</li>
-            <li>14:00 - Retorno para Gramado</li>
-            <li>14:40 - Chegada em Gramado</li>
+            <li>07:00 - Saída com transporte executivo</li>
+            <li>09:00 - Trem Maria Fumaça (assentos especiais)</li>
+            <li>10:30 - Vinícola premium (tour em caves subterrâneos)</li>
+            <li>12:00 - Almoço gourmet em restaurante premiado</li>
+            <li>13:30 - Segunda vinícola premium (degustação reservada)</li>
+            <li>15:00 - Queijaria artesanal (produtos exclusivos)</li>
+            <li>16:00 - Chocolateira local (harmonização com vinho)</li>
+            <li>17:00 - Retorno para Gramado</li>
+            <li>19:00 - Chegada no ponto de origem</li>
           </ul>
         </div>
-      `,
-      pontosVisita: [
-        "Cânion da Ferradura",
-        "Mirante principal",
-        "Trilha das Cascatas",
-        "Mirante 360°",
-        "Centro de visitantes",
-        "Área de piquenique",
-        "Loja de artesanato"
-      ],
-      horarios: [
-        "Manhã: 10:00h",
-        "Tarde: 15:00h",
-        "Duração: 3 horas"
-      ],
-      saidas: [
-        "Gramado: pontos centrais",
-        "Transporte incluso"
-      ],
-      informacoesImportantes: [
-        "Trilhas de baixa dificuldade",
-        "Acessível para crianças e idosos",
-        "Calçados esportivos recomendados",
-        "Levar câmera fotográfica",
-        "Água mineral fornecida",
-        "Banheiros no local",
-        "Estacionamento gratuito"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 48h antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 24-48h antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 24h:</strong>
-            <span>Sem reembolso</span>
-          </div>
+      </div>
+    `,
+    pontosVisita: [
+      "Trem Maria Fumaça (classe premium)",
+      "Teatro Epopéia Italiana",
+      "Vinícola Aurora",
+      "Restaurante comida típica italiana",
+      "Malharia local",
+      "Showroom Tramontina",
+      "Queijaria Fetina Valbrenta",
+      "Loja de produtos regionais premium"
+    ],
+    horarios: [
+      "Saída: 06:00h",
+      "Retorno: 19:00-20:00h",
+      "Duração: 13-14 horas",
+      "Dias: Quarta, Sexta, Sábado, Domingo"
+    ],
+    saidas: [
+      "Gramado: ponto central",
+      "Canela: mediante agendamento",
+      "Transporte compartilhado"
+    ],
+    informacoesImportantes: [
+      "Trem Maria Fumaça incluso",
+      "Ingresso Epopéia Italiana incluso",
+      "Almoço incluso (bebidas não)",
+      "Todas as degustações incluídas",
+      "Guia especializado",
+      "Grupo compartilhado",
+      "Reservas com antecedência",
+      "Vestimenta casual confortável"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 14 dias antes:</strong>
+          <span>Reembolso de 100%</span>
         </div>
-      `
+        <div class="policy-item">
+          <strong>Cancelamento entre 7-14 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 7,
+    nome: "Trem Maria Fumaça e Vinícola Casa Valduga",
+    preco: {
+      adulto: 799.00,
+      crianca: 399.00
     },
-    {
-      id: 12,
-      nome: "Alpen Park",
-      preco: 160.00,
-      imagem: "/images/alpen-park.jpg",
-      categoria: "passeios",
-      duracao: "Aprox 4h",
-      inclui: ["Transporte", "Ingresso", "Equipamentos de segurança", "Seguro"],
-      avaliacao: 4.8,
-      reviews: 189,
-      descricao: "Adrenalina e diversão garantidas no Alpen Park! Desafie-se nas emocionantes tirolesas, explore trilhas de aventura e divirta-se em atrações radicais seguras. O parque perfeito para famílias aventureiras e amantes de esportes radicais.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Alpen Park</h4>
-          <ul>
-            <li>13:00 - Saída de Gramado</li>
-            <li>13:20 - Chegada ao Alpen Park</li>
-            <li>13:30 - Equipamentos de segurança</li>
-            <li>14:00 - Tirolesa (3 circuitos diferentes)</li>
-            <li>15:00 - Trilha de aventura</li>
-            <li>16:00 - Atrações radicais (opcionais)</li>
-            <li>16:45 - Tempo livre para fotos</li>
-            <li>17:15 - Retorno para Gramado</li>
-            <li>17:35 - Chegada em Gramado</li>
-          </ul>
+    imagem: "/images/trem-valduga.jpg",
+    categoria: "passeios",
+    duracao: "Aprox 11h",
+    inclui: ["Transporte", "Ingresso trem", "Tour na Casa Valduga", "Degustação premium", "Almoço na vinícola"],
+    faixaEtaria: "Maiores 11 anos: R$799 | Crianças 6-10: R$399",
+    avaliacao: 4.9,
+    reviews: 112,
+    descricao: "Uma experiência íntima e exclusiva! Combine a viagem histórica no Trem Maria Fumaça com uma visita privativa à renomada Casa Valduga. Conheça os caves subterrâneos, aprenda com enólogos especializados e saboreie vinhos premiados em degustação reservada.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Casa Valduga Exclusivo</h4>
+        <ul>
+          <li>06:30 - Saída de Gramado</li>
+          <li>08:30 - Chegada em Bento Gonçalves</li>
+          <li>09:00 - Trem Maria Fumaça (experiência completa)</li>
+          <li>10:30 - Chegada à Casa Valduga</li>
+          <li>11:00 - Tour pelos caves e adegas</li>
+          <li>12:30 - Almoço no restaurante da vinícola</li>
+          <li>14:00 - Degustação premium com enólogo</li>
+          <li>15:30 - Tempo livre na loja e jardins</li>
+          <li>16:30 - Retorno para Gramado</li>
+          <li>18:30 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Trem Maria Fumaça (trajeto completo)",
+      "Casa Valduga (tour completo)",
+      "Caves subterrâneos",
+      "Adegas históricas",
+      "Restaurante da vinícola",
+      "Jardins e vinhedos",
+      "Loja de vinhos premiados"
+    ],
+    horarios: [
+      "Saída: 06:30h",
+      "Retorno: 18:30h",
+      "Duração: 12 horas",
+      "Agendamento necessário"
+    ],
+    saidas: [
+      "Gramado: ponto central",
+      "Transporte exclusivo para o grupo"
+    ],
+    informacoesImportantes: [
+      "Tour privativo na Casa Valduga",
+      "Degustação com enólogo especializado",
+      "Almoço incluso na vinícola",
+      "Vinhos premiados na degustação",
+      "Grupos pequenos (até 8 pessoas)",
+      "Reserva com 7 dias de antecedência",
+      "Vestimenta adequada para vinícola"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 21 dias antes:</strong>
+          <span>Reembolso de 100%</span>
         </div>
-      `,
-      pontosVisita: [
-        "Tirolesa (500m de extensão)",
-        "Trilha de aventura",
-        "Ponte pênsil",
-        "Arvorismo",
-        "Área de escalada",
-        "Café com vista",
-        "Loja de souvenirs"
-      ],
-      horarios: [
-        "Tarde: 13:00h",
-        "Duração: 4 horas",
-        "Parque aberto 10h-18h"
-      ],
-      saidas: [
-        "Gramado: ponto central",
-        "Transporte incluso"
-      ],
-      informacoesImportantes: [
-        "Peso mínimo: 30kg | máximo: 120kg",
-        "Altura mínima: 1,40m",
-        "Não recomendado para grávidas",
-        "Calçados fechados obrigatórios",
-        "Equipamentos de segurança fornecidos",
-        "Seguro acidentes incluso",
-        "Instrutores qualificados"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 72h antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 24-72h antes:</strong>
-            <span>Reembolso de 50%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 24h:</strong>
-            <span>Sem reembolso</span>
-          </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 14-21 dias antes:</strong>
+          <span>Reembolso de 80%</span>
         </div>
-      `
-    }
-  ],
+        <div class="policy-item">
+          <strong>Cancelamento entre 7-14 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 7 dias:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 20,
+    nome: "Rota Romântica - Gramado e Canela",
+    preco: 145.00,
+    imagem: "/images/rota-romantica.jpg",
+    categoria: "passeios",
+    duracao: "Aprox 5h",
+    inclui: ["Transporte", "Guia especializado", "Paradas estratégicas", "Água mineral"],
+    avaliacao: 4.7,
+    reviews: 203,
+    descricao: "Descubra os cenários mais românticos da Serra Gaúcha! Passeie por Gramado e Canela, visitando mirantes deslumbrantes, jardins encantados e pontos históricos. Perfeito para casais e quem busca belas paisagens e momentos inesquecíveis.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Romântico</h4>
+        <ul>
+          <li>14:00 - Saída do ponto de encontro</li>
+          <li>14:30 - Mirante do Vale do Quilombo</li>
+          <li>15:15 - Parque do Caracol (vista externa)</li>
+          <li>16:00 - Catedral de Pedra de Canela</li>
+          <li>16:45 - Rua Coberta de Gramado</li>
+          <li>17:30 - Lago Negro (pôr do sol)</li>
+          <li>18:15 - Jantar romântico (opcional)</li>
+          <li>19:00 - Retorno aos hotéis</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Mirante Vale do Quilombo",
+      "Parque do Caracol (exterior)",
+      "Catedral de Pedra de Canela",
+      "Rua Coberta de Gramado",
+      "Lago Negro",
+      "Vale do Bode (vista panorâmica)",
+      "Alameda das Hortênsias"
+    ],
+    horarios: [
+      "Tarde: 14:00h",
+      "Pôr do sol: 17:30h",
+      "Duração: 5 horas",
+      "Diariamente"
+    ],
+    saidas: [
+      "Gramado Centro: 14:00h",
+      "Hotéis centrais mediante agendamento"
+    ],
+    informacoesImportantes: [
+      "Passeio ideal para casais",
+      "Fotos românticas incluídas",
+      "Guia especializado em roteiros românticos",
+      "Água mineral fornecida",
+      "Jantar opcional com reserva prévia",
+      "Ponto de encontro definido na reserva"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 48h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-48h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 21,
+    nome: "Parque da Ferradura",
+    preco: 95.00,
+    imagem: "/images/ferradura.jpg",
+    categoria: "passeios",
+    duracao: "Aprox 3h",
+    inclui: ["Transporte", "Ingresso", "Guia", "Água mineral"],
+    avaliacao: 4.6,
+    reviews: 154,
+    descricao: "Aventure-se no Parque da Ferradura e descubra um dos mais belos cânions da região! Trilhas acessíveis, mirantes deslumbrantes e uma vista de tirar o fôlego da formação em formato de ferradura. Natureza pura para todas as idades.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Parque da Ferradura</h4>
+        <ul>
+          <li>10:00 - Saída de Gramado</li>
+          <li>10:40 - Chegada ao Parque da Ferradura</li>
+          <li>11:00 - Início da trilha principal</li>
+          <li>11:45 - Mirante do Cânion</li>
+          <li>12:30 - Trilha das Cascatas</li>
+          <li>13:15 - Mirante da Ferradura (vista 360°)</li>
+          <li>14:00 - Retorno para Gramado</li>
+          <li>14:40 - Chegada em Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Cânion da Ferradura",
+      "Mirante principal",
+      "Trilha das Cascatas",
+      "Mirante 360°",
+      "Centro de visitantes",
+      "Área de piquenique",
+      "Loja de artesanato"
+    ],
+    horarios: [
+      "Manhã: 10:00h",
+      "Tarde: 15:00h",
+      "Duração: 3 horas"
+    ],
+    saidas: [
+      "Gramado: pontos centrais",
+      "Transporte incluso"
+    ],
+    informacoesImportantes: [
+      "Trilhas de baixa dificuldade",
+      "Acessível para crianças e idosos",
+      "Calçados esportivos recomendados",
+      "Levar câmera fotográfica",
+      "Água mineral fornecida",
+      "Banheiros no local",
+      "Estacionamento gratuito"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 48h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-48h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  }
+],
   
   vinicolas: [
     {
