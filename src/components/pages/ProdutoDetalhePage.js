@@ -41,7 +41,7 @@ const ProdutoDetalhePage = () => {
   const [quantidadeAdultos, setQuantidadeAdultos] = useState(1);
   const [quantidadeCriancas, setQuantidadeCriancas] = useState(0);
   const [quantidadeCortesias, setQuantidadeCortesias] = useState(0);
-  const [quantidadeIdosos, setQuantidadeIdosos] = useState(0); // Nova variável para idosos
+  const [quantidadeIdosos, setQuantidadeIdosos] = useState(0);
   const [dataSelecionada, setDataSelecionada] = useState('');
   const [tipoPrecoSelecionado, setTipoPrecoSelecionado] = useState('');
   const [duracaoSelecionada, setDuracaoSelecionada] = useState('');
@@ -63,34 +63,27 @@ const ProdutoDetalhePage = () => {
     return produtosComMariaFumaca.includes(produto?.id);
   };
 
-  // Função para obter faixa etária específica do produto
   const getFaixaEtariaProduto = () => {
     if (!produto) return { criancaMin: 5, criancaMax: 11, cortesiaMax: 4 };
     
-    // Analisar a faixaEtaria do produto
     const faixaEtaria = produto.faixaEtaria || '';
     
-    // Produto ID 4: "Menores de 6 anos não pagam"
     if (produto.id === 4) {
       return { criancaMin: 6, criancaMax: 11, cortesiaMax: 5 };
     }
     
-    // Produto ID 6: "Crianças 6-10: R$459 | Menores 6 não pagam"
     if (produto.id === 6) {
       return { criancaMin: 6, criancaMax: 10, cortesiaMax: 5 };
     }
     
-    // Produto ID 7: "Crianças até 6 não pagam"
     if (produto.id === 7) {
       return { criancaMin: 6, criancaMax: 11, cortesiaMax: 5 };
     }
     
-    // Produto ID 8: "Crianças 6-10: R$399"
     if (produto.id === 8) {
       return { criancaMin: 6, criancaMax: 10, cortesiaMax: 5 };
     }
     
-    // Default: padrão geral
     return { criancaMin: 5, criancaMax: 11, cortesiaMax: 4 };
   };
 
@@ -219,6 +212,15 @@ const ProdutoDetalhePage = () => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     
+    // Primeiro dia do mês
+    const primeiroDia = new Date(ano, mes, 1);
+    const primeiroDiaSemana = primeiroDia.getDay(); // 0=Domingo, 1=Segunda...
+    
+    // Adicionar dias vazios para alinhar o primeiro dia do mês
+    for (let i = 0; i < primeiroDiaSemana; i++) {
+      dias.push(null); // Dia vazio
+    }
+    
     for (let dia = 1; dia <= diasNoMes; dia++) {
       const data = new Date(ano, mes, dia);
       const dataString = data.toISOString().split('T')[0];
@@ -234,8 +236,9 @@ const ProdutoDetalhePage = () => {
       
       dias.push({
         data: dataString,
-        diaNumero: dia.toString().padStart(2, '0'),
+        diaNumero: dia,
         nomeDia: getNomeDiaSemana(dataString),
+        diaSemanaNumero: data.getDay(),
         passada: passada,
         disponivel: disponivel,
         hoje: data.getTime() === hoje.getTime()
@@ -243,6 +246,25 @@ const ProdutoDetalhePage = () => {
     }
     
     return dias;
+  };
+
+  const organizarDiasPorSemana = (diasArray) => {
+    const semanas = [];
+    let semanaAtual = [];
+    
+    diasArray.forEach((dia, index) => {
+      semanaAtual.push(dia);
+      
+      if (semanaAtual.length === 7 || index === diasArray.length - 1) {
+        while (semanaAtual.length < 7) {
+          semanaAtual.push(null);
+        }
+        semanas.push(semanaAtual);
+        semanaAtual = [];
+      }
+    });
+    
+    return semanas;
   };
 
   const proximoMes = () => {
@@ -339,20 +361,17 @@ const ProdutoDetalhePage = () => {
 
   const validacaoData = validarData(dataSelecionada);
   const diasDoMes = getDiasDoMes(mesAtual, anoAtual);
+  const semanasDoMes = organizarDiasPorSemana(diasDoMes);
   const hoje = new Date();
   const hojeString = hoje.toISOString().split('T')[0];
   const totalPessoas = quantidadeAdultos + quantidadeIdosos + quantidadeCriancas + quantidadeCortesias;
 
   return (
     <div className="product-detail-page">
-      {/* LAYOUT DA GALERIA NO FORMATO DA IMAGEM */}
       <div className="product-gallery-container">
-        {/* TÍTULO ACIMA DAS IMAGENS */}
         <h1 className="product-title">{produto.nome}</h1>
         
-        {/* LINHA 1: IMAGENS */}
         <div className="product-images-row">
-          {/* IMAGEM GRANDE PRINCIPAL */}
           <div className="gallery-large gallery-main">
             <img 
               src={produtoImages[0] || "/images/default-product.jpg"} 
@@ -366,7 +385,6 @@ const ProdutoDetalhePage = () => {
             />
           </div>
           
-          {/* COLUNA DIREITA COM 2 IMAGENS PEQUENAS */}
           <div className="gallery-secondary-column">
             <div className="gallery-large gallery-secondary">
               {produtoImages[1] && (
@@ -400,30 +418,16 @@ const ProdutoDetalhePage = () => {
           </div>
         </div>
         
-        {/* LINHA 2: CARD DE INFORMAÇÕES (ESTILO DA IMAGEM) */}
         <div className="image-info-card">
           <div className="info-card-row">
             <div className="activity-badge">
-              {incluiMariaFumaca() ? 'Inclui Trem Maria Fumaça' : 'Passeio Turístico'}
-            </div>
-            
-            <div className="days-highlight">
-              <FontAwesomeIcon icon={faCalendarAlt} />
-              Dias: 
-              {incluiMariaFumaca() 
-                ? ' Dom Qua Sex Sáb' 
-                : ' Dom Seg Ter Qua Qui Sex Sáb'
-              }
             </div>
           </div>
         </div>
       </div>
       
-      {/* LAYOUT EM DUAS COLUNAS */}
       <div className="product-layout-container">
-        {/* COLUNA ESQUERDA - CONTEÚDO */}
         <div className="product-content-column">
-          {/* SEÇÕES EXPANSÍVEIS EM LISTA VERTICAL */}
           <div className="expandable-sections-vertical">
             <div className="section-list">
               <button 
@@ -539,7 +543,6 @@ const ProdutoDetalhePage = () => {
             </div>
           </div>
           
-          {/* DETALHES ADICIONAIS */}
           <section className="content-section">
             <h2 className="section-title">Informações Importantes</h2>
             <div className="details-grid">
@@ -579,7 +582,6 @@ const ProdutoDetalhePage = () => {
             </div>
           </section>
           
-          {/* NOTA FINAL */}
           <div className="product-note">
             <p>
               <strong>Importante:</strong> {produto.categoria === 'transporte-passeios' 
@@ -589,7 +591,6 @@ const ProdutoDetalhePage = () => {
           </div>
         </div>
         
-        {/* COLUNA DIREITA - CARD DE RESERVA STICKY */}
         <div className="booking-column">
           <div className="booking-card">
             <div className="booking-card-header">
@@ -600,15 +601,13 @@ const ProdutoDetalhePage = () => {
             </div>
             
             <div className="booking-card-body">
-              {/* DATAS EM QUADRADINHOS (AGORA ACIMA DA QUANTIDADE) */}
               <div className="booking-field">
                 <label className="booking-label">
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   Selecione a data:
                 </label>
                 
-                {/* CALENDÁRIO DE QUADRADINHOS COM CONTROLE DE MÊS */}
-                <div className="date-squares-container">
+                <div className="calendar-table-container">
                   <div className="month-controls">
                     <button className="month-nav-btn" onClick={mesAnterior}>
                       <FontAwesomeIcon icon={faChevronLeft} />
@@ -626,25 +625,40 @@ const ProdutoDetalhePage = () => {
                     </button>
                   </div>
                   
-                  <div className="date-squares">
-                    {diasDoMes.map((dia, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => dia.disponivel && setDataSelecionada(dia.data)}
-                        className={`date-square ${dia.data === dataSelecionada ? 'selected' : ''} 
-                                   ${dia.passada ? 'past-date' : ''} 
-                                   ${!dia.disponivel && !dia.passada ? 'unavailable-date' : ''}
-                                   ${dia.hoje ? 'today-date' : ''}`}
-                        title={`${dia.data} - ${dia.nomeDia}${!dia.disponivel && !dia.passada ? ' (Não disponível)' : ''}`}
-                        disabled={!dia.disponivel || dia.passada}
-                      >
-                        <span className="date-number">{dia.diaNumero}</span>
-                        <span className="date-weekday">{dia.nomeDia.substring(0, 3)}</span>
-                        {dia.passada && <div className="date-passed">Passado</div>}
-                        {dia.hoje && <div className="date-today">Hoje</div>}
-                        {!dia.disponivel && !dia.passada && <div className="date-unavailable">Indisponível</div>}
-                      </button>
+                  <div className="calendar-weekdays">
+                    <div className="weekday-header">Dom</div>
+                    <div className="weekday-header">Seg</div>
+                    <div className="weekday-header">Ter</div>
+                    <div className="weekday-header">Qua</div>
+                    <div className="weekday-header">Qui</div>
+                    <div className="weekday-header">Sex</div>
+                    <div className="weekday-header">Sáb</div>
+                  </div>
+                  
+                  <div className="calendar-weeks">
+                    {semanasDoMes.map((semana, semanaIndex) => (
+                      <div key={semanaIndex} className="calendar-week">
+                        {semana.map((dia, diaIndex) => (
+                          <div key={diaIndex} className="calendar-day-cell">
+                            {dia ? (
+                              <button
+                                type="button"
+                                onClick={() => dia.disponivel && setDataSelecionada(dia.data)}
+                                className={`calendar-day ${dia.data === dataSelecionada ? 'selected' : ''} 
+                                           ${dia.passada ? 'past-date' : ''} 
+                                           ${!dia.disponivel && !dia.passada ? 'unavailable-date' : ''}
+                                           ${dia.hoje ? 'today-date' : ''}`}
+                                title={`${dia.data} - ${dia.nomeDia}${!dia.disponivel && !dia.passada ? ' (Não disponível)' : ''}`}
+                                disabled={!dia.disponivel || dia.passada}
+                              >
+                                <span className="day-number">{dia.diaNumero}</span>
+                              </button>
+                            ) : (
+                              <div className="calendar-day empty-day"></div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     ))}
                   </div>
                   
@@ -659,7 +673,6 @@ const ProdutoDetalhePage = () => {
                     </div>
                   )}
                   
-                  {/* LEGENDA DO CALENDÁRIO */}
                   <div className="calendar-legend">
                     <div className="legend-item">
                       <div className="legend-color available"></div>
@@ -680,7 +693,6 @@ const ProdutoDetalhePage = () => {
                   </div>
                 </div>
                 
-                {/* AVISO MARIA FUMAÇA */}
                 {incluiMariaFumaca() && (
                   <div className="maria-fumaca-notice">
                     <FontAwesomeIcon icon={faTrain} />
@@ -689,7 +701,6 @@ const ProdutoDetalhePage = () => {
                 )}
               </div>
               
-              {/* QUANTIDADES SEPARADAS PARA ADULTOS, IDOSOS, CRIANÇAS E CORTESIAS */}
               {produto.categoria !== 'transporte-passeios' && (
                 <div className="booking-field">
                   <label className="booking-label">
@@ -698,7 +709,6 @@ const ProdutoDetalhePage = () => {
                   </label>
                   
                   <div className="quantity-groups">
-                    {/* ADULTOS */}
                     <div className="quantity-group">
                       <div className="quantity-group-label">
                         <FontAwesomeIcon icon={faUser} />
@@ -727,7 +737,6 @@ const ProdutoDetalhePage = () => {
                       </div>
                     </div>
                     
-                    {/* IDOSOS (60+ anos) */}
                     <div className="quantity-group">
                       <div className="quantity-group-label">
                         <FontAwesomeIcon icon={faUserTie} />
@@ -756,7 +765,6 @@ const ProdutoDetalhePage = () => {
                       </div>
                     </div>
                     
-                    {/* CRIANÇAS (idade específica do produto) */}
                     <div className="quantity-group">
                       <div className="quantity-group-label">
                         <FontAwesomeIcon icon={faChild} />
@@ -785,7 +793,6 @@ const ProdutoDetalhePage = () => {
                       </div>
                     </div>
                     
-                    {/* CORTESIAS (0-4 ou 0-5 anos dependendo do produto) */}
                     <div className="quantity-group">
                       <div className="quantity-group-label">
                         <FontAwesomeIcon icon={faBaby} />
@@ -814,7 +821,6 @@ const ProdutoDetalhePage = () => {
                       </div>
                     </div>
                     
-                    {/* TOTAL */}
                     <div className="quantity-total">
                       <span>Total de pessoas:</span>
                       <strong>{totalPessoas}</strong>
@@ -823,7 +829,6 @@ const ProdutoDetalhePage = () => {
                 </div>
               )}
               
-              {/* RESUMO DA SOLICITAÇÃO */}
               <div className="booking-summary">
                 <div className="summary-line">
                   <span>Passeio:</span>
@@ -863,7 +868,6 @@ const ProdutoDetalhePage = () => {
                 </div>
               </div>
               
-              {/* BOTÕES DE AÇÃO */}
               <div className="booking-actions">
                 <button 
                   onClick={handleWhatsApp} 
@@ -880,7 +884,6 @@ const ProdutoDetalhePage = () => {
                 </div>
               </div>
               
-              {/* GARANTIA DE SEGURANÇA */}
               <div className="security-guarantee">
                 <div className="guarantee-item">
                   <FontAwesomeIcon icon={faCheck} />
