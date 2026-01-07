@@ -421,6 +421,16 @@ const ProdutoDetalhePage = () => {
         <div className="image-info-card">
           <div className="info-card-row">
             <div className="activity-badge">
+              {incluiMariaFumaca() ? 'Inclui Trem Maria Fumaça' : 'Passeio Turístico'}
+            </div>
+            
+            <div className="days-highlight">
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              Dias: 
+              {incluiMariaFumaca() 
+                ? ' Dom Qua Sex Sáb' 
+                : ' Dom Seg Ter Qua Qui Sex Sáb'
+              }
             </div>
           </div>
         </div>
