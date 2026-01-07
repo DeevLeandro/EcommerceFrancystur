@@ -4,16 +4,6 @@ const Comentarios = () => {
   // Dados dos depoimentos com fotos reais
   const depoimentos = [
     {
-      id: 1,
-      nome: "Maria Silva",
-      cidade: "São Paulo, SP",
-      avaliacao: 5,
-      comentario: "Contratamos a FrancysTur para nossa lua de mel em Gramado e foi tudo perfeito! Os transfers eram pontuais, os passeios bem organizados e o atendimento excepcional. Recomendo a todos!",
-      data: "Julho 2025",
-      viagem: "Lua de mel",
-      foto: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
-    },
-    {
       id: 2,
       nome: "Carlos Mendes",
       cidade: "Rio de Janeiro, RJ",
@@ -32,26 +22,6 @@ const Comentarios = () => {
       data: "Novembro 2024",
       viagem: "Viagem anual",
       foto: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
-    },
-    {
-      id: 4,
-      nome: "Roberto Santos",
-      cidade: "Curitiba, PR",
-      avaliacao: 5,
-      comentario: "O passeio do Natal Luz foi mágico! As crianças adoraram e o transporte foi muito confortável. A agência sugeriu horários ideais para evitar filas. Excelente serviço!",
-      data: "Julho 2024",
-      viagem: "Viagem com crianças",
-      foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
-    },
-    {
-      id: 5,
-      nome: "Fernanda Costa",
-      cidade: "Porto Alegre, RS",
-      avaliacao: 5,
-      comentario: "Jantar temático incrível! A FrancysTur nos reservou em um restaurante que parecia saído de um conto de fadas. A atenção aos detalhes fez toda a diferença na nossa experiência.",
-      data: "Agosto 2023",
-      viagem: "Aniversário de casamento",
-      foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
     },
     {
       id: 6,
@@ -78,11 +48,8 @@ const Comentarios = () => {
 
   // Fotos alternativas
   const fotosAlternativas = [
-    "https://randomuser.me/api/portraits/women/44.jpg",
     "https://randomuser.me/api/portraits/men/32.jpg",
     "https://randomuser.me/api/portraits/women/68.jpg",
-    "https://randomuser.me/api/portraits/men/75.jpg",
-    "https://randomuser.me/api/portraits/women/26.jpg",
     "https://randomuser.me/api/portraits/men/22.jpg"
   ];
 
