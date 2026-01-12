@@ -1324,157 +1324,6 @@ passeios: [
     `
   },
   {
-    id: 16,
-    nome: "Combo dos 7 Museus",
-    preco: 190.00,
-    imagem: "/images/combo-7-museus.jpeg",
-    imagens: [
-      "/images/combo-7-museus.png",
-      "/images/combo-7-museus-2.jpg",
-      "/images/combo-7-museus-3.jpg",
-      "/images/combo-7-museus-4.jpg"
-    ],
-    categoria: "passeios",
-    duracao: "Aprox 6hs",
-    inclui: ["Transporte entre museus", "Ingressos para 7 museus", "Roteiro guiado", "Mapa dos museus", "Água mineral"],
-    avaliacao: 4.6,
-    reviews: 134,
-    descricao: "Uma jornada cultural pelos museus mais interessantes de Gramado! Conheça a história, arte, ciência e curiosidades em 7 museus temáticos diferentes. Perfeito para famílias, estudantes e amantes da cultura.",
-    roteiro: `
-      <div class="section-content">
-        <h4>Roteiro Combo 7 Museus</h4>
-        <ul>
-          <li>09:30 - Saída do ponto de encontro</li>
-          <li>10:00 - Museu do Perfume (história e criação)</li>
-          <li>11:00 - Harley Motor Show (motos e liberdade)</li>
-          <li>12:00 - Hollywood Dream Cars (carros de cinema)</li>
-          <li>13:00 - Almoço (opcional, não incluso)</li>
-          <li>14:00 - Museu de Cera (celebridades em cera)</li>
-          <li>15:00 - Super Carros (carros esportivos)</li>
-          <li>16:00 - Museu Medieval (cavaleiros e princesas)</li>
-          <li>17:00 - Museu do Chocolate (história e degustação)</li>
-          <li>17:30 - Retorno ao ponto inicial</li>
-        </ul>
-      </div>
-    `,
-    pontosVisita: [
-      "Museu do Perfume",
-      "Harley Motor Show",
-      "Hollywood Dream Cars",
-      "Museu de Cera",
-      "Super Carros",
-      "Museu Medieval",
-      "Museu do Chocolate"
-    ],
-    horarios: [
-      "Manhã: 09:30h (saída)",
-      "Duração: 6-8 horas",
-      "Segundas, quartas e sextas",
-      "Tour completo com pausa para almoço"
-    ],
-    saidas: [
-      "Gramado Centro: 09:30h",
-      "Ponto único de encontro",
-      "Transporte entre museus incluso"
-    ],
-    informacoesImportantes: [
-      "Ingressos para 7 museus diferentes inclusos",
-      "Transporte entre os museus incluso",
-      "Roteiro otimizado para aproveitamento máximo",
-      "Água mineral fornecida",
-      "Almoço não incluso (sugestões fornecidas)",
-      "Calçados confortáveis recomendados",
-      "Fotos permitidas em todos os museus"
-    ],
-    politicasCancelamento: `
-      <div class="cancellation-policy">
-        <div class="policy-item">
-          <strong>Cancelamento até 5 dias antes:</strong>
-          <span>Reembolso de 100%</span>
-        </div>
-        <div class="policy-item">
-          <strong>Cancelamento entre 2-5 dias antes:</strong>
-          <span>Reembolso de 50%</span>
-        </div>
-        <div class="policy-item">
-          <strong>Cancelamento com menos de 48h:</strong>
-          <span>Sem reembolso</span>
-        </div>
-      </div>
-    `
-  },
-  {
-    id: 17,
-    nome: "Alpen Park",
-    preco: 160.00,
-    imagem: "/images/alpen-park.jpg",
-    categoria: "passeios",
-    duracao: "Aprox 4hs",
-    inclui: ["Transporte", "Ingresso", "Equipamentos de segurança", "Seguro"],
-    avaliacao: 4.8,
-    reviews: 189,
-    descricao: "Adrenalina e diversão garantidas no Alpen Park! Desafie-se nas emocionantes tirolesas, explore trilhas de aventura e divirta-se em atrações radicais seguras. O parque perfeito para famílias aventureiras e amantes de esportes radicais.",
-    roteiro: `
-      <div class="section-content">
-        <h4>Roteiro Alpen Park</h4>
-        <ul>
-          <li>13:00 - Saída de Gramado</li>
-          <li>13:20 - Chegada ao Alpen Park</li>
-          <li>13:30 - Equipamentos de segurança</li>
-          <li>14:00 - Tirolesa (3 circuitos diferentes)</li>
-          <li>15:00 - Trilha de aventura</li>
-          <li>16:00 - Atrações radicais (opcionais)</li>
-          <li>16:45 - Tempo livre para fotos</li>
-          <li>17:15 - Retorno para Gramado</li>
-          <li>17:35 - Chegada em Gramado</li>
-        </ul>
-      </div>
-    `,
-    pontosVisita: [
-      "Tirolesa (500m de extensão)",
-      "Trilha de aventura",
-      "Ponte pênsil",
-      "Arvorismo",
-      "Área de escalada",
-      "Café com vista",
-      "Loja de souvenirs"
-    ],
-    horarios: [
-      "Tarde: 13:00h",
-      "Duração: 4 horas",
-      "Parque aberto 10h-18h"
-    ],
-    saidas: [
-      "Gramado: ponto central",
-      "Transporte incluso"
-    ],
-    informacoesImportantes: [
-      "Peso mínimo: 30kg | máximo: 120kg",
-      "Altura mínima: 1,40m",
-      "Não recomendado para grávidas",
-      "Calçados fechados obrigatórios",
-      "Equipamentos de segurança fornecidos",
-      "Seguro acidentes incluso",
-      "Instrutores qualificados"
-    ],
-    politicasCancelamento: `
-      <div class="cancellation-policy">
-        <div class="policy-item">
-          <strong>Cancelamento até 72h antes:</strong>
-          <span>Reembolso de 100%</span>
-        </div>
-        <div class="policy-item">
-          <strong>Cancelamento entre 24-72h antes:</strong>
-          <span>Reembolso de 50%</span>
-        </div>
-        <div class="policy-item">
-          <strong>Cancelamento com menos de 24h:</strong>
-          <span>Sem reembolso</span>
-        </div>
-      </div>
-    `
-  },
-  {
     id: 20,
     nome: "Rota Romântica - Gramado e Canela",
     preco: 145.00,
@@ -3190,6 +3039,86 @@ passeios: [
         <div class="policy-item">
           <strong>Em caso de chuva:</strong>
           <span>Reagendamento gratuito</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 16,
+    nome: "Combo dos 7 Museus",
+    preco: 190.00,
+    imagem: "/images/combo-7-museus.jpeg",
+    imagens: [
+      "/images/combo-7-museus.png",
+      "/images/combo-7-museus-2.jpg",
+      "/images/combo-7-museus-3.jpg",
+      "/images/combo-7-museus-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 6hs",
+    inclui: ["Transporte entre museus", "Ingressos para 7 museus", "Roteiro guiado", "Mapa dos museus", "Água mineral"],
+    avaliacao: 4.6,
+    reviews: 134,
+    descricao: "Uma jornada cultural pelos museus mais interessantes de Gramado! Conheça a história, arte, ciência e curiosidades em 7 museus temáticos diferentes. Perfeito para famílias, estudantes e amantes da cultura.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Combo 7 Museus</h4>
+        <ul>
+          <li>09:30 - Saída do ponto de encontro</li>
+          <li>10:00 - Museu do Perfume (história e criação)</li>
+          <li>11:00 - Harley Motor Show (motos e liberdade)</li>
+          <li>12:00 - Hollywood Dream Cars (carros de cinema)</li>
+          <li>13:00 - Almoço (opcional, não incluso)</li>
+          <li>14:00 - Museu de Cera (celebridades em cera)</li>
+          <li>15:00 - Super Carros (carros esportivos)</li>
+          <li>16:00 - Museu Medieval (cavaleiros e princesas)</li>
+          <li>17:00 - Museu do Chocolate (história e degustação)</li>
+          <li>17:30 - Retorno ao ponto inicial</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Museu do Perfume",
+      "Harley Motor Show",
+      "Hollywood Dream Cars",
+      "Museu de Cera",
+      "Super Carros",
+      "Museu Medieval",
+      "Museu do Chocolate"
+    ],
+    horarios: [
+      "Manhã: 09:30h (saída)",
+      "Duração: 6-8 horas",
+      "Segundas, quartas e sextas",
+      "Tour completo com pausa para almoço"
+    ],
+    saidas: [
+      "Gramado Centro: 09:30h",
+      "Ponto único de encontro",
+      "Transporte entre museus incluso"
+    ],
+    informacoesImportantes: [
+      "Ingressos para 7 museus diferentes inclusos",
+      "Transporte entre os museus incluso",
+      "Roteiro otimizado para aproveitamento máximo",
+      "Água mineral fornecida",
+      "Almoço não incluso (sugestões fornecidas)",
+      "Calçados confortáveis recomendados",
+      "Fotos permitidas em todos os museus"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 2-5 dias antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Sem reembolso</span>
         </div>
       </div>
     `
