@@ -3438,6 +3438,101 @@ passeios: [
       </div>
     `
   },
+
+  {
+    id: 68,
+    nome: "Geo Museu Gramado",
+    preco: 85.00,
+    imagem: "/images/geo-museu.jpg",
+    imagens: [
+      "/images/geo-museu-1.jpg",
+      "/images/geo-museu-2.jpg",
+      "/images/geo-museu-3.jpg",
+      "/images/geo-museu-4.jpg"
+    ],
+    categoria: "passeios",
+    duracao: "Aprox 2.5hs",
+    inclui: ["Ingresso Geo Museu", "Tour geológico guiado", "Experiência interativa", "Mapa geológico personalizado", "Mineral de lembrança", "Água"],
+    avaliacao: 4.8,
+    reviews: 187,
+    descricao: "Descubra os segredos geológicos da Terra no primeiro museu imersivo de geologia do Brasil! No Geo Museu Gramado, você viaja por milhões de anos, conhece minerais raros, entende a formação dos cânions e participa de experiências sensoriais únicas. Uma aula de ciência que parece magia!",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Geo Museu Gramado</h4>
+        <ul>
+          <li>Check-in e recepção geológica</li>
+          <li>Sala 1: "Origem da Terra" (projeção 4D da formação planetária)</li>
+          <li>Sala 2: "Minerais do Mundo" (exposição interativa com mais de 500 amostras)</li>
+          <li>Sala 3: "Formação dos Cânions" (simulação da erosão em tempo real)</li>
+          <li>Sala 4: "Tesouros do RS" (pedras preciosas gaúchas e ametistas)</li>
+          <li>Sala 5: "Experiência do Terremoto" (plataforma simuladora sísmica)</li>
+          <li>Oficina: Identificação de minerais (leva sua pedra para análise)</li>
+          <li>Loja de minerais e pedras semipreciosas</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Túnel do Tempo Geológico (projeção 360°)",
+      "Coleção de 500+ minerais raros",
+      "Simulador de terremotos (escala Richter)",
+      "Mapa tátil da Serra Gaúcha",
+      "Estação de realidade aumentada (como eram os dinossauros)",
+      "Ametista gigante de 500kg (procedente do RS)",
+      "Loja de gemas e cristais"
+    ],
+    horarios: [
+      "Aberto: 10:00h - 19:00h",
+      "Tours guiados: 10:30h, 12:30h, 14:30h, 16:30h",
+      "Última entrada: 17:30h",
+      "Fechado às terças-feiras para manutenção"
+    ],
+    saidas: [
+      "Geo Museu Gramado",
+      "Endereço: Rua das Pedras, 750 - Centro, Gramado/RS",
+      "Localização: Próximo ao Lago Negro"
+    ],
+    informacoesImportantes: [
+      "Tour guiado por geólogos (formados em geologia)",
+      "Experiência sensorial: sala com diferentes temperaturas e texturas",
+      "Aplicativo complementar com realidade aumentada",
+      "Mineral de lembrança incluído no ingresso (pedrinha da região)",
+      "Oficina de identificação mineral: traga sua pedra para análise gratuita",
+      "Acessível para cadeirantes (elevador e rampas)",
+      "Estacionamento gratuito com vagas especiais",
+      "Proibido tocar nas amostras identificadas (áreas sinalizadas)",
+      "Fotos permitidas (sem flash nas áreas de projeção)"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 2-5 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-48h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Grupos escolares:</strong>
+          <span>Desconto especial com agendamento mínimo de 7 dias</span>
+        </div>
+        <div class="policy-item">
+          <strong>Ingresso família:</strong>
+          <span>Pacote para 4 pessoas: R$ 280,00 (economize R$ 60,00)</span>
+        </div>
+      </div>
+    `,
+    notas: "Recomendado para escolas, famílias com crianças acima de 6 anos e amantes da ciência. Perfeito para dias de chuva!"
+  },
+
   {
     id: 62,
     nome: "Ingresso NBA Park",
