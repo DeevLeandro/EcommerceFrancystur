@@ -2,7 +2,7 @@ export const produtos = {
 passeios: [
   {
     id: 1,
-    nome: "Tour pela Cidade de Gramado",
+    nome: "Tour pela Cidade de Gramado c/ Transporte",
     preco: 120.00,
     imagem: "/images/gramado-tour.jpg",
     imagens: [
@@ -98,7 +98,7 @@ passeios: [
   },
   {
     id: 2,
-    nome: "Parque Snowland",
+    nome: "Parque Snowland c/ Transporte",
     preco: 180.00,
     imagem: "/images/snowland.jpg",
     imagens: [
@@ -776,7 +776,7 @@ passeios: [
   },
   {
     id: 9,
-    nome: "Pé da Cascata",
+    nome: "Pé da Cascata c/ Transporte",
     preco: 110.00,
     imagem: "/images/caracol.jpg",
     categoria: "passeios",
@@ -2540,6 +2540,12 @@ passeios: [
       nome: "Ingresso Mundo a Vapor",
       preco: 80.00,
       imagem: "/images/mundo-vapor.jpg",
+      imagens: [
+      "/images/mundo-vapor.jpg",
+      "/images/tour-parques-2.jpg",
+      "/images/mundo-vapor-3.png",
+      "/images/mundo-vapor-4.jpg"
+    ],
       categoria: "ingressos",
       duracao: "Aprox 2hs a 3hs",
       inclui: ["Ingresso", "Atrações interativas", "Demonstrações", "Guia interno"],
@@ -2611,6 +2617,12 @@ passeios: [
       nome: "Ingresso Mini Mundo",
       preco: 75.00,
       imagem: "/images/mini-mundo.jpg",
+      imagens: [
+      "/images/mini-mundo.jpg",
+      "/images/mini-mundo-4.jpg",
+      "/images/mini-mundo-2.webp",
+      "/images/mini-mundo-3.jpeg"
+    ],
       categoria: "ingressos",
       duracao: "Aprox 2hs",
       inclui: ["Ingresso", "Visita livre", "Mapa do parque", "Fotos"],
@@ -2678,6 +2690,12 @@ passeios: [
       nome: "Ingresso Harley Motor Show",
       preco: 65.00,
       imagem: "/images/harley show.jpg",
+      imagens: [
+      "/images/harley show.jpg",
+      "/images/harley-show-3.jpg",
+      "/images/harley-show-2.jpg",
+      "/images/harley-show-4.jpg"
+    ],
       categoria: "ingressos",
       duracao: "Aprox 1.5hs",
       inclui: ["Ingresso", "Exposição interativa", "Guia virtual", "Fotos"],
@@ -2739,74 +2757,87 @@ passeios: [
       `
     },
     {
-      id: 53,
-      nome: "Ingresso Snowland + Alpen Park",
-      preco: 220.00,
-      imagem: "/images/combo-parques.jpg",
-      categoria: "ingressos",
-      duracao: "Aprox 6hs",
-      inclui: ["Ingressos para ambos", "Transporte entre parques", "Equipamentos básicos", "Seguro"],
-      avaliacao: 4.8,
-      reviews: 112,
-      descricao: "Combo perfeito de aventura e diversão! Experiencie a neve no Snowland durante o dia e a adrenalina do Alpen Park à tarde. O pacote ideal para quem quer aproveitar ao máximo os parques mais emocionantes da região.",
-      roteiro: `
-        <div class="section-content">
-          <h4>Roteiro Combo Parques</h4>
-          <ul>
-            <li>09:00 - Saída para Snowland</li>
-            <li>10:00 - 13:00: Snowland (neve e atrações)</li>
-            <li>13:30 - Transporte para Alpen Park</li>
-            <li>14:00 - 17:00: Alpen Park (tirolesa e aventura)</li>
-            <li>17:30 - Retorno para Gramado</li>
-          </ul>
+    id: 53,
+    nome: "Ingresso Snowland + Terra Mágica Florybal c/ Transporte",
+    preco: 220.00,
+    imagem: "/images/snowland-4.jpg",
+    imagens: [
+      "/images/snowland-3.jpg",
+      "/images/florybal-3.jpeg",
+      "/images/snowland-2.jpg",
+      "/images/snowland-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 6hs",
+    inclui: ["Ingressos para ambos", "Transporte entre parques", "Equipamentos básicos", "Seguro"],
+    avaliacao: 4.8,
+    
+    reviews: 112,
+    descricao: "Combo perfeito de aventura e diversão! Experiencie a neve no Snowland durante o dia e a magia da Terra Mágica Florybal à tarde. O pacote ideal para quem quer aproveitar ao máximo os parques mais emocionantes da região.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Combo Parques</h4>
+        <ul>
+          <li>09:00 - Saída para Snowland</li>
+          <li>10:00 - 13:00: Snowland (neve e atrações)</li>
+          <li>13:30 - Transporte para Terra Mágica Florybal</li>
+          <li>14:00 - 17:00: Terra Mágica Florybal (atrações e diversão)</li>
+          <li>17:30 - Retorno para Gramado</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Snowland (neve e atrações)",
+      "Terra Mágica Florybal (atrações e diversão)",
+      "Transporte entre parques"
+    ],
+    horarios: [
+      "Saída: 09:00h",
+      "Snowland: 10:00h - 13:00h",
+      "Terra Mágica Florybal: 14:00h - 17:00h",
+      "Retorno: 18:00h"
+    ],
+    saidas: [
+      "Gramado Centro",
+      "Transporte incluso no combo"
+    ],
+    "informacoesImportantes": [
+      "Combo com dois ingressos",
+      "Transporte entre parques incluso",
+      "Equipamentos básicos fornecidos",
+      "Seguro acidentes incluso",
+      "Almoço não incluso",
+      "Reserva com antecedência",
+      "Vestimenta adequada para ambos"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
         </div>
-      `,
-      pontosVisita: [
-        "Snowland (neve e atrações)",
-        "Alpen Park (aventura e tirolesa)",
-        "Transporte entre parques"
-      ],
-      horarios: [
-        "Saída: 09:00h",
-        "Snowland: 10:00h - 13:00h",
-        "Alpen Park: 14:00h - 17:00h",
-        "Retorno: 18:00h"
-      ],
-      saidas: [
-        "Gramado Centro",
-        "Transporte incluso no combo"
-      ],
-      informacoesImportantes: [
-        "Combo com dois ingressos",
-        "Transporte entre parques incluso",
-        "Equipamentos básicos fornecidos",
-        "Seguro acidentes incluso",
-        "Almoço não incluso",
-        "Reserva com antecedência",
-        "Vestimenta adequada para ambos"
-      ],
-      politicasCancelamento: `
-        <div class="cancellation-policy">
-          <div class="policy-item">
-            <strong>Cancelamento até 7 dias antes:</strong>
-            <span>Reembolso de 100%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento entre 3-7 dias antes:</strong>
-            <span>Reembolso de 70%</span>
-          </div>
-          <div class="policy-item">
-            <strong>Cancelamento com menos de 72h:</strong>
-            <span>Sem reembolso</span>
-          </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
         </div>
-      `
-    },
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+   },
     {
       id: 54,
       nome: "Ingresso Hollywood Dream Cars",
       preco: 70.00,
       imagem: "/images/dream-cars.jpg",
+      imagens: [
+      "/images/dream-cars.jpg",
+      "/images/dream-cars-3.jpg",
+      "/images/dream-cars-2.jpg",
+      "/images/dream-cars-4.jpg"
+    ],
       categoria: "ingressos",
       duracao: "Aprox 1.5hs",
       inclui: ["Ingresso", "Tour guiado", "Áudio-guia", "Fotos"],
@@ -2867,7 +2898,717 @@ passeios: [
           </div>
         </div>
       `
-    }
+    },
+
+    {
+    id: 55,
+    nome: "Ingresso Super Carros",
+    preco: 85.00,
+    imagem: "/images/super-carros.jpg",
+    imagens: [
+      "/images/super-carros.jpg",
+      "/images/super-carros-3.jpg",
+      "/images/super-carros-2.jpg",
+      "/images/super-carros-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 2hs",
+    inclui: ["Ingresso", "Exposição de supercarros", "Área interativa", "Fotos", "Guia virtual"],
+    avaliacao: 4.8,
+    reviews: 134,
+    descricao: "Admire os carros mais rápidos e luxuosos do mundo! Exposição de supercarros esportivos, hipercarros e veículos de alto desempenho. Uma experiência imperdível para os amantes de velocidade e engenharia automotiva.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Super Carros</h4>
+        <ul>
+          <li>Entrada na exposição</li>
+          <li>Área de supercarros esportivos</li>
+          <li>Seção de hipercarros (Bugatti, Lamborghini, Ferrari)</li>
+          <li>Simuladores de corrida</li>
+          <li>Área de fotos com os carros</li>
+          <li>Loja temática</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Supercarros esportivos",
+      "Hipercarros exclusivos",
+      "Simuladores de F1",
+      "Área de realidade virtual",
+      "Fotos profissionais",
+      "Loja de colecionáveis"
+    ],
+    horarios: [
+      "Aberto: 10:00h - 20:00h",
+      "Última entrada: 19:00h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Super Carros - Gramado",
+      "Endereço: Rua dos Super Carros, 500 - Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Ingresso individual",
+      "Simuladores disponíveis por tempo limitado",
+      "Fotos permitidas (sem tocar nos veículos)",
+      "Acesso para cadeirantes",
+      "Estacionamento gratuito",
+      "Visitas guiadas a cada hora"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 48h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-48h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 56,
+    nome: "Ingresso Museu de Cera",
+    preco: 60.00,
+    imagem: "/images/museu-cera.jpg",
+    imagens: [
+      "/images/museu-cera.jpg",
+      "/images/museu-cera-3.jpg",
+      "/images/museu-cera-2.jpg",
+      "/images/museu-cera-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 1.5hs",
+    inclui: ["Ingresso", "Tour pelo museu", "Fotos com personalidades", "Áudio-guia"],
+    avaliacao: 4.4,
+    reviews: 89,
+    descricao: "Encontre-se com as maiores celebridades do mundo! Figuras em cera incrivelmente realistas de artistas, esportistas, políticos e personalidades históricas. Uma experiência divertida e fotogênica para toda a família.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Museu de Cera</h4>
+        <ul>
+          <li>Entrada no museu</li>
+          <li>Seção de celebridades internacionais</li>
+          <li>Área de personalidades brasileiras</li>
+          <li>Figuras históricas e políticas</li>
+          <li>Estrelas do cinema e música</li>
+          <li>Área de fotos interativas</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Celebridades internacionais",
+      "Personalidades brasileiras",
+      "Figuras históricas",
+      "Estrelas do esporte",
+      "Área de fotos 360°",
+      "Loja de souvenirs"
+    ],
+    horarios: [
+      "Aberto: 09:00h - 18:00h",
+      "Última entrada: 17:00h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Museu de Cera - Gramado",
+      "Endereço: Av. das Hortênsias, 2600 - Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Fotos permitidas e estimuladas",
+      "Não tocar nas figuras de cera",
+      "Áudio-guia disponível",
+      "Acesso para cadeirantes",
+      "Estacionamento pago próximo",
+      "Visitas guiadas disponíveis"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 3 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 57,
+    nome: "Ingresso Roda Gigante de Gramado",
+    preco: 45.00,
+    imagem: "/images/roda-gigante-3.jpg",
+    imagens: [
+      "/images/roda-gigante-3.jpg",
+      "/images/roda-gigante-2.jpg",
+      "/images/roda-gigante.jpeg",
+      "/images/roda-gigante-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 30min",
+    inclui: ["1 volta na roda gigante", "Vista panorâmica", "Fotos", "Seguro"],
+    avaliacao: 4.7,
+    reviews: 203,
+    descricao: "A maior roda gigante da região! Suba a 50 metros de altura e tenha uma vista panorâmica deslumbrante de Gramado e dos vales ao redor. Uma experiência romântica ao pôr do sol ou mágica à noite com as luzes da cidade.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Experiência Roda Gigante</h4>
+        <ul>
+          <li>Aquisição do ingresso</li>
+          <li>Acesso à fila prioritária</li>
+          <li>Subida na roda gigante (1 volta completa)</li>
+          <li>Tempo para fotos no topo</li>
+          <li>Descida e área de observação</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Roda gigante 50 metros",
+      "Vista panorâmica de Gramado",
+      "Mirante fotográfico",
+      "Iluminação noturna especial"
+    ],
+    horarios: [
+      "Funcionamento: 14:00h - 23:00h",
+      "Melhor horário: pôr do sol (17:30-18:30)",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Roda Gigante de Gramado",
+      "Endereço: Lago Joaquina Rita Bier - Centro, Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Ingresso por pessoa",
+      "Crianças até 2 anos não pagam",
+      "Segurança máxima (cabines fechadas)",
+      "Acesso para cadeirantes",
+      "Operação mesmo com chuva leve",
+      "Fotos permitidas",
+      "Não recomendado para quem tem vertigem"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 24h antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Reembolso de 50% (se não utilizado)</span>
+        </div>
+        <div class="policy-item">
+          <strong>Em caso de mau tempo:</strong>
+          <span>Reagendamento gratuito</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 58,
+    nome: "Ingresso Parque Mundo Lugano",
+    preco: 90.00,
+    imagem: "/images/mundo-lugano.webp",
+    imagens: [
+      "/images/mundo-lugano.webp",
+      "/images/mundo-lugano-3.jpg",
+      "/images/mundo-lugano-2.webp",
+      "/images/mundo-lugano-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 3-4hs",
+    inclui: ["Ingresso", "Atrações do parque", "Mapa interativo", "Shows", "Área de jogos"],
+    avaliacao: 4.6,
+    reviews: 145,
+    descricao: "Um parque temático incrível com atrações para todas as idades! Inspirado na Suíça, o Mundo Lugano oferece montanhas-russas, atrações aquáticas, shows ao vivo e uma vila suíça encantadora. Diversão garantida para a família toda.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Mundo Lugano</h4>
+        <ul>
+          <li>Entrada no parque temático</li>
+          <li>Montanha-russa Alpina</li>
+          <li>Atrações aquáticas (verão)</li>
+          <li>Vila Suíça (lojas e restaurantes)</li>
+          <li>Show ao vivo no anfiteatro</li>
+          <li>Área de jogos e brinquedos</li>
+          <li>Trenzinho pelo parque</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Montanha-russa Alpina",
+      "Atrações aquáticas",
+      "Vila Suíça temática",
+      "Anfiteatro com shows",
+      "Área de jogos infantis",
+      "Trenzinho panorâmico",
+      "Restaurantes temáticos"
+    ],
+    horarios: [
+      "Aberto: 10:00h - 19:00h",
+      "Atrações: 10:30h - 18:30h",
+      "Shows: 14:00h e 17:00h",
+      "Fechado às terças-feiras"
+    ],
+    saidas: [
+      "Parque Mundo Lugano",
+      "Endereço: Estrada do Caracol, 3500 - Canela/RS"
+    ],
+    informacoesImportantes: [
+      "Ingresso dá acesso a todas as atrações",
+      "Algumas atrações têm altura mínima",
+      "Traje de banho para atrações aquáticas",
+      "Estacionamento gratuito",
+      "Acesso para cadeirantes",
+      "Guarda-volumes disponível",
+      "Área de alimentação no local"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 72h:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Em caso de chuva:</strong>
+          <span>Reagendamento gratuito</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 59,
+    nome: "Ingresso Alpen Park",
+    preco: 120.00,
+    imagem: "/images/alpen-park.jpg",
+    imagens: [
+      "/images/combo-parques.jpg",
+      "/images/alpen-park.jpg",
+      "/images/aventura.jpg",
+      "/images/combo-parques.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 4hs",
+    inclui: ["Ingresso", "3 atividades radicais", "Equipamentos", "Instrutor", "Seguro"],
+    avaliacao: 4.9,
+    reviews: 187,
+    descricao: "Aventura radical nas alturas! O Alpen Park oferece atividades emocionantes como tirolesa, arvorismo, montanha-russa e bungee trampolim. Para os aventureiros que buscam adrenalina com segurança e vistas espetaculares.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Alpen Park</h4>
+        <ul>
+          <li>Check-in e briefing de segurança</li>
+          <li>Tirolesa (maior da América Latina)</li>
+          <li>Arvorismo (trilhas em diferentes níveis)</li>
+          <li>Montanha-russa na montanha</li>
+          <li>Bungee trampolim</li>
+          <li>Área de descanso e fotos</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Tirolesa gigante",
+      "Trilhas de arvorismo",
+      "Montanha-russa alpina",
+      "Bungee trampolim",
+      "Mirante panorâmico",
+      "Área de fotos"
+    ],
+    horarios: [
+      "Aberto: 09:00h - 18:00h",
+      "Última entrada: 16:00h",
+      "Atividades até: 17:30h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Alpen Park - Gramado",
+      "Endereço: Estrada Linha 28 de Setembro, 3085 - Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Idade mínima: 7 anos",
+      "Peso mínimo/máximo para algumas atrações",
+      "Equipamentos de segurança fornecidos",
+      "Roupas e calçados adequados",
+      "Instrutores capacitados",
+      "Seguro acidentes incluso",
+      "Reservas recomendadas"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 48h-7 dias:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Reembolso de 30%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Mau tempo:</strong>
+          <span>Reagendamento ou reembolso total</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 60,
+    nome: "Ingresso Vale dos Dinossauros",
+    preco: 55.00,
+    imagem: "/images/vale-dinossauros.webp",
+    imagens: [
+      "/images/vale-dinossauros-1.jpg",
+      "/images/vale-dinossauros-3.jpg",
+      "/images/vale-dinossauros-2.jpeg",
+      "/images/vale-dinossauros-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 2hs",
+    inclui: ["Ingresso", "Trilha educativa", "Áudio-guia", "Área interativa", "Fotos"],
+    avaliacao: 4.5,
+    reviews: 92,
+    descricao: "Viaje no tempo para a era dos dinossauros! Trilha educativa com réplicas em tamanho real dos maiores dinossauros, áreas interativas e exposição paleontológica. Uma aventura pré-histórica que encanta crianças e adultos.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Vale dos Dinossauros</h4>
+        <ul>
+          <li>Entrada no parque</li>
+          <li>Trilha dos dinossauros (réplicas em tamanho real)</li>
+          <li>Área de escavação paleontológica (interativa)</li>
+          <li>Museu de fósseis</li>
+          <li>Cinema 3D (sessões a cada hora)</li>
+          <li>Loja temática de dinossauros</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Réplicas de dinossauros em tamanho real",
+      "Área de escavação interativa",
+      "Museu de fósseis",
+      "Cinema 3D pré-histórico",
+      "Trilha educativa",
+      "Loja de souvenirs"
+    ],
+    horarios: [
+      "Aberto: 09:30h - 17:30h",
+      "Última entrada: 16:30h",
+      "Sessões 3D: 10:00h, 12:00h, 14:00h, 16:00h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Vale dos Dinossauros - Canela",
+      "Endereço: RS-466, Km 2 - Canela/RS"
+    ],
+    informacoesImportantes: [
+      "Trilha ao ar livre (proteção solar recomendada)",
+      "Apropriado para todas as idades",
+      "Áudio-guia educativo",
+      "Acesso para cadeirantes parcial",
+      "Estacionamento gratuito",
+      "Área de piquenique disponível",
+      "Fotos permitidas em toda área"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 3 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Reembolso de 30%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Chuva forte:</strong>
+          <span>Reagendamento gratuito</span>
+        </div>
+      </div>
+    `
+  },
+
+   {
+    id: 61,
+    nome: "Ingresso Space Park NASA",
+    preco: 95.00,
+    imagem: "/images/space-park-nasa.jpg",
+    imagens: [
+      "/images/space-park-nasa-1.jpg",
+      "/images/space-park-nasa-3.webp",
+      "/images/space-park-nasa-2.jpg",
+      "/images/space-park-nasa-4.png"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 3hs",
+    inclui: ["Ingresso", "Simuladores espaciais", "Tour interativo", "Experiências científicas", "Áudio-guia"],
+    avaliacao: 4.8,
+    reviews: 178,
+    descricao: "Explore o universo no único parque temático da NASA fora dos EUA! Simuladores de gravidade zero, missões espaciais interativas, réplicas de foguetes e estações espaciais. Uma jornada educativa e emocionante pelo cosmos.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Space Park NASA</h4>
+        <ul>
+          <li>Entrada no complexo espacial</li>
+          <li>Simulador de lançamento de foguete</li>
+          <li>Experiência de gravidade zero</li>
+          <li>Tour pela réplica da Estação Espacial Internacional</li>
+          <li>Missão Marte (simulador interativo)</li>
+          <li>Planetário digital 360°</li>
+          <li>Área de experimentos científicos</li>
+          <li>Loja oficial NASA</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Simulador de lançamento",
+      "Experiência de gravidade zero",
+      "Réplica da ISS",
+      "Missão Marte interativa",
+      "Planetário digital",
+      "Exposição de trajes espaciais",
+      "Laboratório de experimentos",
+      "Loja NASA"
+    ],
+    horarios: [
+      "Aberto: 10:00h - 19:00h",
+      "Última entrada: 17:30h",
+      "Sessões planetário: 11:00h, 14:00h, 16:00h, 18:00h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "Space Park NASA - Canela",
+      "Endereço: Estrada do Caracol, 2800 - Canela/RS"
+    ],
+    informacoesImportantes: [
+      "Idade mínima para simuladores: 8 anos",
+      "Reserva de horários para experiências específicas",
+      "Áudio-guia em português, inglês e espanhol",
+      "Acesso completo para cadeirantes",
+      "Estacionamento gratuito",
+      "Altura mínima para algumas atrações: 1.20m",
+      "Fotos permitidas (exceto no planetário)",
+      "Recomendado reservar com antecedência"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 70%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h antes:</strong>
+          <span>Reembolso de 50%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Sem reembolso</span>
+        </div>
+        <div class="policy-item">
+          <strong>Para experiências reservadas:</strong>
+          <span>Reagendamento gratuito até 48h antes</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 62,
+    nome: "Ingresso NBA Park",
+    preco: 250.00,
+    imagem: "/images/nba-park-3.jpg",
+    imagens: [
+      "/images/nba-park-3.jpg",
+      "/images/nba-park.jpeg",
+      "/images/nba-park-2.jpg",
+      "/images/nba-park-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 2.5hs",
+    inclui: ["Ingresso", "Área de jogos", "Simuladores", "Competições", "Atividades interativas"],
+    avaliacao: 4.7,
+    reviews: 156,
+    descricao: "Viva a emoção da NBA! Único parque temático oficial da NBA fora dos EUA. Quadras interativas, simuladores de arremesso, competições, área de vídeos 360° e encontro com lendas do basquete (holográficas). Perfeito para fãs de esportes.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro NBA Park</h4>
+        <ul>
+          <li>Entrada no parque temático</li>
+          <li>Quadra principal (arremessos e jogos)</li>
+          <li>Simulador de enterradas (slam dunk)</li>
+          <li>Desafio de arremesso de 3 pontos</li>
+          <li>Área de realidade virtual NBA</li>
+          <li>Exposição de camisas e troféus</li>
+          <li>Encontro holográfico com estrelas NBA</li>
+          <li>Loja oficial NBA Store</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Quadra principal NBA",
+      "Simulador de enterradas",
+      "Desafio de 3 pontos",
+      "Reality virtual NBA 360°",
+      "Exposição histórica",
+      "Hologramas de jogadores",
+      "Área de competições",
+      "NBA Store oficial"
+    ],
+    horarios: [
+      "Aberto: 11:00h - 21:00h",
+      "Última entrada: 20:00h",
+      "Competições: 14:00h, 16:00h, 18:00h",
+      "Todos os dias"
+    ],
+    saidas: [
+      "NBA Park - Gramado",
+      "Endereço: Av. das Hortênsias, 4500 - Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Recomendado uso de tênis esportivo",
+      "Atividades para todas as idades",
+      "Competições com prêmios diários",
+      "Fotos permitidas em todas as áreas",
+      "Vestiários disponíveis",
+      "Loja com produtos exclusivos",
+      "Área de alimentação temática",
+      "Acesso para cadeirantes"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 5 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 48h-5 dias:</strong>
+          <span>Reembolso de 60%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 48h:</strong>
+          <span>Reembolso de 30%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Ingresso não utilizado:</strong>
+          <span>Válido para reagendamento em 30 dias</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 63,
+    nome: "Ingresso Exceed Park",
+    preco: 110.00,
+    imagem: "/images/exceed-park.jpg",
+    imagens: [
+      "/images/exceed-park.jpg",
+      "/images/exceed-park-3.jpeg",
+      "/images/exceed-park-2.webp",
+      "/images/sexceed-park-4.jpg"
+    ],
+    categoria: "ingressos",
+    duracao: "Aprox 4hs",
+    inclui: ["Ingresso", "Cartão de crédito para jogos", "3 atrações eletrônicas", "Simulador de F1", "Bônus de boas-vindas"],
+    avaliacao: 4.6,
+    reviews: 192,
+    descricao: "O maior parque de jogos eletrônicos da região! Exceed Park oferece simuladores de F1 em movimento real, jogos de última geração, realidade virtual, kart elétrico e muito mais. Diversão garantida para gamers e famílias.",
+    roteiro: `
+      <div class="section-content">
+        <h4>Roteiro Exceed Park</h4>
+        <ul>
+          <li>Check-in e recebimento do cartão de crédito</li>
+          <li>Simulador de F1 (com movimento real)</li>
+          <li>Área de realidade virtual premium</li>
+          <li>Kart elétrico indoor</li>
+          <li>Salão de jogos eletrônicos (100+ jogos)</li>
+          <li>Bowling eletrônico</li>
+          <li>Laser tag (opcional)</li>
+          <li>Resgate de prêmios por pontos</li>
+        </ul>
+      </div>
+    `,
+    pontosVisita: [
+      "Simulador F1 com movimento",
+      "Realidade virtual premium",
+      "Kart elétrico indoor",
+      "Salão de jogos (100+ máquinas)",
+      "Bowling eletrônico",
+      "Laser tag arena",
+      "Área de prêmios",
+      "Food court gamer"
+    ],
+    horarios: [
+      "Aberto: 12:00h - 23:00h",
+      "Segunda a quinta: 12:00h - 22:00h",
+      "Sexta e sábado: 12:00h - 00:00h",
+      "Domingo: 12:00h - 21:00h"
+    ],
+    saidas: [
+      "Exceed Park - Gramado",
+      "Endereço: Rua dos Jogos, 1500 - Centro, Gramado/RS"
+    ],
+    informacoesImportantes: [
+      "Cartão de crédito com R$50 incluído",
+      "Pontos acumuláveis para prêmios",
+      "Idade mínima para kart: 12 anos (1.50m)",
+      "Reserva recomendada para simuladores",
+      "Wi-Fi gratuito",
+      "Área de alimentação no local",
+      "Eventos especiais aos finais de semana",
+      "Acesso para cadeirantes"
+    ],
+    politicasCancelamento: `
+      <div class="cancellation-policy">
+        <div class="policy-item">
+          <strong>Cancelamento até 7 dias antes:</strong>
+          <span>Reembolso de 100%</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 3-7 dias antes:</strong>
+          <span>Reembolso de 80% (cartão não ativado)</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento entre 24-72h:</strong>
+          <span>Reembolso de 50% (cartão não ativado)</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cancelamento com menos de 24h:</strong>
+          <span>Reagendamento gratuito (válido 3 meses)</span>
+        </div>
+        <div class="policy-item">
+          <strong>Cartão já ativado:</strong>
+          <span>Sem reembolso, válido por 6 meses</span>
+        </div>
+      </div>
+    `
+  },
+ 
   ],
   
   natalLuz: [
