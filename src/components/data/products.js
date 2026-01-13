@@ -3374,7 +3374,7 @@ passeios: [
     preco: 85.00,
     imagem: "/images/geo-museu.jpg",
     imagens: [
-      "/images/geo-museu-1.jpg",
+      "/images/Geo-museu-1.jpg",
       "/images/geo-museu-2.jpg",
       "/images/geo-museu-3.jpg",
       "/images/geo-museu-4.jpg"
